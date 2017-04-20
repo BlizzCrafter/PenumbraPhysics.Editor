@@ -11,6 +11,7 @@
     <AssemblyName>PenumbraPhysics.Editor</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>Windows</MonoGamePlatform>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -73,6 +74,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Basic\GraphicsDeviceService.cs" />
+    <Compile Include="Classes\Basic\ServiceContainer.cs" />
+    <Compile Include="Classes\Editors\Samples\PenumbraPhysicsEditor.cs" />
+    <Compile Include="Classes\Editors\Samples\PhysicsEditor.cs" />
+    <Compile Include="Classes\Editors\Samples\UpdateControlEditor.cs" />
+    <Compile Include="Controls\Basic\GameControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Basic\GraphicsDeviceControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Basic\Samples\DrawControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Basic\Samples\PenumbraPhysicsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Basic\Samples\PhysicsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Basic\Samples\UpdateControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MainEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +118,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.manifest" />
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="Content\Macros.fxh" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,7 +148,9 @@
       <Name>MonoGame.Penumbra.WindowsDX</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
