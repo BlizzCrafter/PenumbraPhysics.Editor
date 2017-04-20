@@ -6,33 +6,21 @@ using FarseerPhysics.Common;
 using FarseerPhysics.Common.Decomposition;
 using FarseerPhysics.Common.PolygonManipulation;
 using FarseerPhysics.Dynamics;
-using FarseerPhysics.Dynamics.Joints;
 using FarseerPhysics.Factories;
-using FarseerPhysics.DebugView;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Penumbra;
+using PenumbraPhysics.Editor.Classes.Basic;
 
 namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 {
-    public class PenumbraPhysicsEditor
+    public class PenumbraPhysicsEditor : GFXPhysicsService
     {
-        private GameServiceContainer services;
-        private GraphicsDevice graphics;
-        private SpriteBatch spriteBatch;
-        private ContentManager Content;
-
-        private SpriteFont Font;
-
-        // The mouse position in the editor
-        private Vector2 GetMousePosition { get; set; }
-
         // Store reference to lighting system
-        PenumbraComponent penumbra;
+        private PenumbraComponent Penumbra;
 
-        // A fixture for our mouse cursor so we can play around with our physics object
-        FixedMouseJoint _fixedMouseJoint;
+        // Penumbra light
+        private Light _light;
 
         // The physics body
         Body tBody;
@@ -41,67 +29,21 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
         List<Hull> tBodyHull = new List<Hull>();
         float tBodyScale = 0.5f;
 
-        // The physical world
-        World world;
-
-        DebugViewXNA PhysicsDebugView;
-
-        // 64 Pixel of your screen should be 1 Meter in our physical world
-        private float MeterInPixels = 64f;
-
-        // Projection Matrix for PhysicsDebugView
-        public static Matrix projection, view;
-
-        // PhysicsDebugView Flag for showing the physical object as a colored shape
-        private bool showshapes = false;
-
-        // Penumbra light
-        private Light _light;
-
-        // Checks if the left mouse button is pressed
-        public bool LeftMouseButtonPressed = false;
-
-        private TimeSpan elapsedTime = TimeSpan.Zero;
-        private int frameCounter, frameRate;
-        private System.Globalization.NumberFormatInfo format;
-
         public PenumbraPhysicsEditor(IGraphicsDeviceService graphics)
         {
-            services = new GameServiceContainer();
-            services.AddService<IGraphicsDeviceService>(graphics);
+            // Initialize GFX-System
+            InitializeGFX(graphics);
 
-            this.graphics = graphics.GraphicsDevice;
+            // Initialize Physics-System
+            InitializePhysics(graphics.GraphicsDevice, Content);
 
-            Content = new ContentManager(services, "Content");
-            spriteBatch = new SpriteBatch(this.graphics);
-
-            format = new System.Globalization.NumberFormatInfo();
-            format.CurrencyDecimalSeparator = ".";
+            // Initialize Lighting-System
+            Penumbra = new PenumbraComponent(this.graphics, Content);
         }
 
         public void Initialize()
         {
-            // Our world for the physics body
-            world = new World(Vector2.Zero);
-
-            // Unit conversion rule to get the right position data between simulation space and display space
-            ConvertUnits.SetDisplayUnitToSimUnitRatio(MeterInPixels);
-
-            // Initialize the physics debug view
-            PhysicsDebugView = new DebugViewXNA(world);
-            PhysicsDebugView.LoadContent(this.graphics, Content);
-            PhysicsDebugView.RemoveFlags(DebugViewFlags.Controllers);
-            PhysicsDebugView.RemoveFlags(DebugViewFlags.Joint);
-            PhysicsDebugView.RemoveFlags(DebugViewFlags.Shape);
-            PhysicsDebugView.DefaultShapeColor = new Color(255, 255, 0);
-
-            // Initialize the lighting system
-            // Create the lighting system
-            penumbra = new PenumbraComponent(this.graphics, Content);
-            penumbra.AmbientColor = new Color(new Vector3(0.7f));
-
-            //Loading
-            Font = Content.Load<SpriteFont>(@"Font");
+            Penumbra.AmbientColor = new Color(new Vector3(0.7f));
 
             _light = new PointLight
             {
@@ -110,13 +52,13 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
                 Scale = new Vector2(1300),
                 ShadowType = ShadowType.Solid
             };
-            penumbra.Lights.Add(_light);
+            Penumbra.Lights.Add(_light);
 
             // Loading the texture of the physics object
             tBodyTexture = Content.Load<Texture2D>(@"Samples/object");
 
             // Creating the physics object
-            tBody = CreateComplexBody(world, tBodyTexture, tBodyScale);
+            tBody = CreateComplexBody(_World, tBodyTexture, tBodyScale);
             tBody.SleepingAllowed = false;
             tBody.Position = ConvertUnits.ToSimUnits(new Vector2(graphics.Viewport.Width / 2, graphics.Viewport.Height / 2));
             tBody.BodyType = BodyType.Dynamic;
@@ -142,15 +84,12 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
                 tBodyHull.Add(h);
 
                 // Adding the Hull to Penumbra
-                penumbra.Hulls.Add(h);
+                Penumbra.Hulls.Add(h);
             }
         }
 
         public void Update(GameTime gameTime, Vector2 mousePosition, bool leftMouseButtonPressed)
         {
-            // Get the current mouse position in the editor
-            GetMousePosition = mousePosition;
-
             // Animate light position
             _light.Position =
                 new Vector2(400f, 240f) + // Offset origin
@@ -166,81 +105,36 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
                 h.Position = ConvertUnits.ToDisplayUnits(tBody.Position);
             }
 
-            if (showshapes == true) PhysicsDebugView.AppendFlags(DebugViewFlags.Shape);
-            else PhysicsDebugView.RemoveFlags(DebugViewFlags.Shape);
-
-            // If left mouse button clicked then create a fixture for physics manipulation
-            if (leftMouseButtonPressed && _fixedMouseJoint == null)
-            {
-                Fixture savedFixture = world.TestPoint(ConvertUnits.ToSimUnits(mousePosition));
-                if (savedFixture != null)
-                {
-                    Body body = savedFixture.Body;
-                    _fixedMouseJoint = new FixedMouseJoint(body, ConvertUnits.ToSimUnits(mousePosition));
-                    _fixedMouseJoint.MaxForce = 1000.0f * body.Mass;
-                    world.AddJoint(_fixedMouseJoint);
-                    body.Awake = true;
-                }
-            }
-            // If left mouse button releases then remove the fixture from the world
-            if (!leftMouseButtonPressed && _fixedMouseJoint != null)
-            {
-                world.RemoveJoint(_fixedMouseJoint);
-                _fixedMouseJoint = null;
-            }
-            if (_fixedMouseJoint != null)
-                _fixedMouseJoint.WorldAnchorB = ConvertUnits.ToSimUnits(mousePosition);
-
-            // We update the world
-            world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
-
-            //FPS-Counter
-            elapsedTime += gameTime.ElapsedGameTime;
-            if (elapsedTime <= TimeSpan.FromSeconds(1)) return;
-            elapsedTime -= TimeSpan.FromSeconds(1);
-            frameRate = frameCounter;
-            frameCounter = 0;
+            UpdatePhysicsManipulation(leftMouseButtonPressed, mousePosition);
+            UpdatePhysics(gameTime);
+            UpdateDisplay(gameTime, mousePosition);
         }
 
         public void Draw(GameTime gameTime)
         {
-            // Matrix projection und Matrix view for PhysicsDebugView
-            //
-            // Calculate the projection and view adjustments for the debug view
-            projection = Matrix.CreateOrthographicOffCenter(0f, graphics.Viewport.Width / MeterInPixels,
-                                                             graphics.Viewport.Height / MeterInPixels, 0f, 0f,
-                                                             1f);
-            view = Matrix.Identity;
-
-            // Raise the frame counter
-            frameCounter++;
+            UpdateFrameCounter();
 
             // Everything between penumbra.BeginDraw and penumbra.Draw will be
             // lit by the lighting system.
 
-            penumbra.BeginDraw();
+            Penumbra.BeginDraw();
 
             graphics.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            if (tBody != null)
+            {
+                spriteBatch.Begin();
 
-            // Draw the texture of the physics body
-            spriteBatch.Draw(tBodyTexture, ConvertUnits.ToDisplayUnits(tBody.Position), null,
-                        Color.Tomato, tBody.Rotation, tBodyOrigin, tBodyScale, SpriteEffects.None, 0);
-            spriteBatch.End();
+                // Draw the texture of the physics body
+                spriteBatch.Draw(tBodyTexture, ConvertUnits.ToDisplayUnits(tBody.Position), null,
+                            Color.Tomato, tBody.Rotation, tBodyOrigin, tBodyScale, SpriteEffects.None, 0);
+                spriteBatch.End();
+            }
 
-            penumbra.Draw();
+            Penumbra.Draw();
 
-            // Draw the physics debug view
-            PhysicsDebugView.RenderDebugData(ref projection);
-
-            spriteBatch.Begin();
-
-            string fps = string.Format(format, "{0} fps", frameRate);
-            string drawString = $"{fps}\n{GetMousePosition}";
-            spriteBatch.DrawString(Font, drawString, new Vector2(0, 0), Color.White);
-
-            spriteBatch.End();
+            DrawPhysicsDebugView();
+            DrawDisplay();
         }
 
         /// <summary>

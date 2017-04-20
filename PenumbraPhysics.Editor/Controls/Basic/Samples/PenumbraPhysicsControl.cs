@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using PenumbraPhysics.Editor.Classes.Editors.Samples;
 
 namespace PenumbraPhysics.Editor.Controls.Basic

@@ -3,6 +3,8 @@ using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 using PenumbraPhysics.Editor.Controls;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace PenumbraPhysics.Editor.Controls
 {
