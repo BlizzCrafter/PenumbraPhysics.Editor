@@ -22,6 +22,17 @@ namespace PenumbraPhysics.Editor
             InitializeComponent();
         }
 
+        #region Dispose Messages
+
+        // Dispose PhysicsManippulationSample Message
+        private void buttonCloseManipulationSampleMessage_Click(object sender, EventArgs e)
+        {
+            richTextBoxManipulationSample.Dispose();
+            buttonCloseManipulationSampleMessage.Dispose();
+        }
+
+        #endregion
+
         #region Passing Events to underlying Controls
 
         /* They get triggered inside the corresponding controls! */
@@ -33,7 +44,7 @@ namespace PenumbraPhysics.Editor
         #endregion
 
         #region Basic Control Events
-
+        
         // Ensures that the drop down opens on button click
         private void toolStripSplitButtonSettings_Click(object sender, EventArgs e)
         {
@@ -98,5 +109,6 @@ namespace PenumbraPhysics.Editor
         }
 
         #endregion
+
     }
 }

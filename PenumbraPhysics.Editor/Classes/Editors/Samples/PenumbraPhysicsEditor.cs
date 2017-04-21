@@ -17,7 +17,7 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
     public class PenumbraPhysicsEditor : GFXPhysicsService
     {
         // Store reference to lighting system
-        private PenumbraComponent Penumbra;
+        public PenumbraComponent Penumbra;
 
         // Penumbra light
         private Light _light;
