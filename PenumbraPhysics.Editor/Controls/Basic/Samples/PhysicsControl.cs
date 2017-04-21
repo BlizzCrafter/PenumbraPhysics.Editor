@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using PenumbraPhysics.Editor.Classes.Editors.Samples;
 
 namespace PenumbraPhysics.Editor.Controls.Basic
@@ -13,6 +14,16 @@ namespace PenumbraPhysics.Editor.Controls.Basic
 
             Editor = new PhysicsEditor(_graphicsDeviceService);
             Editor.Initialize();
+        }
+
+        public override void ClearPhysicsForces()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ResetPhysics()
+        {
+            throw new NotImplementedException();
         }
 
         protected override void Update(GameTime gameTime)

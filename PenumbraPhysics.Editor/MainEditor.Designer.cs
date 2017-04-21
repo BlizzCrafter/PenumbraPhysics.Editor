@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEditor));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageWelcome = new System.Windows.Forms.TabPage();
+            this.contextMenuStripPenumbraPhysicsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.physicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemResetAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPagePPManipulation = new System.Windows.Forms.TabPage();
             this.tabPagePPPlacement = new System.Windows.Forms.TabPage();
             this.tabPageJustDraw = new System.Windows.Forms.TabPage();
@@ -39,10 +43,16 @@
             this.toolStripMenuItemShowFPS = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowCursorPosition = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowPhysicsDebug = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonResetForces = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.toolStripMenuItemClearPhysicsForces = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.penumbraPhysicsControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.PenumbraPhysicsControlSAMPLE();
             this.updateControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.UpdateControlSAMPLE();
             this.tabControl1.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
+            this.contextMenuStripPenumbraPhysicsMenu.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +80,33 @@
             this.tabPageWelcome.TabIndex = 0;
             this.tabPageWelcome.Text = "Welcome!";
             this.tabPageWelcome.UseVisualStyleBackColor = true;
+            // 
+            // contextMenuStripPenumbraPhysicsMenu
+            // 
+            this.contextMenuStripPenumbraPhysicsMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStripPenumbraPhysicsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.physicsToolStripMenuItem});
+            this.contextMenuStripPenumbraPhysicsMenu.Name = "contextMenuStripPenumbraPhysicsMenu";
+            this.contextMenuStripPenumbraPhysicsMenu.Size = new System.Drawing.Size(125, 28);
+            this.contextMenuStripPenumbraPhysicsMenu.Text = "PenumbraPhysics Menu";
+            this.contextMenuStripPenumbraPhysicsMenu.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripPenumbraPhysicsMenu_Opening);
+            // 
+            // physicsToolStripMenuItem
+            // 
+            this.physicsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemClearPhysicsForces,
+            this.toolStripSeparator1,
+            this.ToolStripMenuItemResetAll});
+            this.physicsToolStripMenuItem.Name = "physicsToolStripMenuItem";
+            this.physicsToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
+            this.physicsToolStripMenuItem.Text = "Physics";
+            // 
+            // ToolStripMenuItemResetAll
+            // 
+            this.ToolStripMenuItemResetAll.Name = "ToolStripMenuItemResetAll";
+            this.ToolStripMenuItemResetAll.Size = new System.Drawing.Size(164, 26);
+            this.ToolStripMenuItemResetAll.Text = "Reset All";
+            this.ToolStripMenuItemResetAll.Click += new System.EventHandler(this.ToolStripMenuItemResetAll_Click);
             // 
             // tabPagePPManipulation
             // 
@@ -150,14 +187,55 @@
             this.toolStripMenuItemShowPhysicsDebug.Text = "Show Physics Debug";
             this.toolStripMenuItemShowPhysicsDebug.Click += new System.EventHandler(this.toolStripMenuItemShowPhysicsDebug_Click);
             // 
+            // buttonResetForces
+            // 
+            this.buttonResetForces.Location = new System.Drawing.Point(0, 0);
+            this.buttonResetForces.Name = "buttonResetForces";
+            this.buttonResetForces.Size = new System.Drawing.Size(75, 23);
+            this.buttonResetForces.TabIndex = 0;
+            this.buttonResetForces.Text = "Reset Forces";
+            this.buttonResetForces.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // toolStripMenuItemClearPhysicsForces
+            // 
+            this.toolStripMenuItemClearPhysicsForces.Name = "toolStripMenuItemClearPhysicsForces";
+            this.toolStripMenuItemClearPhysicsForces.Size = new System.Drawing.Size(164, 26);
+            this.toolStripMenuItemClearPhysicsForces.Text = "Clear Forces";
+            this.toolStripMenuItemClearPhysicsForces.Click += new System.EventHandler(this.toolStripMenuItemClearPhysicsForces_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
+            // 
             // penumbraPhysicsControlSAMPLE1
             // 
+            this.penumbraPhysicsControlSAMPLE1.ContextMenuStrip = this.contextMenuStripPenumbraPhysicsMenu;
             this.penumbraPhysicsControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.penumbraPhysicsControlSAMPLE1.Location = new System.Drawing.Point(3, 3);
             this.penumbraPhysicsControlSAMPLE1.Name = "penumbraPhysicsControlSAMPLE1";
             this.penumbraPhysicsControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
             this.penumbraPhysicsControlSAMPLE1.TabIndex = 0;
             this.penumbraPhysicsControlSAMPLE1.Text = "penumbraPhysicsControlSAMPLE1";
+            this.penumbraPhysicsControlSAMPLE1.VisibleChanged += new System.EventHandler(this.penumbraPhysicsControlSAMPLE1_VisibleChanged);
             // 
             // updateControlSAMPLE1
             // 
@@ -184,6 +262,7 @@
             this.Text = "PenumbraPhysics.Editor";
             this.tabControl1.ResumeLayout(false);
             this.tabPageWelcome.ResumeLayout(false);
+            this.contextMenuStripPenumbraPhysicsMenu.ResumeLayout(false);
             this.tabPagePPManipulation.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -205,5 +284,13 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowFPS;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowCursorPosition;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowPhysicsDebug;
+        private System.Windows.Forms.Button buttonResetForces;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripPenumbraPhysicsMenu;
+        private System.Windows.Forms.ToolStripMenuItem physicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemResetAll;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClearPhysicsForces;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

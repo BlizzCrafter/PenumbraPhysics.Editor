@@ -64,6 +64,11 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
             tBody.BodyType = BodyType.Dynamic;
             tBody.AngularDamping = 2f;
             tBody.Restitution = 1f;
+            tBody.UserData = new PhysicsBodyFlags()
+            {
+                StartPosition = tBody.Position,
+                StartRotation = tBody.Rotation
+            };
 
             // Create Hulls from the fixtures of the body
             foreach (Fixture f in tBody.FixtureList)

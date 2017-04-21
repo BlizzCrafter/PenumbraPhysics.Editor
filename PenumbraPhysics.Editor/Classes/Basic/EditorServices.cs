@@ -98,6 +98,27 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public int ViewportWidth { get; set; }
         public int ViewportHeight { get; set; }
+        
+        public void ClearPhysicsForces()
+        {
+            _World.BodyList.ForEach(b => { b.AngularVelocity = 0; b.LinearVelocity = Vector2.Zero; });
+            _World.BreakableBodyList.ForEach(b => { b.MainBody.AngularVelocity = 0; b.MainBody.LinearVelocity = Vector2.Zero; });
+        }
+        public void ResetPhysics()
+        {
+            _World.BodyList.ForEach(b => 
+            {
+                b.Position = ((PhysicsBodyFlags)b.UserData).StartPosition;
+                b.Rotation = ((PhysicsBodyFlags)b.UserData).StartRotation;
+            });
+            _World.BreakableBodyList.ForEach(b => 
+            {
+                b.MainBody.Position = ((PhysicsBodyFlags)b.MainBody.UserData).StartPosition;
+                b.MainBody.Rotation = ((PhysicsBodyFlags)b.MainBody.UserData).StartRotation;
+            });
+
+            ClearPhysicsForces();
+        }
 
         public void InitializePhysics(GraphicsDevice graphics, ContentManager Content)
         {
@@ -261,6 +282,27 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public int ViewportWidth { get; set; }
         public int ViewportHeight { get; set; }
+
+        public void ClearPhysicsForces()
+        {
+            _World.BodyList.ForEach(b => { b.AngularVelocity = 0; b.LinearVelocity = Vector2.Zero; });
+            _World.BreakableBodyList.ForEach(b => { b.MainBody.AngularVelocity = 0; b.MainBody.LinearVelocity = Vector2.Zero; });
+        }
+        public void ResetPhysics()
+        {
+            _World.BodyList.ForEach(b =>
+            {
+                b.Position = ((PhysicsBodyFlags)b.UserData).StartPosition;
+                b.Rotation = ((PhysicsBodyFlags)b.UserData).StartRotation;
+            });
+            _World.BreakableBodyList.ForEach(b =>
+            {
+                b.MainBody.Position = ((PhysicsBodyFlags)b.MainBody.UserData).StartPosition;
+                b.MainBody.Rotation = ((PhysicsBodyFlags)b.MainBody.UserData).StartRotation;
+            });
+
+            ClearPhysicsForces();
+        }
 
         public void InitializePhysics(GraphicsDevice graphics, ContentManager Content)
         {

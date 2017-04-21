@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework.Graphics;
 using PenumbraPhysics.Editor.Classes.Basic;
+using System.Collections.Generic;
 
 namespace PenumbraPhysics.Editor.Controls
 {
@@ -32,7 +33,7 @@ namespace PenumbraPhysics.Editor.Controls
         private SwapChainRenderTarget _chain;
         public GraphicsDeviceService _graphicsDeviceService;
         public GraphicsDevice GraphicsDevice => _graphicsDeviceService.GraphicsDevice;
-        public ServiceContainer Services { get; } = new ServiceContainer();
+        private ServiceContainer Services { get; } = new ServiceContainer();
 
         protected override void OnCreateControl()
         {

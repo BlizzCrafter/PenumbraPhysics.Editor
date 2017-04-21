@@ -65,6 +65,8 @@ namespace PenumbraPhysics.Editor.Controls
             }
         }
 
+        public abstract void ClearPhysicsForces();
+        public abstract void ResetPhysics();
         protected abstract void Update(GameTime gameTime);
         protected abstract void Draw(GameTime gameTime);
     }

@@ -40,6 +40,9 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         int ViewportWidth { get; set; }
         int ViewportHeight { get; set; }
 
+        void ClearPhysicsForces();
+        void ResetPhysics();
+
         void InitializePhysics(GraphicsDevice graphics, ContentManager Content);
 
         void UpdatePhysics(GameTime gameTime);
