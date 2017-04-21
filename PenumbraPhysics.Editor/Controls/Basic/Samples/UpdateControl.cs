@@ -4,15 +4,15 @@ using PenumbraPhysics.Editor.Classes;
 
 namespace PenumbraPhysics.Editor.Controls
 {
-    public class UpdateControlSAMPLE : GameControl
+    public class WelcomeUpdateControlSAMPLE : GameControl
     {
-        private UpdateControlSampleEditor Editor;
+        private WelcomeUpdateControlSampleEditor Editor;
 
         protected override void Initialize()
         {
             base.Initialize();
 
-            Editor = new UpdateControlSampleEditor(_graphicsDeviceService);
+            Editor = new WelcomeUpdateControlSampleEditor(_graphicsDeviceService);
             Editor.Initialize();
         }
 

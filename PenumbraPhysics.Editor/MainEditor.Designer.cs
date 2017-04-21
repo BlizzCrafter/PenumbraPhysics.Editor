@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEditor));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageWelcome = new System.Windows.Forms.TabPage();
+            this.welcomeUpdateControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.WelcomeUpdateControlSAMPLE();
             this.tabPagePPManipulation = new System.Windows.Forms.TabPage();
             this.buttonCloseManipulationSampleMessage = new System.Windows.Forms.Button();
             this.richTextBoxManipulationSample = new System.Windows.Forms.RichTextBox();
@@ -54,6 +55,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
+            this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
             this.contextMenuStripPenumbraPhysicsMenu.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -74,6 +76,7 @@
             // 
             // tabPageWelcome
             // 
+            this.tabPageWelcome.Controls.Add(this.welcomeUpdateControlSAMPLE1);
             this.tabPageWelcome.Location = new System.Drawing.Point(4, 25);
             this.tabPageWelcome.Name = "tabPageWelcome";
             this.tabPageWelcome.Padding = new System.Windows.Forms.Padding(3);
@@ -81,6 +84,15 @@
             this.tabPageWelcome.TabIndex = 0;
             this.tabPageWelcome.Text = "Welcome!";
             this.tabPageWelcome.UseVisualStyleBackColor = true;
+            // 
+            // welcomeUpdateControlSAMPLE1
+            // 
+            this.welcomeUpdateControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.welcomeUpdateControlSAMPLE1.Location = new System.Drawing.Point(3, 3);
+            this.welcomeUpdateControlSAMPLE1.Name = "welcomeUpdateControlSAMPLE1";
+            this.welcomeUpdateControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.welcomeUpdateControlSAMPLE1.TabIndex = 0;
+            this.welcomeUpdateControlSAMPLE1.Text = "welcomeUpdateControlSAMPLE1";
             // 
             // tabPagePPManipulation
             // 
@@ -297,6 +309,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PenumbraPhysics.Editor";
             this.tabControl1.ResumeLayout(false);
+            this.tabPageWelcome.ResumeLayout(false);
             this.tabPagePPManipulation.ResumeLayout(false);
             this.contextMenuStripPenumbraPhysicsMenu.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
@@ -330,5 +343,6 @@
         private Controls.Basic.PenumbraPhysicsControlSAMPLE penumbraPhysicsControlSAMPLE1;
         private System.Windows.Forms.RichTextBox richTextBoxManipulationSample;
         private System.Windows.Forms.Button buttonCloseManipulationSampleMessage;
+        private Controls.WelcomeUpdateControlSAMPLE welcomeUpdateControlSAMPLE1;
     }
 }

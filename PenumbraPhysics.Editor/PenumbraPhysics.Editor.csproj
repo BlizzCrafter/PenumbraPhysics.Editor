@@ -80,7 +80,6 @@
     <Compile Include="Classes\Basic\PhysicsBodyFlags.cs" />
     <Compile Include="Classes\Basic\ServiceContainer.cs" />
     <Compile Include="Classes\Editors\Samples\PenumbraPhysicsEditor.cs" />
-    <Compile Include="Classes\Editors\Samples\PhysicsEditor.cs" />
     <Compile Include="Classes\Editors\Samples\UpdateControlEditor.cs" />
     <Compile Include="Controls\Basic\GameControl.cs">
       <SubType>Component</SubType>
@@ -92,9 +91,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Basic\Samples\PenumbraPhysicsControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Basic\Samples\PhysicsControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Basic\Samples\UpdateControl.cs">

@@ -1,10 +1,14 @@
-﻿using FarseerPhysics.DebugView;
+﻿using FarseerPhysics.Common.Decomposition;
+using FarseerPhysics.Common.PolygonManipulation;
+using FarseerPhysics.DebugView;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Penumbra;
 using System;
+using System.Collections.Generic;
 
 namespace PenumbraPhysics.Editor.Classes.Basic
 {
@@ -43,10 +47,17 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         void ClearPhysicsForces();
         void ResetPhysics();
 
+        void CreatePhysicalBorders();
+        Body CreateComplexBody(World world, Texture2D objectTexture, float Scale, out Vector2 Origin,
+            TriangulationAlgorithm Algorithm = TriangulationAlgorithm.Bayazit);
+        void CreateShadowHulls(PenumbraComponent penumbra, Body body);
+
         void InitializePhysics(GraphicsDevice graphics, ContentManager Content);
 
         void UpdatePhysics(GameTime gameTime);
         void UpdatePhysicsManipulation(bool leftMouseButtonPressed, Vector2 mousePosition);
+        void UpdateShadowHulls(Body body);
+        void UpdateShadowHulls(List<Body> bodyList);
 
         void DrawPhysicsDebugView();
     }
