@@ -56,7 +56,7 @@
 /processorParam:TextureFormat=Color
 /build:Samples/object.png
 
-#begin Samples/MGLogo.png
+#begin Samples/PenumbraPhysicsEditorLogo.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -66,5 +66,17 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Samples/MGLogo.png
+/build:Samples/PenumbraPhysicsEditorLogo.png
+
+#begin Samples/MGHorizontalLogo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Samples/MGHorizontalLogo.png
 

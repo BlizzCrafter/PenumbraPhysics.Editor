@@ -7,6 +7,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
     public struct PhysicsBodyFlags
     {
         public List<Hull> HullList { get; set; }
+        public float ShadowHullScale { get; set; }
         public float StartRotation { get; set; }
         public Vector2 StartPosition { get; set; }
     }

@@ -10,7 +10,7 @@ namespace PenumbraPhysics.Editor
         public static bool ShowFPS { get; set; } = true;
 
         // Show or Hide the cursor position flag
-        public static bool ShowCursorPosition { get; set; } = true;
+        public static bool ShowCursorPosition { get; set; } = false;
 
         // Show or Hide the cursor position flag
         public static bool ShowPhysicsDebug { get; set; } = false;

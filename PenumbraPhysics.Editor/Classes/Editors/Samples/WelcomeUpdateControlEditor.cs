@@ -26,8 +26,9 @@ namespace PenumbraPhysics.Editor.Classes
         Vector2 tBodyOrigin;
         List<Hull> tBodyHull = new List<Hull>();
         float tBodyScale = 1f;
-        
-        Vector2 MGLogoDirection = new Vector2(0.5f, 0.5f);
+
+        Texture2D MGLogo;
+        Vector2 PenumbraPhysicsLogoDirection = new Vector2(0.5f, 0.5f);
         bool HitBorder = false;
         float DirectionCooldown = 2f, DirectionCooldownMax = 2f;
 
@@ -45,7 +46,7 @@ namespace PenumbraPhysics.Editor.Classes
 
         public void Initialize()
         {
-            Penumbra.AmbientColor = new Color(new Vector3(0.7f));
+            Penumbra.AmbientColor = new Color(new Vector3(0.8f));
 
             _light = new PointLight
             {
@@ -58,12 +59,13 @@ namespace PenumbraPhysics.Editor.Classes
             Penumbra.Lights.Add(_light);
 
             // Loading the texture of the physics object
-            tBodyTexture = Content.Load<Texture2D>(@"Samples/MGLogo");
+            tBodyTexture = Content.Load<Texture2D>(@"Samples/PenumbraPhysicsEditorLogo");
+            MGLogo = Content.Load<Texture2D>(@"Samples/MGHorizontalLogo");
 
             // Creating the physics object
             tBody = CreateComplexBody(_World, tBodyTexture, tBodyScale, out tBodyOrigin);
             tBody.SleepingAllowed = false;
-            tBody.Position = ConvertUnits.ToSimUnits(new Vector2(tBodyTexture.Width / 2, tBodyTexture.Height / 2));
+            tBody.Position = ConvertUnits.ToSimUnits(new Vector2((tBodyTexture.Width / 2) + 25, (tBodyTexture.Height / 2) + 25));
             tBody.BodyType = BodyType.Dynamic;
             tBody.AngularDamping = 2f;
             tBody.Restitution = 1f;
@@ -72,6 +74,7 @@ namespace PenumbraPhysics.Editor.Classes
             tBody.UserData = new PhysicsBodyFlags()
             {
                 HullList = new List<Hull>(),
+                ShadowHullScale = -2f,
                 StartPosition = tBody.Position,
                 StartRotation = tBody.Rotation
             };
@@ -88,9 +91,12 @@ namespace PenumbraPhysics.Editor.Classes
                 if ((Body)fixtureB.Body != null && ((Body)fixtureB.Body).UserData != null)
                 {
                     if (((Body)fixtureB.Body).UserData.ToString() == "D" ||
-                        ((Body)fixtureB.Body).UserData.ToString() == "U") MGLogoDirection.Y *= -1;
+                        ((Body)fixtureB.Body).UserData.ToString() == "U") PenumbraPhysicsLogoDirection.Y *= -1;
                     else if (((Body)fixtureB.Body).UserData.ToString() == "L" ||
-                        ((Body)fixtureB.Body).UserData.ToString() == "R") MGLogoDirection.X *= -1;
+                        ((Body)fixtureB.Body).UserData.ToString() == "R") PenumbraPhysicsLogoDirection.X *= -1;
+
+                    if (Math.Abs(PenumbraPhysicsLogoDirection.X) == 0) PenumbraPhysicsLogoDirection.X = 0.5f;
+                    if (Math.Abs(PenumbraPhysicsLogoDirection.Y) == 0) PenumbraPhysicsLogoDirection.Y = 0.5f;
                 }
             }
             return true;
@@ -109,8 +115,8 @@ namespace PenumbraPhysics.Editor.Classes
             }
 
             tBody.Position += new Vector2(
-                ConvertUnits.ToSimUnits(MGLogoDirection).X * 2,
-                ConvertUnits.ToSimUnits(MGLogoDirection).Y * 2);
+                ConvertUnits.ToSimUnits(PenumbraPhysicsLogoDirection).X * 2,
+                ConvertUnits.ToSimUnits(PenumbraPhysicsLogoDirection).Y * 2);
 
             UpdateShadowHulls(tBody);
             UpdatePhysics(gameTime);
@@ -132,9 +138,14 @@ namespace PenumbraPhysics.Editor.Classes
             {
                 spriteBatch.Begin();
 
+                // Draw the texture of the MGLogo
+                spriteBatch.Draw(MGLogo, new Vector2(-7 + ViewportWidth - MGLogo.Width / 2, 7 + MGLogo.Height / 2), null,
+                            Color.White, 0, new Vector2(MGLogo.Width / 2, MGLogo.Height / 2), 1f, SpriteEffects.None, 0);
+
                 // Draw the texture of the physics body
                 spriteBatch.Draw(tBodyTexture, ConvertUnits.ToDisplayUnits(tBody.Position), null,
                             Color.White, tBody.Rotation, tBodyOrigin, tBodyScale, SpriteEffects.None, 0);
+
                 spriteBatch.End();
             }
 
