@@ -323,7 +323,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                             Hull h = new Hull(((PolygonShape)f.Shape).Vertices);
 
                             // We need to scale the Hull according to our "MetersInPixels-Simulation-Value"
-                            h.Scale = new Vector2(MeterInPixels);
+                            h.Scale = new Vector2(MeterInPixels + ((PhysicsBodyFlags)body.UserData).ShadowHullScale);
 
                             // A Hull of Penumbra is set in Display space but the physics body is set in Simulation space
                             // Thats why we need to convert the simulation units of the physics object to the display units
