@@ -115,13 +115,19 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         {
             _World.BodyList.ForEach(b =>
             {
-                b.Position = ((PhysicsBodyFlags)b.UserData).StartPosition;
-                b.Rotation = ((PhysicsBodyFlags)b.UserData).StartRotation;
+                if (b.UserData != null && b.UserData is PhysicsBodyFlags)
+                {
+                    b.Position = ((PhysicsBodyFlags)b.UserData).StartPosition;
+                    b.Rotation = ((PhysicsBodyFlags)b.UserData).StartRotation;
+                }
             });
             _World.BreakableBodyList.ForEach(b =>
             {
-                b.MainBody.Position = ((PhysicsBodyFlags)b.MainBody.UserData).StartPosition;
-                b.MainBody.Rotation = ((PhysicsBodyFlags)b.MainBody.UserData).StartRotation;
+                if (b.MainBody.UserData != null && b.MainBody.UserData is PhysicsBodyFlags)
+                {
+                    b.MainBody.Position = ((PhysicsBodyFlags)b.MainBody.UserData).StartPosition;
+                    b.MainBody.Rotation = ((PhysicsBodyFlags)b.MainBody.UserData).StartRotation;
+                }
             });
 
             ClearPhysicsForces();
@@ -444,13 +450,19 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         {
             _World.BodyList.ForEach(b =>
             {
-                b.Position = ((PhysicsBodyFlags)b.UserData).StartPosition;
-                b.Rotation = ((PhysicsBodyFlags)b.UserData).StartRotation;
+                if (b.UserData != null && b.UserData is PhysicsBodyFlags)
+                {
+                    b.Position = ((PhysicsBodyFlags)b.UserData).StartPosition;
+                    b.Rotation = ((PhysicsBodyFlags)b.UserData).StartRotation;
+                }
             });
             _World.BreakableBodyList.ForEach(b =>
             {
-                b.MainBody.Position = ((PhysicsBodyFlags)b.MainBody.UserData).StartPosition;
-                b.MainBody.Rotation = ((PhysicsBodyFlags)b.MainBody.UserData).StartRotation;
+                if (b.MainBody.UserData != null && b.MainBody.UserData is PhysicsBodyFlags)
+                {
+                    b.MainBody.Position = ((PhysicsBodyFlags)b.MainBody.UserData).StartPosition;
+                    b.MainBody.Rotation = ((PhysicsBodyFlags)b.MainBody.UserData).StartRotation;
+                }
             });
 
             ClearPhysicsForces();
