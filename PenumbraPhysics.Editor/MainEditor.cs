@@ -89,6 +89,7 @@ namespace PenumbraPhysics.Editor
         {
             if (CurrentSourceControl != null)
             {
+                // Add your Editor Controls in use here
                 if (CurrentSourceControl is PenumbraPhysicsControlSAMPLE)
                 {
                     ((PenumbraPhysicsControlSAMPLE)CurrentSourceControl).ClearPhysicsForces();
@@ -101,6 +102,7 @@ namespace PenumbraPhysics.Editor
         {
             if (CurrentSourceControl != null)
             {
+                // Add your Editor Controls in use here
                 if (CurrentSourceControl is PenumbraPhysicsControlSAMPLE)
                 {
                     ((PenumbraPhysicsControlSAMPLE)CurrentSourceControl).ResetPhysics();
