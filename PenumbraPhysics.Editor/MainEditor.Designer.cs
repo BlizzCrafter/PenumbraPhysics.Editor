@@ -58,6 +58,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.menuStripEditorFunctions = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemCreateLight = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemResetCamera = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
@@ -333,7 +334,8 @@
             this.menuStripEditorFunctions.Enabled = false;
             this.menuStripEditorFunctions.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripEditorFunctions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemCreateLight});
+            this.toolStripMenuItemCreateLight,
+            this.toolStripMenuItemResetCamera});
             this.menuStripEditorFunctions.Location = new System.Drawing.Point(0, 0);
             this.menuStripEditorFunctions.Name = "menuStripEditorFunctions";
             this.menuStripEditorFunctions.Size = new System.Drawing.Size(649, 28);
@@ -343,11 +345,18 @@
             // toolStripMenuItemCreateLight
             // 
             this.toolStripMenuItemCreateLight.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemCreateLight.Image")));
-            this.toolStripMenuItemCreateLight.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItemCreateLight.Name = "toolStripMenuItemCreateLight";
-            this.toolStripMenuItemCreateLight.Size = new System.Drawing.Size(117, 24);
+            this.toolStripMenuItemCreateLight.Size = new System.Drawing.Size(121, 24);
             this.toolStripMenuItemCreateLight.Text = "Create Light";
             this.toolStripMenuItemCreateLight.Click += new System.EventHandler(this.toolStripMenuItemCreateLight_Click);
+            // 
+            // toolStripMenuItemResetCamera
+            // 
+            this.toolStripMenuItemResetCamera.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemResetCamera.Image")));
+            this.toolStripMenuItemResetCamera.Name = "toolStripMenuItemResetCamera";
+            this.toolStripMenuItemResetCamera.Size = new System.Drawing.Size(132, 24);
+            this.toolStripMenuItemResetCamera.Text = "Reset Camera";
+            this.toolStripMenuItemResetCamera.Click += new System.EventHandler(this.toolStripMenuItemResetCamera_Click);
             // 
             // MainEditor
             // 
@@ -409,5 +418,6 @@
         private System.Windows.Forms.MenuStrip menuStripEditorFunctions;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateLight;
         private System.Windows.Forms.Button buttonCameraControl;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemResetCamera;
     }
 }

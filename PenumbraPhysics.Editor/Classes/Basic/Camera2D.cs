@@ -13,6 +13,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         private float Zoom { get; set; }
         public Matrix Transform { get; set; }
         private Vector2 Position { get; set; }
+        private Vector2 AbsolutPosition { get; set; }
         private float Rotation { get; set; }
 
         public Camera2D()
@@ -46,16 +47,27 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             get { return Position; }
             set { Position = value; }
         }
+        // Get set absolut position
+        public Vector2 GetAbsolutPosition
+        {
+            get { return AbsolutPosition; }
+            set { AbsolutPosition = value; }
+        }
 
         public Matrix get_transformation(GraphicsDevice graphicsDevice)
         {
-            Transform =       // Thanks to o KB o for this solution
+            Transform =
               Matrix.CreateTranslation(new Vector3(-GetPosition.X, -GetPosition.Y, 0)) *
                                          Matrix.CreateRotationZ(Rotation) *
                                          Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
                                          Matrix.CreateTranslation(new Vector3(
                                              graphicsDevice.Viewport.Width * 0.5f, graphicsDevice.Viewport.Height * 0.5f, 0));
-            return Transform;
+
+            GetAbsolutPosition = new Vector2(
+                GetPosition.X - graphicsDevice.Viewport.Width / 2,
+                GetPosition.Y - graphicsDevice.Viewport.Height / 2);
+
+                return Transform;
         }
     }
 }

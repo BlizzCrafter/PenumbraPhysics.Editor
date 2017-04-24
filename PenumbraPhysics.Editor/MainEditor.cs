@@ -12,7 +12,10 @@ namespace PenumbraPhysics.Editor
         public static bool ShowFPS { get; set; } = true;
 
         // Show or Hide the cursor position flag
-        public static bool ShowCursorPosition { get; set; } = false;
+        public static bool ShowCursorPosition { get; set; } = true;
+
+        // Show or Hide the camera position flag
+        public static bool ShowCameraPosition { get; set; } = true;
 
         // Show or Hide the cursor position flag
         public static bool ShowPhysicsDebug { get; set; } = true;
@@ -170,6 +173,14 @@ namespace PenumbraPhysics.Editor
 
                 FirstPointMouseOnButton.X = e.Location.X;
                 FirstPointMouseOnButton.Y = e.Location.Y;
+            }
+        }
+
+        private void toolStripMenuItemResetCamera_Click(object sender, EventArgs e)
+        {
+            if (menuStripEditorFunctions.Tag is PlacementEditor)
+            {
+                ((PlacementEditor)menuStripEditorFunctions.Tag).ResetCam();
             }
         }
     }

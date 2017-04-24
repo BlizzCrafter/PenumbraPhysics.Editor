@@ -32,6 +32,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         System.Globalization.NumberFormatInfo Format { get; set; }
 
         void MoveCam(Vector2 amount);
+        void ResetCam();
 
         void InitializeGFX(IGraphicsDeviceService graphics);
 
@@ -54,7 +55,11 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         int ViewportWidth { get; set; }
         int ViewportHeight { get; set; }
 
+        float CurrentWorldShiftX { get; set; }
+        float CurrentWorldShiftY { get; set; }
+
         void MoveCam(Vector2 amount);
+        void ResetCam();
 
         void ClearPhysicsForces();
         void ResetPhysics();

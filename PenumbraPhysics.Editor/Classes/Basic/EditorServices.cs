@@ -91,6 +91,15 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                         5, (!MainEditor.ShowFPS ? 0 : Font.MeasureString(fps).Y)), Color.White);
                 }
 
+                if (MainEditor.ShowCameraPosition)
+                {
+                    // Draw FPS display
+                    spriteBatch.DrawString(Font, Cam.GetAbsolutPosition.ToString(), new Vector2(
+                        5, (!MainEditor.ShowFPS && !MainEditor.ShowCursorPosition ? 0 :
+                        !MainEditor.ShowFPS || !MainEditor.ShowCursorPosition ? Font.MeasureString(fps).Y :
+                        Font.MeasureString(fps).Y * 2)), Color.White);
+                }
+
                 spriteBatch.End();
             }
         }
@@ -116,6 +125,12 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             Cam.Move(new Vector2(amount.X, amount.Y));
             Penumbra.Transform = Matrix.CreateTranslation(amount.X, amount.Y, 0);
         }
+
+        public void ResetCam()
+        {
+            Penumbra.Transform = Matrix.CreateTranslation(-Cam.GetPosition.X, -Cam.GetPosition.Y, 0);
+            Cam.Move(new Vector2(-Cam.GetPosition.X, -Cam.GetPosition.Y));
+        }
     }
 
     public class PhysicsService : IPhysicsInterface
@@ -137,6 +152,23 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public int ViewportWidth { get; set; }
         public int ViewportHeight { get; set; }
+
+        public float CurrentWorldShiftX { get; set; }
+        public float CurrentWorldShiftY { get; set; }
+        
+        public void MoveCam(Vector2 amount)
+        {
+            _World.ShiftOrigin(new Vector2(ConvertUnits.ToSimUnits(amount.X), ConvertUnits.ToSimUnits(amount.Y)));
+            CurrentWorldShiftX += amount.X;
+            CurrentWorldShiftY += amount.Y;
+        }
+        public void ResetCam()
+        {
+            _World.ShiftOrigin(new Vector2(
+                ConvertUnits.ToSimUnits(-CurrentWorldShiftX), ConvertUnits.ToSimUnits(-CurrentWorldShiftY)));
+            CurrentWorldShiftX = 0;
+            CurrentWorldShiftY = 0;
+        }
 
         public void ClearPhysicsForces()
         {
@@ -403,11 +435,6 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                 }
             }
         }
-
-        public void MoveCam(Vector2 amount)
-        {
-            _World.ShiftOrigin(new Vector2(ConvertUnits.ToSimUnits(amount.X), ConvertUnits.ToSimUnits(amount.Y)));
-        }
     }
     
     public class GFXPhysicsService : IGFXInterface, IPhysicsInterface
@@ -423,6 +450,9 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         public SpriteBatch spriteBatch { get; set; }
 
         public Camera2D Cam { get; set; }
+
+        public float CurrentWorldShiftX { get; set; }
+        public float CurrentWorldShiftY { get; set; }
 
         //Display
         public SpriteFont Font { get; set; }
@@ -467,7 +497,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public void DrawDisplay()
         {
-            if (MainEditor.ShowFPS || MainEditor.ShowCursorPosition)
+            if (MainEditor.ShowFPS || MainEditor.ShowCursorPosition || MainEditor.ShowCameraPosition)
             {
                 spriteBatch.Begin();
 
@@ -484,6 +514,15 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                     // Draw FPS display
                     spriteBatch.DrawString(Font, GetMousePosition.ToString(), new Vector2(
                         5, (!MainEditor.ShowFPS ? 0 : Font.MeasureString(fps).Y)), Color.White);
+                }
+
+                if (MainEditor.ShowCameraPosition)
+                {
+                    // Draw FPS display
+                    spriteBatch.DrawString(Font, Cam.GetAbsolutPosition.ToString(), new Vector2(
+                        5, (!MainEditor.ShowFPS && !MainEditor.ShowCursorPosition ? 0 :
+                        !MainEditor.ShowFPS || !MainEditor.ShowCursorPosition ? Font.MeasureString(fps).Y :
+                        Font.MeasureString(fps).Y * 2)), Color.White);
                 }
 
                 spriteBatch.End();
@@ -533,6 +572,19 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             Cam.Move(new Vector2(amount.X, amount.Y));
             Penumbra.Transform = Matrix.CreateTranslation(amount.X, amount.Y, 0);
             _World.ShiftOrigin(new Vector2(ConvertUnits.ToSimUnits(amount.X), ConvertUnits.ToSimUnits(amount.Y)));
+            CurrentWorldShiftX += amount.X;
+            CurrentWorldShiftY += amount.Y;
+        }
+
+        public void ResetCam()
+        {
+            Cam.Move(new Vector2(-CurrentWorldShiftX, -CurrentWorldShiftY));
+            Penumbra.Transform = Matrix.CreateTranslation(-CurrentWorldShiftX, -CurrentWorldShiftY, 0);
+            Penumbra.Transform = Matrix.CreateTranslation(0.1f, 0.1f, 0); // Update the Matrix in Penumbra by adding a small value
+            _World.ShiftOrigin(new Vector2(
+                ConvertUnits.ToSimUnits(-CurrentWorldShiftX), ConvertUnits.ToSimUnits(-CurrentWorldShiftY)));
+            CurrentWorldShiftX = 0;
+            CurrentWorldShiftY = 0;
         }
 
         public void ClearPhysicsForces()

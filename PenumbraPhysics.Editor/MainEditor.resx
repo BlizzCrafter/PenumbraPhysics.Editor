@@ -198,6 +198,16 @@ Click on the "Close" button to close this message.</value>
         AABJRU5ErkJggg==
 </value>
   </data>
+  <data name="toolStripMenuItemResetCamera.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAADdSURBVDhPrZNBCoMwFESz9A5e2r3gFXoAT+GidNMT
+        6KqCiCL+MlN/+Pmm1EUDD+L8mUkUDCJy4haC5PA+kDw0TfMxdl0WzOCxmSSsC8a1qhKOG3DZkhje9122
+        bYsgYLEzeLWEBTAsyxLx1wTQrAcZ6Ay/6prCPM/ZsIIZPDbDgmdZEux9yOP9FB5FQa4WWD+F+8HVAuv/
+        zw30faZp+vkR4bEZDrDp+558K9Gw+pCBHofDMET0FAs069FDkhPGcSQIrG2bAE3n9oaxAGDAsPsPFMxs
+        GCQFCow5vE9Ewhvhn8hzMEvMMgAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>56</value>
   </metadata>
