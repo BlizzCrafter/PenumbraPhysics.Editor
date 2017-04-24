@@ -14,10 +14,14 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 {
     public interface IGFXInterface
     {
+        PenumbraComponent Penumbra { get; set; }
+
         GameServiceContainer services { get; set; }
         GraphicsDevice graphics { get; set; }
         SpriteBatch spriteBatch { get; set; }
         ContentManager Content { get; set; }
+
+        Camera2D Cam { get; set; }
 
         // Display
         SpriteFont Font { get; set; }
@@ -27,10 +31,16 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         int FrameRate { get; set; }
         System.Globalization.NumberFormatInfo Format { get; set; }
 
+        void MoveCam(Vector2 amount);
+
         void InitializeGFX(IGraphicsDeviceService graphics);
+
         void UpdateFrameCounter();
         void UpdateDisplay(GameTime gameTime, Vector2 mousePosition);
+
         void DrawDisplay();
+        void DrawBeginCamera2D();
+        void DrawEndCamera2D();
     }
 
     public interface IPhysicsInterface
@@ -43,6 +53,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         int ViewportWidth { get; set; }
         int ViewportHeight { get; set; }
+
+        void MoveCam(Vector2 amount);
 
         void ClearPhysicsForces();
         void ResetPhysics();

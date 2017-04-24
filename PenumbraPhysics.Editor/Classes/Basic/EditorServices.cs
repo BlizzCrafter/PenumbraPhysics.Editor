@@ -19,11 +19,15 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 {
     public class GFXService : IGFXInterface
     {
+        public PenumbraComponent Penumbra { get; set; }
+
         public ContentManager Content { get; set; }
         public Vector2 GetMousePosition { get; set; }
         public GraphicsDevice graphics { get; set; }
         public GameServiceContainer services { get; set; }
         public SpriteBatch spriteBatch { get; set; }
+
+        public Camera2D Cam { get; set; }
 
         //Display
         public SpriteFont Font { get; set; }
@@ -31,7 +35,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         public TimeSpan ElapsedTime { get; set; } = TimeSpan.Zero;
         public int FrameCounter { get; set; }
         public int FrameRate { get; set; }
-
+        
         public void InitializeGFX(IGraphicsDeviceService graphics)
         {
             services = new GameServiceContainer();
@@ -42,10 +46,16 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             Content = new ContentManager(services, "Content");
             spriteBatch = new SpriteBatch(this.graphics);
 
+            Penumbra = new PenumbraComponent(this.graphics, Content);
+
             Font = Content.Load<SpriteFont>(@"Font");
 
             Format = new System.Globalization.NumberFormatInfo();
             Format.CurrencyDecimalSeparator = ".";
+
+            Cam = new Basic.Camera2D();
+            Cam.GetPosition = new Vector2(
+                graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
         }
 
         public void UpdateFrameCounter() => FrameCounter++;
@@ -83,6 +93,28 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
                 spriteBatch.End();
             }
+        }
+
+        public void DrawBeginCamera2D()
+        {
+            spriteBatch.Begin(SpriteSortMode.BackToFront,
+                        BlendState.NonPremultiplied,
+                        null,
+                        null,
+                        null,
+                        null,
+                        Cam.get_transformation(graphics));
+        }
+
+        public void DrawEndCamera2D()
+        {
+            spriteBatch.End();
+        }
+
+        public void MoveCam(Vector2 amount)
+        {
+            Cam.Move(new Vector2(amount.X, amount.Y));
+            Penumbra.Transform = Matrix.CreateTranslation(amount.X, amount.Y, 0);
         }
     }
 
@@ -371,17 +403,26 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                 }
             }
         }
+
+        public void MoveCam(Vector2 amount)
+        {
+            _World.ShiftOrigin(new Vector2(ConvertUnits.ToSimUnits(amount.X), ConvertUnits.ToSimUnits(amount.Y)));
+        }
     }
     
     public class GFXPhysicsService : IGFXInterface, IPhysicsInterface
     {
         #region GFX Interface
 
+        public PenumbraComponent Penumbra { get; set; }
+
         public ContentManager Content { get; set; }
         public Vector2 GetMousePosition { get; set; }
         public GraphicsDevice graphics { get; set; }
         public GameServiceContainer services { get; set; }
         public SpriteBatch spriteBatch { get; set; }
+
+        public Camera2D Cam { get; set; }
 
         //Display
         public SpriteFont Font { get; set; }
@@ -399,11 +440,17 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
             Content = new ContentManager(services, "Content");
             spriteBatch = new SpriteBatch(this.graphics);
+            
+            Penumbra = new PenumbraComponent(this.graphics, Content);
 
             Font = Content.Load<SpriteFont>(@"Font");
 
             Format = new System.Globalization.NumberFormatInfo();
             Format.CurrencyDecimalSeparator = ".";
+            
+            Cam = new Basic.Camera2D();
+            Cam.GetPosition = new Vector2(
+                graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
         }
 
         public void UpdateFrameCounter() => FrameCounter++;
@@ -443,6 +490,22 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             }
         }
 
+        public void DrawBeginCamera2D()
+        {
+            spriteBatch.Begin(SpriteSortMode.BackToFront,
+                        BlendState.NonPremultiplied,
+                        null,
+                        null,
+                        null,
+                        null,
+                        Cam.get_transformation(graphics));
+        }
+
+        public void DrawEndCamera2D()
+        {
+            spriteBatch.End();
+        }
+
         #endregion
 
         #region Physics Interface
@@ -464,6 +527,13 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public int ViewportWidth { get; set; }
         public int ViewportHeight { get; set; }
+        
+        public void MoveCam(Vector2 amount)
+        {
+            Cam.Move(new Vector2(amount.X, amount.Y));
+            Penumbra.Transform = Matrix.CreateTranslation(amount.X, amount.Y, 0);
+            _World.ShiftOrigin(new Vector2(ConvertUnits.ToSimUnits(amount.X), ConvertUnits.ToSimUnits(amount.Y)));
+        }
 
         public void ClearPhysicsForces()
         {

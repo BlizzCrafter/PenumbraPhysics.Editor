@@ -14,9 +14,6 @@ namespace PenumbraPhysics.Editor.Classes
 {
     public class WelcomeUpdateSampleEditor : GFXPhysicsService
     {
-        // Store reference to lighting system
-        public PenumbraComponent Penumbra;
-
         // Penumbra light
         private Light _light;
 
@@ -39,9 +36,6 @@ namespace PenumbraPhysics.Editor.Classes
 
             // Initialize Physics-System
             InitializePhysics(graphics.GraphicsDevice, Content);
-
-            // Initialize Lighting-System
-            Penumbra = new PenumbraComponent(this.graphics, Content);
         }
 
         public void Initialize()

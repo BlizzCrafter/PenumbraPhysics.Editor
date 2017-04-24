@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Basic\Camera2D.cs" />
     <Compile Include="Classes\Basic\EditorServices.cs" />
     <Compile Include="Classes\Basic\EditorInterfaces.cs" />
     <Compile Include="Classes\Basic\GraphicsDeviceService.cs" />

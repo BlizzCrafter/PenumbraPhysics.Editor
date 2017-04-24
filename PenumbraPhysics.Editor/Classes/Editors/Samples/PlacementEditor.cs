@@ -11,9 +11,6 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 {
     public class PlacementEditor : GFXPhysicsService
     {
-        // Store reference to lighting system
-        public PenumbraComponent Penumbra;
-
         private List<Light> LightList;
         private List<Body> LightPivots;
         private Body CurrentSelectedPivot;
@@ -62,9 +59,6 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
             // Initialize Physics-System
             InitializePhysics(graphics.GraphicsDevice, Content);
 
-            // Initialize Lighting-System
-            Penumbra = new PenumbraComponent(this.graphics, Content);
-
             LightList = new List<Light>();
             LightPivots = new List<Body>();
         }
@@ -72,8 +66,6 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
         public void Initialize()
         {
             Penumbra.AmbientColor = new Color(new Vector3(0.7f));
-
-            CreatePhysicalBorders();
         }
 
         public void Update(GameTime gameTime, Vector2 mousePosition, bool leftMouseButtonPressed)
@@ -93,6 +85,10 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
             Penumbra.BeginDraw();
 
             graphics.Clear(Color.CornflowerBlue);
+
+            DrawBeginCamera2D();
+            //Draw sprites here, so they will affected by camera movement
+            DrawEndCamera2D();
 
             Penumbra.Draw();
 
