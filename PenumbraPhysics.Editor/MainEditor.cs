@@ -12,13 +12,13 @@ namespace PenumbraPhysics.Editor
         public static bool ShowFPS { get; set; } = true;
 
         // Show or Hide the cursor position flag
-        public static bool ShowCursorPosition { get; set; } = true;
+        public static bool ShowCursorPosition { get; set; } = false;
 
         // Show or Hide the camera position flag
-        public static bool ShowCameraPosition { get; set; } = true;
+        public static bool ShowCameraPosition { get; set; } = false;
 
         // Show or Hide the cursor position flag
-        public static bool ShowPhysicsDebug { get; set; } = true;
+        public static bool ShowPhysicsDebug { get; set; } = false;
 
         private Control CurrentSourceControl { get; set; }
 
@@ -70,6 +70,12 @@ namespace PenumbraPhysics.Editor
             ShowCursorPosition = !ShowCursorPosition;
             toolStripMenuItemShowCursorPosition.Checked = ShowCursorPosition;
         }
+        // Show camera position flag
+        private void toolStripMenuItemShowCameraPosition_Click(object sender, EventArgs e)
+        {
+            ShowCameraPosition = !ShowCameraPosition;
+            toolStripMenuItemShowCameraPosition.Checked = ShowCameraPosition;
+        }
 
         // Show Physics Debug flag
         private void toolStripMenuItemShowPhysicsDebug_Click(object sender, EventArgs e)
@@ -78,7 +84,7 @@ namespace PenumbraPhysics.Editor
             toolStripMenuItemShowPhysicsDebug.Checked = ShowPhysicsDebug;
         }
         
-        //Disable Menu Strip
+        //Visable Changed Events
         private void welcomeUpdateControlSAMPLE1_VisibleChanged(object sender, EventArgs e)
         {
             menuStripEditorFunctions.Enabled = false;
@@ -86,10 +92,26 @@ namespace PenumbraPhysics.Editor
         private void penumbraPhysicsControlSAMPLE1_VisibleChanged_1(object sender, EventArgs e)
         {
             menuStripEditorFunctions.Enabled = false;
+            ShowCursorPosition = true;
+            toolStripMenuItemShowCursorPosition.Checked = true;
         }
-        private void tabControl1_VisibleChanged(object sender, EventArgs e)
+        private void tabControlWelcome_VisibleChanged(object sender, EventArgs e)
         {
             menuStripEditorFunctions.Enabled = false;
+        }
+        private void placementControlSAMPLE1_VisibleChanged_1(object sender, EventArgs e)
+        {
+            if (menuStripEditorFunctions.Visible)
+            {
+                menuStripEditorFunctions.Tag = placementControlSAMPLE1.Editor;
+                menuStripEditorFunctions.Enabled = true;
+                ShowCursorPosition = true;
+                toolStripMenuItemShowCursorPosition.Checked = true;
+                ShowCameraPosition = true;
+                toolStripMenuItemShowCameraPosition.Checked = true;
+                ShowPhysicsDebug = true;
+                toolStripMenuItemShowPhysicsDebug.Checked = true;
+            }
         }
 
         // Get the underlying source control of the context menu strip
@@ -131,15 +153,6 @@ namespace PenumbraPhysics.Editor
         }
 
         #endregion
-
-        private void placementControlSAMPLE1_VisibleChanged_1(object sender, EventArgs e)
-        {
-            if (menuStripEditorFunctions.Visible)
-            {
-                menuStripEditorFunctions.Tag = placementControlSAMPLE1.Editor;
-                menuStripEditorFunctions.Enabled = true;
-            }
-        }
 
         private void toolStripMenuItemCreateLight_Click(object sender, EventArgs e)
         {

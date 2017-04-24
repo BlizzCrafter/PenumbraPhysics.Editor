@@ -30,13 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEditor));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControlWelcome = new System.Windows.Forms.TabControl();
             this.tabPageWelcome = new System.Windows.Forms.TabPage();
-            this.welcomeUpdateControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.WelcomeUpdateControlSAMPLE();
             this.tabPagePPManipulation = new System.Windows.Forms.TabPage();
             this.buttonCloseManipulationSampleMessage = new System.Windows.Forms.Button();
             this.richTextBoxManipulationSample = new System.Windows.Forms.RichTextBox();
-            this.penumbraPhysicsControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.PenumbraPhysicsControlSAMPLE();
             this.contextMenuStripPenumbraPhysicsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -46,7 +44,6 @@
             this.ToolStripMenuItemResetAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPagePPPlacement = new System.Windows.Forms.TabPage();
             this.buttonCameraControl = new System.Windows.Forms.Button();
-            this.placementControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.Samples.PlacementControlSAMPLE();
             this.tabPageJustDraw = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripSplitButtonSettings = new System.Windows.Forms.ToolStripSplitButton();
@@ -59,7 +56,11 @@
             this.menuStripEditorFunctions = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemCreateLight = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemResetCamera = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1.SuspendLayout();
+            this.toolStripMenuItemShowCameraPosition = new System.Windows.Forms.ToolStripMenuItem();
+            this.welcomeUpdateControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.WelcomeUpdateControlSAMPLE();
+            this.penumbraPhysicsControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.PenumbraPhysicsControlSAMPLE();
+            this.placementControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.Samples.PlacementControlSAMPLE();
+            this.tabControlWelcome.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
             this.contextMenuStripPenumbraPhysicsMenu.SuspendLayout();
@@ -68,20 +69,20 @@
             this.menuStripEditorFunctions.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControlWelcome
             // 
-            this.tabControl1.Controls.Add(this.tabPageWelcome);
-            this.tabControl1.Controls.Add(this.tabPagePPManipulation);
-            this.tabControl1.Controls.Add(this.tabPagePPPlacement);
-            this.tabControl1.Controls.Add(this.tabPageJustDraw);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl1.Location = new System.Drawing.Point(0, 34);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(649, 444);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 1;
-            this.tabControl1.VisibleChanged += new System.EventHandler(this.tabControl1_VisibleChanged);
+            this.tabControlWelcome.Controls.Add(this.tabPageWelcome);
+            this.tabControlWelcome.Controls.Add(this.tabPagePPManipulation);
+            this.tabControlWelcome.Controls.Add(this.tabPagePPPlacement);
+            this.tabControlWelcome.Controls.Add(this.tabPageJustDraw);
+            this.tabControlWelcome.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tabControlWelcome.Location = new System.Drawing.Point(0, 34);
+            this.tabControlWelcome.Name = "tabControlWelcome";
+            this.tabControlWelcome.SelectedIndex = 0;
+            this.tabControlWelcome.Size = new System.Drawing.Size(649, 444);
+            this.tabControlWelcome.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControlWelcome.TabIndex = 1;
+            this.tabControlWelcome.VisibleChanged += new System.EventHandler(this.tabControlWelcome_VisibleChanged);
             // 
             // tabPageWelcome
             // 
@@ -92,16 +93,6 @@
             this.tabPageWelcome.TabIndex = 0;
             this.tabPageWelcome.Text = "Welcome!";
             this.tabPageWelcome.UseVisualStyleBackColor = true;
-            // 
-            // welcomeUpdateControlSAMPLE1
-            // 
-            this.welcomeUpdateControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.welcomeUpdateControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
-            this.welcomeUpdateControlSAMPLE1.Name = "welcomeUpdateControlSAMPLE1";
-            this.welcomeUpdateControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
-            this.welcomeUpdateControlSAMPLE1.TabIndex = 0;
-            this.welcomeUpdateControlSAMPLE1.Text = "welcomeUpdateControlSAMPLE1";
-            this.welcomeUpdateControlSAMPLE1.VisibleChanged += new System.EventHandler(this.welcomeUpdateControlSAMPLE1_VisibleChanged);
             // 
             // tabPagePPManipulation
             // 
@@ -138,17 +129,6 @@
             this.richTextBoxManipulationSample.TabIndex = 1;
             this.richTextBoxManipulationSample.Text = resources.GetString("richTextBoxManipulationSample.Text");
             this.richTextBoxManipulationSample.ZoomFactor = 1.3F;
-            // 
-            // penumbraPhysicsControlSAMPLE1
-            // 
-            this.penumbraPhysicsControlSAMPLE1.ContextMenuStrip = this.contextMenuStripPenumbraPhysicsMenu;
-            this.penumbraPhysicsControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.penumbraPhysicsControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
-            this.penumbraPhysicsControlSAMPLE1.Name = "penumbraPhysicsControlSAMPLE1";
-            this.penumbraPhysicsControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
-            this.penumbraPhysicsControlSAMPLE1.TabIndex = 0;
-            this.penumbraPhysicsControlSAMPLE1.Text = "penumbraPhysicsControlSAMPLE1";
-            this.penumbraPhysicsControlSAMPLE1.VisibleChanged += new System.EventHandler(this.penumbraPhysicsControlSAMPLE1_VisibleChanged_1);
             // 
             // contextMenuStripPenumbraPhysicsMenu
             // 
@@ -232,17 +212,6 @@
             this.buttonCameraControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.buttonCameraControl_MouseMove);
             this.buttonCameraControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.buttonCameraControl_MouseUp);
             // 
-            // placementControlSAMPLE1
-            // 
-            this.placementControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.placementControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
-            this.placementControlSAMPLE1.Name = "placementControlSAMPLE1";
-            this.placementControlSAMPLE1.Padding = new System.Windows.Forms.Padding(3);
-            this.placementControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
-            this.placementControlSAMPLE1.TabIndex = 0;
-            this.placementControlSAMPLE1.Text = "placementControlSAMPLE1";
-            this.placementControlSAMPLE1.VisibleChanged += new System.EventHandler(this.placementControlSAMPLE1_VisibleChanged_1);
-            // 
             // tabPageJustDraw
             // 
             this.tabPageJustDraw.Location = new System.Drawing.Point(4, 25);
@@ -271,6 +240,7 @@
             this.toolStripSplitButtonSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemShowFPS,
             this.toolStripMenuItemShowCursorPosition,
+            this.toolStripMenuItemShowCameraPosition,
             this.toolStripMenuItemShowPhysicsDebug});
             this.toolStripSplitButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButtonSettings.Image")));
             this.toolStripSplitButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -284,21 +254,21 @@
             this.toolStripMenuItemShowFPS.Checked = true;
             this.toolStripMenuItemShowFPS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripMenuItemShowFPS.Name = "toolStripMenuItemShowFPS";
-            this.toolStripMenuItemShowFPS.Size = new System.Drawing.Size(222, 26);
+            this.toolStripMenuItemShowFPS.Size = new System.Drawing.Size(231, 26);
             this.toolStripMenuItemShowFPS.Text = "Show FPS";
             this.toolStripMenuItemShowFPS.Click += new System.EventHandler(this.toolStripMenuItemShowFPS_Click);
             // 
             // toolStripMenuItemShowCursorPosition
             // 
             this.toolStripMenuItemShowCursorPosition.Name = "toolStripMenuItemShowCursorPosition";
-            this.toolStripMenuItemShowCursorPosition.Size = new System.Drawing.Size(222, 26);
+            this.toolStripMenuItemShowCursorPosition.Size = new System.Drawing.Size(231, 26);
             this.toolStripMenuItemShowCursorPosition.Text = "Show Cursor Position";
             this.toolStripMenuItemShowCursorPosition.Click += new System.EventHandler(this.toolStripMenuItemShowCursorPosition_Click);
             // 
             // toolStripMenuItemShowPhysicsDebug
             // 
             this.toolStripMenuItemShowPhysicsDebug.Name = "toolStripMenuItemShowPhysicsDebug";
-            this.toolStripMenuItemShowPhysicsDebug.Size = new System.Drawing.Size(222, 26);
+            this.toolStripMenuItemShowPhysicsDebug.Size = new System.Drawing.Size(231, 26);
             this.toolStripMenuItemShowPhysicsDebug.Text = "Show Physics Debug";
             this.toolStripMenuItemShowPhysicsDebug.Click += new System.EventHandler(this.toolStripMenuItemShowPhysicsDebug_Click);
             // 
@@ -358,12 +328,51 @@
             this.toolStripMenuItemResetCamera.Text = "Reset Camera";
             this.toolStripMenuItemResetCamera.Click += new System.EventHandler(this.toolStripMenuItemResetCamera_Click);
             // 
+            // toolStripMenuItemShowCameraPosition
+            // 
+            this.toolStripMenuItemShowCameraPosition.Name = "toolStripMenuItemShowCameraPosition";
+            this.toolStripMenuItemShowCameraPosition.Size = new System.Drawing.Size(231, 26);
+            this.toolStripMenuItemShowCameraPosition.Text = "Show Camera Position";
+            this.toolStripMenuItemShowCameraPosition.Click += new System.EventHandler(this.toolStripMenuItemShowCameraPosition_Click);
+            // 
+            // welcomeUpdateControlSAMPLE1
+            // 
+            this.welcomeUpdateControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.welcomeUpdateControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
+            this.welcomeUpdateControlSAMPLE1.Name = "welcomeUpdateControlSAMPLE1";
+            this.welcomeUpdateControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.welcomeUpdateControlSAMPLE1.TabIndex = 0;
+            this.welcomeUpdateControlSAMPLE1.Text = "welcomeUpdateControlSAMPLE1";
+            this.welcomeUpdateControlSAMPLE1.VisibleChanged += new System.EventHandler(this.welcomeUpdateControlSAMPLE1_VisibleChanged);
+            // 
+            // penumbraPhysicsControlSAMPLE1
+            // 
+            this.penumbraPhysicsControlSAMPLE1.ContextMenuStrip = this.contextMenuStripPenumbraPhysicsMenu;
+            this.penumbraPhysicsControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.penumbraPhysicsControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
+            this.penumbraPhysicsControlSAMPLE1.Name = "penumbraPhysicsControlSAMPLE1";
+            this.penumbraPhysicsControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.penumbraPhysicsControlSAMPLE1.TabIndex = 0;
+            this.penumbraPhysicsControlSAMPLE1.Text = "penumbraPhysicsControlSAMPLE1";
+            this.penumbraPhysicsControlSAMPLE1.VisibleChanged += new System.EventHandler(this.penumbraPhysicsControlSAMPLE1_VisibleChanged_1);
+            // 
+            // placementControlSAMPLE1
+            // 
+            this.placementControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.placementControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
+            this.placementControlSAMPLE1.Name = "placementControlSAMPLE1";
+            this.placementControlSAMPLE1.Padding = new System.Windows.Forms.Padding(3);
+            this.placementControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.placementControlSAMPLE1.TabIndex = 0;
+            this.placementControlSAMPLE1.Text = "placementControlSAMPLE1";
+            this.placementControlSAMPLE1.VisibleChanged += new System.EventHandler(this.placementControlSAMPLE1_VisibleChanged_1);
+            // 
             // MainEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(649, 504);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControlWelcome);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStripEditorFunctions);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -375,7 +384,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PenumbraPhysics.Editor";
-            this.tabControl1.ResumeLayout(false);
+            this.tabControlWelcome.ResumeLayout(false);
             this.tabPageWelcome.ResumeLayout(false);
             this.tabPagePPManipulation.ResumeLayout(false);
             this.contextMenuStripPenumbraPhysicsMenu.ResumeLayout(false);
@@ -390,7 +399,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControlWelcome;
         private System.Windows.Forms.TabPage tabPageWelcome;
         private System.Windows.Forms.TabPage tabPagePPManipulation;
         private System.Windows.Forms.TabPage tabPagePPPlacement;
@@ -419,5 +428,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateLight;
         private System.Windows.Forms.Button buttonCameraControl;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemResetCamera;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowCameraPosition;
     }
 }
