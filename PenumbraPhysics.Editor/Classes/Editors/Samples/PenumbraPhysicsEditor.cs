@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FarseerPhysics;
-using FarseerPhysics.Collision.Shapes;
-using FarseerPhysics.Common;
-using FarseerPhysics.Common.Decomposition;
-using FarseerPhysics.Common.PolygonManipulation;
 using FarseerPhysics.Dynamics;
-using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Penumbra;
@@ -63,7 +58,7 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
             tBody.BodyType = BodyType.Dynamic;
             tBody.AngularDamping = 2f;
             tBody.Restitution = 1f;
-            tBody.UserData = new PhysicsBodyFlags()
+            tBody.UserData = new BodyFlags()
             {
                 HullList = new List<Hull>(),
                 StartPosition = tBody.Position,

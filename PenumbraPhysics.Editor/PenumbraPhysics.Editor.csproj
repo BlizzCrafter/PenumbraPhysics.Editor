@@ -77,10 +77,11 @@
     <Compile Include="Classes\Basic\EditorServices.cs" />
     <Compile Include="Classes\Basic\EditorInterfaces.cs" />
     <Compile Include="Classes\Basic\GraphicsDeviceService.cs" />
-    <Compile Include="Classes\Basic\PhysicsBodyFlags.cs" />
+    <Compile Include="Classes\Basic\BodyServices.cs" />
     <Compile Include="Classes\Basic\ServiceContainer.cs" />
     <Compile Include="Classes\Editors\Samples\PenumbraPhysicsEditor.cs" />
-    <Compile Include="Classes\Editors\Samples\WelcomeUpdateControlEditor.cs" />
+    <Compile Include="Classes\Editors\Samples\PlacementEditor.cs" />
+    <Compile Include="Classes\Editors\Samples\WelcomeUpdateEditor.cs" />
     <Compile Include="Controls\Basic\GameControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -91,6 +92,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Basic\Samples\PenumbraPhysicsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Basic\Samples\PlacementControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Basic\Samples\WelcomeUpdateControl.cs">

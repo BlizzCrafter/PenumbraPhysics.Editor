@@ -1,4 +1,5 @@
-﻿using PenumbraPhysics.Editor.Controls.Basic;
+﻿using PenumbraPhysics.Editor.Classes.Editors.Samples;
+using PenumbraPhysics.Editor.Controls.Basic;
 using System;
 using System.Windows.Forms;
 
@@ -13,7 +14,7 @@ namespace PenumbraPhysics.Editor
         public static bool ShowCursorPosition { get; set; } = false;
 
         // Show or Hide the cursor position flag
-        public static bool ShowPhysicsDebug { get; set; } = false;
+        public static bool ShowPhysicsDebug { get; set; } = true;
 
         private Control CurrentSourceControl { get; set; }
 
@@ -36,9 +37,7 @@ namespace PenumbraPhysics.Editor
         #region Passing Events to underlying Controls
 
         /* They get triggered inside the corresponding controls! */
-
-        private void physicsSample1_MouseDown(object sender, MouseEventArgs e) { }
-        private void physicsSample1_MouseUp(object sender, MouseEventArgs e) { }
+        
         private void penumbraPhysicsControlSAMPLE1_VisibleChanged(object sender, EventArgs e) { }
 
         #endregion
@@ -111,6 +110,18 @@ namespace PenumbraPhysics.Editor
         }
 
         #endregion
+        
+        //private void placementControlSAMPLE1_VisibleChanged(object sender, EventArgs e)
+        //{
+        //    if (buttonCreateLight.Visible) buttonCreateLight.Tag = placementControlSAMPLE1.Editor;
+        //}
 
+        //private void buttonCreateLight_Click(object sender, EventArgs e)
+        //{
+        //    if (buttonCreateLight.Tag is PlacementEditor)
+        //    {
+        //        ((PlacementEditor)buttonCreateLight.Tag).CreateLight();
+        //    }
+        //}
     }
 }

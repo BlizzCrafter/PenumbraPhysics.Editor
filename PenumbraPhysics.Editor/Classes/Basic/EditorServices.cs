@@ -115,18 +115,18 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         {
             _World.BodyList.ForEach(b =>
             {
-                if (b.UserData != null && b.UserData is PhysicsBodyFlags)
+                if (b.UserData != null && b.UserData is BodyFlags)
                 {
-                    b.Position = ((PhysicsBodyFlags)b.UserData).StartPosition;
-                    b.Rotation = ((PhysicsBodyFlags)b.UserData).StartRotation;
+                    b.Position = ((BodyFlags)b.UserData).StartPosition;
+                    b.Rotation = ((BodyFlags)b.UserData).StartRotation;
                 }
             });
             _World.BreakableBodyList.ForEach(b =>
             {
-                if (b.MainBody.UserData != null && b.MainBody.UserData is PhysicsBodyFlags)
+                if (b.MainBody.UserData != null && b.MainBody.UserData is BodyFlags)
                 {
-                    b.MainBody.Position = ((PhysicsBodyFlags)b.MainBody.UserData).StartPosition;
-                    b.MainBody.Rotation = ((PhysicsBodyFlags)b.MainBody.UserData).StartRotation;
+                    b.MainBody.Position = ((BodyFlags)b.MainBody.UserData).StartPosition;
+                    b.MainBody.Rotation = ((BodyFlags)b.MainBody.UserData).StartRotation;
                 }
             });
 
@@ -159,6 +159,22 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             if (MainEditor.ShowPhysicsDebug) PhysicsDebugView.AppendFlags(DebugViewFlags.Shape);
             else PhysicsDebugView.RemoveFlags(DebugViewFlags.Shape);
 
+            _World.BodyList.ForEach(a =>
+            {
+                if (a.UserData != null)
+                {
+                    if (a.UserData is PivotBodyFlags)
+                    {
+                        if (((PivotBodyFlags)a.UserData).ConnectedObject != null)
+                        {
+                            ((PivotBodyFlags)a.UserData).ConnectedObject.Position = ConvertUnits.ToDisplayUnits(a.Position);
+                        }
+
+                        ((PivotBodyFlags)a.UserData).ConnectedObject.Update();
+                    }
+                }
+            });
+
             // We update the world
             _World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
         }
@@ -190,13 +206,13 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         {
             if (body != null && body.UserData != null)
             {
-                if (body.UserData is PhysicsBodyFlags)
+                if (body.UserData is BodyFlags)
                 {
-                    if (((PhysicsBodyFlags)body.UserData).HullList != null)
+                    if (((BodyFlags)body.UserData).HullList != null)
                     {
                         // The rotation and the position of all Hulls will be updated
                         // according to the physics body rotation and position
-                        foreach (Hull h in ((PhysicsBodyFlags)body.UserData).HullList)
+                        foreach (Hull h in ((BodyFlags)body.UserData).HullList)
                         {
                             h.Rotation = body.Rotation;
                             h.Position = ConvertUnits.ToDisplayUnits(body.Position);
@@ -211,13 +227,13 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             {
                 foreach (Body body in bodyList)
                 {
-                    if (body.UserData != null && body.UserData is PhysicsBodyFlags)
+                    if (body.UserData != null && body.UserData is BodyFlags)
                     {
-                        if (((PhysicsBodyFlags)body.UserData).HullList != null)
+                        if (((BodyFlags)body.UserData).HullList != null)
                         {
                             // The rotation and the position of all Hulls will be updated
                             // according to the physics body rotation and position
-                            foreach (Hull h in ((PhysicsBodyFlags)body.UserData).HullList)
+                            foreach (Hull h in ((BodyFlags)body.UserData).HullList)
                             {
                                 h.Rotation = body.Rotation;
                                 h.Position = ConvertUnits.ToDisplayUnits(body.Position);
@@ -252,6 +268,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             Body DownWall = BodyFactory.CreateRectangle(_World,
                 ConvertUnits.ToSimUnits(ViewportWidth), ConvertUnits.ToSimUnits(10), 1f);
             DownWall.BodyType = BodyType.Static;
+            DownWall.CollidesWith = Category.All;
+            DownWall.CollisionCategories = Category.Cat31;
             DownWall.Position = new Vector2(
                 ConvertUnits.ToSimUnits(ViewportWidth / 2), ConvertUnits.ToSimUnits(ViewportHeight + 5));
             DownWall.UserData = "D";
@@ -259,6 +277,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             Body UpWall = BodyFactory.CreateRectangle(_World,
                 ConvertUnits.ToSimUnits(ViewportWidth), ConvertUnits.ToSimUnits(10), 1f);
             UpWall.BodyType = BodyType.Static;
+            UpWall.CollidesWith = Category.All;
+            UpWall.CollisionCategories = Category.Cat31;
             UpWall.Position = new Vector2(
                 ConvertUnits.ToSimUnits(ViewportWidth / 2), ConvertUnits.ToSimUnits(-4));
             UpWall.UserData = "U";
@@ -266,6 +286,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             Body LeftWall = BodyFactory.CreateRectangle(_World,
                 ConvertUnits.ToSimUnits(10), ConvertUnits.ToSimUnits(ViewportHeight), 1f);
             LeftWall.BodyType = BodyType.Static;
+            LeftWall.CollidesWith = Category.All;
+            LeftWall.CollisionCategories = Category.Cat31;
             LeftWall.Position = new Vector2(
                 ConvertUnits.ToSimUnits(-4), ConvertUnits.ToSimUnits(ViewportHeight / 2));
             LeftWall.UserData = "L";
@@ -273,6 +295,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             Body RightWall = BodyFactory.CreateRectangle(_World,
                 ConvertUnits.ToSimUnits(10), ConvertUnits.ToSimUnits(ViewportHeight), 1f);
             RightWall.BodyType = BodyType.Static;
+            RightWall.CollidesWith = Category.All;
+            RightWall.CollisionCategories = Category.Cat31;
             RightWall.Position = new Vector2(
                 ConvertUnits.ToSimUnits(ViewportWidth + 4), ConvertUnits.ToSimUnits(ViewportHeight / 2));
             RightWall.UserData = "R";
@@ -318,9 +342,9 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         {
             if (body != null && body.UserData != null)
             {
-                if (body.UserData is PhysicsBodyFlags)
+                if (body.UserData is BodyFlags)
                 {
-                    if (((PhysicsBodyFlags)body.UserData).HullList != null)
+                    if (((BodyFlags)body.UserData).HullList != null)
                     {
                         // Create Hulls from the fixtures of the body
                         foreach (Fixture f in body.FixtureList)
@@ -329,7 +353,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                             Hull h = new Hull(((PolygonShape)f.Shape).Vertices);
 
                             // We need to scale the Hull according to our "MetersInPixels-Simulation-Value"
-                            h.Scale = new Vector2(MeterInPixels + ((PhysicsBodyFlags)body.UserData).ShadowHullScale);
+                            h.Scale = new Vector2(MeterInPixels + ((BodyFlags)body.UserData).ShadowHullScale);
 
                             // A Hull of Penumbra is set in Display space but the physics body is set in Simulation space
                             // Thats why we need to convert the simulation units of the physics object to the display units
@@ -338,7 +362,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
                             // We are adding the new Hull to our physics body hull list
                             // This is necessary to update the Hulls in the Update method (see below)
-                            ((PhysicsBodyFlags)body.UserData).HullList.Add(h);
+                            ((BodyFlags)body.UserData).HullList.Add(h);
 
                             // Adding the Hull to Penumbra
                             penumbra.Hulls.Add(h);
@@ -450,18 +474,18 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         {
             _World.BodyList.ForEach(b =>
             {
-                if (b.UserData != null && b.UserData is PhysicsBodyFlags)
+                if (b.UserData != null && b.UserData is BodyFlags)
                 {
-                    b.Position = ((PhysicsBodyFlags)b.UserData).StartPosition;
-                    b.Rotation = ((PhysicsBodyFlags)b.UserData).StartRotation;
+                    b.Position = ((BodyFlags)b.UserData).StartPosition;
+                    b.Rotation = ((BodyFlags)b.UserData).StartRotation;
                 }
             });
             _World.BreakableBodyList.ForEach(b =>
             {
-                if (b.MainBody.UserData != null && b.MainBody.UserData is PhysicsBodyFlags)
+                if (b.MainBody.UserData != null && b.MainBody.UserData is BodyFlags)
                 {
-                    b.MainBody.Position = ((PhysicsBodyFlags)b.MainBody.UserData).StartPosition;
-                    b.MainBody.Rotation = ((PhysicsBodyFlags)b.MainBody.UserData).StartRotation;
+                    b.MainBody.Position = ((BodyFlags)b.MainBody.UserData).StartPosition;
+                    b.MainBody.Rotation = ((BodyFlags)b.MainBody.UserData).StartRotation;
                 }
             });
 
@@ -494,6 +518,22 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             if (MainEditor.ShowPhysicsDebug) PhysicsDebugView.AppendFlags(DebugViewFlags.Shape);
             else PhysicsDebugView.RemoveFlags(DebugViewFlags.Shape);
 
+            _World.BodyList.ForEach(a =>
+            {
+                if (a.UserData != null)
+                {
+                    if (a.UserData is PivotBodyFlags)
+                    {
+                        if (((PivotBodyFlags)a.UserData).ConnectedObject != null)
+                        {
+                            ((PivotBodyFlags)a.UserData).ConnectedObject.Position = ConvertUnits.ToDisplayUnits(a.Position);
+                        }
+
+                        ((PivotBodyFlags)a.UserData).ConnectedObject.Update();
+                    }
+                }
+            });
+
             // We update the world
             _World.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
         }
@@ -525,13 +565,13 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         {
             if (body != null && body.UserData != null)
             {
-                if (body.UserData is PhysicsBodyFlags)
+                if (body.UserData is BodyFlags)
                 {
-                    if (((PhysicsBodyFlags)body.UserData).HullList != null)
+                    if (((BodyFlags)body.UserData).HullList != null)
                     {
                         // The rotation and the position of all Hulls will be updated
                         // according to the physics body rotation and position
-                        foreach (Hull h in ((PhysicsBodyFlags)body.UserData).HullList)
+                        foreach (Hull h in ((BodyFlags)body.UserData).HullList)
                         {
                             h.Rotation = body.Rotation;
                             h.Position = ConvertUnits.ToDisplayUnits(body.Position);
@@ -546,13 +586,13 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             {
                 foreach (Body body in bodyList)
                 {
-                    if (body.UserData != null && body.UserData is PhysicsBodyFlags)
+                    if (body.UserData != null && body.UserData is BodyFlags)
                     {
-                        if (((PhysicsBodyFlags)body.UserData).HullList != null)
+                        if (((BodyFlags)body.UserData).HullList != null)
                         {
                             // The rotation and the position of all Hulls will be updated
                             // according to the physics body rotation and position
-                            foreach (Hull h in ((PhysicsBodyFlags)body.UserData).HullList)
+                            foreach (Hull h in ((BodyFlags)body.UserData).HullList)
                             {
                                 h.Rotation = body.Rotation;
                                 h.Position = ConvertUnits.ToDisplayUnits(body.Position);
@@ -653,9 +693,9 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         {
             if (body != null && body.UserData != null)
             {
-                if (body.UserData is PhysicsBodyFlags)
+                if (body.UserData is BodyFlags)
                 {
-                    if (((PhysicsBodyFlags)body.UserData).HullList != null)
+                    if (((BodyFlags)body.UserData).HullList != null)
                     {
                         // Create Hulls from the fixtures of the body
                         foreach (Fixture f in body.FixtureList)
@@ -664,7 +704,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                             Hull h = new Hull(((PolygonShape)f.Shape).Vertices);
 
                             // We need to scale the Hull according to our "MetersInPixels-Simulation-Value"
-                            h.Scale = new Vector2(MeterInPixels + ((PhysicsBodyFlags)body.UserData).ShadowHullScale);
+                            h.Scale = new Vector2(MeterInPixels + ((BodyFlags)body.UserData).ShadowHullScale);
 
                             // A Hull of Penumbra is set in Display space but the physics body is set in Simulation space
                             // Thats why we need to convert the simulation units of the physics object to the display units
@@ -673,7 +713,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
                             // We are adding the new Hull to our physics body hull list
                             // This is necessary to update the Hulls in the Update method (see below)
-                            ((PhysicsBodyFlags)body.UserData).HullList.Add(h);
+                            ((BodyFlags)body.UserData).HullList.Add(h);
 
                             // Adding the Hull to Penumbra
                             penumbra.Hulls.Add(h);

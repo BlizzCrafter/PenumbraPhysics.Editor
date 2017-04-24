@@ -12,7 +12,7 @@ using FarseerPhysics.Common;
 
 namespace PenumbraPhysics.Editor.Classes
 {
-    public class WelcomeUpdateControlSampleEditor : GFXPhysicsService
+    public class WelcomeUpdateSampleEditor : GFXPhysicsService
     {
         // Store reference to lighting system
         public PenumbraComponent Penumbra;
@@ -32,7 +32,7 @@ namespace PenumbraPhysics.Editor.Classes
         bool HitBorder = false;
         float DirectionCooldown = 2f, DirectionCooldownMax = 2f;
 
-        public WelcomeUpdateControlSampleEditor(IGraphicsDeviceService graphics)
+        public WelcomeUpdateSampleEditor(IGraphicsDeviceService graphics)
         {
             // Initialize GFX-System
             InitializeGFX(graphics);
@@ -71,7 +71,7 @@ namespace PenumbraPhysics.Editor.Classes
             tBody.Restitution = 1f;
             tBody.FixedRotation = true;
             tBody.OnCollision += TBody_OnCollision;
-            tBody.UserData = new PhysicsBodyFlags()
+            tBody.UserData = new BodyFlags()
             {
                 HullList = new List<Hull>(),
                 ShadowHullScale = -2f,
@@ -94,9 +94,6 @@ namespace PenumbraPhysics.Editor.Classes
                         ((Body)fixtureB.Body).UserData.ToString() == "U") PenumbraPhysicsLogoDirection.Y *= -1;
                     else if (((Body)fixtureB.Body).UserData.ToString() == "L" ||
                         ((Body)fixtureB.Body).UserData.ToString() == "R") PenumbraPhysicsLogoDirection.X *= -1;
-
-                    if (Math.Abs(PenumbraPhysicsLogoDirection.X) == 0) PenumbraPhysicsLogoDirection.X = 0.5f;
-                    if (Math.Abs(PenumbraPhysicsLogoDirection.Y) == 0) PenumbraPhysicsLogoDirection.Y = 0.5f;
                 }
             }
             return true;

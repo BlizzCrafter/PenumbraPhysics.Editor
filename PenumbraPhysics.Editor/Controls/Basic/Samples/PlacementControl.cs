@@ -1,34 +1,33 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using PenumbraPhysics.Editor.Classes;
+﻿using Microsoft.Xna.Framework;
+using PenumbraPhysics.Editor.Classes.Editors.Samples;
 
-namespace PenumbraPhysics.Editor.Controls
+namespace PenumbraPhysics.Editor.Controls.Basic.Samples
 {
-    public class WelcomeUpdateControlSAMPLE : GameControl
+    class PlacementControlSAMPLE : GameControl
     {
-        private WelcomeUpdateSampleEditor Editor;
+        public PlacementEditor Editor;
 
         protected override void Initialize()
         {
             base.Initialize();
 
-            Editor = new WelcomeUpdateSampleEditor(_graphicsDeviceService);
+            Editor = new PlacementEditor(_graphicsDeviceService);
             Editor.Initialize();
         }
 
         public override void ClearPhysicsForces()
         {
-            throw new NotImplementedException();
+            Editor.ClearPhysicsForces();
         }
 
         public override void ResetPhysics()
         {
-            throw new NotImplementedException();
+            Editor.ResetPhysics();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            Editor.Update(gameTime, _MousePosition);
+            Editor.Update(gameTime, _MousePosition, LeftMouseButtonPressed);
         }
 
         protected override void Draw(GameTime gameTime)
