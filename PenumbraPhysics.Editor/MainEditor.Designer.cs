@@ -65,6 +65,8 @@
             this.penumbraPhysicsControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.PenumbraPhysicsControlSAMPLE();
             this.placementControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.Samples.PlacementControlSAMPLE();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemListAllLights = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemListAllShadowCaster = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlWelcome.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
@@ -343,6 +345,8 @@
             this.toolStripMenuItemObjects.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemRemoveAllObjects,
             this.toolStripSeparator3,
+            this.toolStripMenuItemListAllLights,
+            this.toolStripMenuItemListAllShadowCaster,
             this.toolStripMenuItemListAllObjects});
             this.toolStripMenuItemObjects.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemObjects.Image")));
             this.toolStripMenuItemObjects.Name = "toolStripMenuItemObjects";
@@ -353,7 +357,7 @@
             // 
             this.toolStripMenuItemRemoveAllObjects.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemRemoveAllObjects.Image")));
             this.toolStripMenuItemRemoveAllObjects.Name = "toolStripMenuItemRemoveAllObjects";
-            this.toolStripMenuItemRemoveAllObjects.Size = new System.Drawing.Size(212, 26);
+            this.toolStripMenuItemRemoveAllObjects.Size = new System.Drawing.Size(228, 26);
             this.toolStripMenuItemRemoveAllObjects.Text = "Remove all Objects";
             this.toolStripMenuItemRemoveAllObjects.Click += new System.EventHandler(this.toolStripMenuItemRemoveAllObjects_Click);
             // 
@@ -361,7 +365,7 @@
             // 
             this.toolStripMenuItemListAllObjects.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemListAllObjects.Image")));
             this.toolStripMenuItemListAllObjects.Name = "toolStripMenuItemListAllObjects";
-            this.toolStripMenuItemListAllObjects.Size = new System.Drawing.Size(212, 26);
+            this.toolStripMenuItemListAllObjects.Size = new System.Drawing.Size(228, 26);
             this.toolStripMenuItemListAllObjects.Text = "List all Objects";
             this.toolStripMenuItemListAllObjects.Click += new System.EventHandler(this.toolStripMenuItemListAllObjects_Click);
             // 
@@ -399,7 +403,23 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(209, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(225, 6);
+            // 
+            // toolStripMenuItemListAllLights
+            // 
+            this.toolStripMenuItemListAllLights.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemListAllLights.Image")));
+            this.toolStripMenuItemListAllLights.Name = "toolStripMenuItemListAllLights";
+            this.toolStripMenuItemListAllLights.Size = new System.Drawing.Size(228, 26);
+            this.toolStripMenuItemListAllLights.Text = "List all Lights";
+            this.toolStripMenuItemListAllLights.Click += new System.EventHandler(this.toolStripMenuItemListAllLights_Click);
+            // 
+            // toolStripMenuItemListAllShadowCaster
+            // 
+            this.toolStripMenuItemListAllShadowCaster.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemListAllShadowCaster.Image")));
+            this.toolStripMenuItemListAllShadowCaster.Name = "toolStripMenuItemListAllShadowCaster";
+            this.toolStripMenuItemListAllShadowCaster.Size = new System.Drawing.Size(228, 26);
+            this.toolStripMenuItemListAllShadowCaster.Text = "List all Shadow Caster";
+            this.toolStripMenuItemListAllShadowCaster.Click += new System.EventHandler(this.toolStripMenuItemListAllShadowCaster_Click);
             // 
             // MainEditor
             // 
@@ -468,5 +488,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRemoveAllObjects;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemListAllObjects;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemListAllLights;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemListAllShadowCaster;
     }
 }

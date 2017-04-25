@@ -236,5 +236,25 @@ namespace PenumbraPhysics.Editor
                 form.Show();
             }
         }
+
+        private void toolStripMenuItemListAllLights_Click(object sender, EventArgs e)
+        {
+            if (menuStripEditorFunctions.Tag is PlacementEditor)
+            {
+                ObjectList form = new Editor.ObjectList();
+                form.SelectedObjects = ((PlacementEditor)menuStripEditorFunctions.Tag).LightObjectList.ToArray();
+                form.Show();
+            }
+        }
+
+        private void toolStripMenuItemListAllShadowCaster_Click(object sender, EventArgs e)
+        {
+            if (menuStripEditorFunctions.Tag is PlacementEditor)
+            {
+                ObjectList form = new Editor.ObjectList();
+                form.SelectedObjects = ((PlacementEditor)menuStripEditorFunctions.Tag).ShadowObjectList.ToArray();
+                form.Show();
+            }
+        }
     }
 }
