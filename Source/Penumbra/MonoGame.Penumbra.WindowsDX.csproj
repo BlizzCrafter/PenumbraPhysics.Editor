@@ -61,21 +61,21 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GraphicsDeviceServicePenumbra.cs" />
-    <Compile Include="Graphics\GraphicsExtensions.cs" />
-    <Compile Include="Graphics\Vao.cs" />
-    <Compile Include="Graphics\Renderers\LightRenderer.cs" />
-    <Compile Include="Graphics\Renderers\ShadowRenderer.cs" />
-    <Compile Include="Graphics\Renderers\LightMapRenderer.cs" />
-    <Compile Include="Graphics\Providers\CameraProvider.cs" />
-    <Compile Include="Graphics\Providers\TextureProvider.cs" />
-    <Compile Include="Graphics\Providers\GraphicsProvider.cs" />
-    <Compile Include="Graphics\VertexTypes.cs" />
+    <Compile Include="Graphcs\GraphicsExtensions.cs" />
+    <Compile Include="Graphcs\Vao.cs" />
+    <Compile Include="Graphcs\Renderers\LightRenderer.cs" />
+    <Compile Include="Graphcs\Renderers\ShadowRenderer.cs" />
+    <Compile Include="Graphcs\Renderers\LightMapRenderer.cs" />
+    <Compile Include="Graphcs\Providers\CameraProvider.cs" />
+    <Compile Include="Graphcs\Providers\TextureProvider.cs" />
+    <Compile Include="Graphcs\Providers\GraphicsProvider.cs" />
+    <Compile Include="Graphcs\VertexTypes.cs" />
     <Compile Include="Hull.cs" />
     <Compile Include="Light.cs" />
     <Compile Include="Geometry\BoundingRectangle.cs" />
     <Compile Include="Geometry\LineSegment.cs" />
     <Compile Include="Geometry\PolygonExtensions.cs" />
-    <Compile Include="Graphics\Triangulator.cs" />
+    <Compile Include="Graphcs\Triangulator.cs" />
     <Compile Include="PenumbraComponent.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -88,14 +88,19 @@
     <Compile Include="ServiceContainerPenumbra.cs" />
     <Compile Include="TexturedLight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Graphics\DynamicVao.cs" />
+    <Compile Include="Graphcs\DynamicVao.cs" />
     <Compile Include="PointLight.cs" />
     <Compile Include="Spotlight.cs" />
+    <Compile Include="Utilities\Control\ColorPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utilities\Converter\RotationConverter.cs" />
     <Compile Include="Utilities\Converter\BaseColorConverter.cs" />
+    <Compile Include="Utilities\Editor\ColorPicker.cs" />
     <Compile Include="Utilities\ExtendedObservableCollection.cs" />
     <Compile Include="Utilities\FastList.cs" />
     <Compile Include="Utilities\Logger.cs" />
-    <Compile Include="Graphics\StaticVao.cs" />
+    <Compile Include="Graphcs\StaticVao.cs" />
     <Compile Include="Utilities\Calculate.cs" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -105,6 +110,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.WindowsDX.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Control\ColorPicker.resx">
+      <DependentUpon>ColorPicker.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

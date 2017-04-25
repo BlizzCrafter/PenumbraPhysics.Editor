@@ -8,6 +8,9 @@ using Penumbra.Graphics.Providers;
 using Penumbra.Graphics.Renderers;
 using Penumbra.Utilities;
 using System.ComponentModel;
+using Penumbra.Utilities.Editor;
+using System.Drawing.Design;
+using static Penumbra.Utilities.Control.LightShapeSelectionControl;
 
 namespace Penumbra
 {
@@ -18,6 +21,7 @@ namespace Penumbra
     /// It is an abstract class - one of the three concrete implementations should be used instead: 
     /// <see cref="PointLight" />, <see cref="Spotlight" />, <see cref="TexturedLight" />.
     /// </remarks>
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public abstract class Light
     {
         private const float Epsilon = 1e-5f;
@@ -48,6 +52,7 @@ namespace Penumbra
         /// <summary>
         /// Gets or sets the light's position in world space.
         /// </summary>
+        [Browsable(false)]
         public Vector2 Position
         {
             get { return _position; }
@@ -100,6 +105,8 @@ namespace Penumbra
         /// <summary>
         /// Gets or sets the rotation of the light in radians.
         /// </summary>
+        [Description("Type in the Rotation value in degrees. It will be automatically converted to radians.")]
+        [TypeConverter(typeof(RotationConverter))]
         public float Rotation
         {
             get { return _rotation; }
@@ -142,7 +149,9 @@ namespace Penumbra
         /// Gets or sets the color of the light. Color is in non-premultiplied format.
         /// Default is white.
         /// </summary>
-        
+        [Description("Type in the Color value in Hex Color Code. It will be automatically converted to RGB." +
+            "The Alpha value don't need to be set. Use Intensity instead.")]
+        [TypeConverter(typeof(BaseColorConverter))]
         public Color Color
         {
             get { return _nonPremultipliedColor; }
@@ -153,16 +162,22 @@ namespace Penumbra
             }
         }
 
-        [TypeConverter(typeof(BaseColorConverter))]
-        [DefaultValue(typeof(System.Drawing.Color), "White")]
-        public Color GetColor
-        {
-            get { return _nonPremultipliedColor; }
-            set
-            {
-                _nonPremultipliedColor = value;
-            }
-        }
+        //[DefaultValue(typeof(Color), "White")]
+        //[Editor(typeof(ColorPicker), typeof(UITypeEditor))]
+        //public MarqueeLightShape LightShape
+        //{
+        //    get
+        //    {
+        //        return this.lightShapeValue;
+        //    }
+
+        //    set
+        //    {
+        //        this.lightShapeValue = value;
+        //    }
+        //}
+        //private MarqueeLightShape lightShapeValue;
+
 
         private float _intensity = 1.0f;
         /// <summary>
@@ -214,6 +229,7 @@ namespace Penumbra
         /// <summary>
         /// Gets a list of hulls not participating in the light's shadow casting process.
         /// </summary>
+        [Browsable(false)]
         public IList<Hull> IgnoredHulls => _ignoredHulls;
 
         // Cleared by the engine. Used by other systems to know when to regenerate shadows for the light.
