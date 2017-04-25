@@ -218,5 +218,23 @@ namespace PenumbraPhysics.Editor
         #endregion
 
         #endregion
+
+        private void toolStripMenuItemRemoveAllObjects_Click(object sender, EventArgs e)
+        {
+            if (menuStripEditorFunctions.Tag is PlacementEditor)
+            {
+                ((PlacementEditor)menuStripEditorFunctions.Tag).RemoveAllObjects();
+            }
+        }
+
+        private void toolStripMenuItemListAllObjects_Click(object sender, EventArgs e)
+        {
+            if (menuStripEditorFunctions.Tag is PlacementEditor)
+            {
+                ObjectList form = new Editor.ObjectList();
+                form.SelectedObjects = ((PlacementEditor)menuStripEditorFunctions.Tag).AllObjectList.ToArray();
+                form.Show();
+            }
+        }
     }
 }

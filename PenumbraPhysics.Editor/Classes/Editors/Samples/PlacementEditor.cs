@@ -11,10 +11,11 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 {
     public class PlacementEditor : GFXPhysicsService
     {
-        private List<Light> LightObjectList;
-        private List<Body> ShadowObjectList;
-        private List<Body> AllObjectList;
-        private Body CurrentSelectedObject;
+        public List<Light> LightObjectList;
+        public List<Body> ShadowObjectList;
+        public List<Body> AllObjectList;
+
+        public Body CurrentSelectedObject;
 
         private Texture2D CenterTexture, MoveCamTexture;
 
@@ -50,7 +51,6 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
                     ConnectedObject = new ConnectedObject(light, position)
                 };
                 CurrentSelectedObject = bPivot;
-                LightObjectList.Add(light);
                 AllObjectList.Add(bPivot);
             }
         }
@@ -75,6 +75,37 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
             CurrentSelectedObject = ShadowCaster;
             ShadowObjectList.Add(ShadowCaster);
             AllObjectList.Add(ShadowCaster);
+        }
+
+        public void RemoveAllObjects()
+        {
+            AllObjectList.ForEach(o =>
+            {
+                if (o.UserData != null && o.UserData is PivotBodyFlags)
+                {
+                    if (((PivotBodyFlags)o.UserData).ConnectedObject != null &&
+                        ((PivotBodyFlags)o.UserData).ConnectedObject.Object != null &&
+                        ((PivotBodyFlags)o.UserData).ConnectedObject.Object is Light)
+                    {
+                        Penumbra.Lights.Remove((Light)((PivotBodyFlags)o.UserData).ConnectedObject.Object);
+                        _World.RemoveBody(o);
+                    }
+                }
+                else if (o.UserData != null && o.UserData is BodyFlags)
+                {
+                    if (((BodyFlags)o.UserData).HullList != null)
+                    {
+                        ((BodyFlags)o.UserData).HullList.ForEach(a => a.Enabled = false && Penumbra.Hulls.Remove(a));
+                        ((BodyFlags)o.UserData).HullList.Clear();
+                        _World.RemoveBody(o);
+                    }
+                }
+            });
+            Penumbra.Lights.Clear();
+            Penumbra.Hulls.Clear();
+            ShadowObjectList.Clear();
+            LightObjectList.Clear();
+            AllObjectList.Clear();
         }
 
         public PlacementEditor(IGraphicsDeviceService graphics)

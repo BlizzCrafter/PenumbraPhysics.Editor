@@ -32,9 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEditor));
             this.tabControlWelcome = new System.Windows.Forms.TabControl();
             this.tabPageWelcome = new System.Windows.Forms.TabPage();
-            this.welcomeUpdateControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.WelcomeUpdateControlSAMPLE();
             this.tabPagePPManipulation = new System.Windows.Forms.TabPage();
-            this.penumbraPhysicsControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.PenumbraPhysicsControlSAMPLE();
             this.contextMenuStripPenumbraPhysicsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -44,7 +42,6 @@
             this.ToolStripMenuItemResetAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPagePPPlacement = new System.Windows.Forms.TabPage();
             this.buttonCameraControl = new System.Windows.Forms.Button();
-            this.placementControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.Samples.PlacementControlSAMPLE();
             this.tabPageJustDraw = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelNote = new System.Windows.Forms.ToolStripStatusLabel();
@@ -59,8 +56,15 @@
             this.button2 = new System.Windows.Forms.Button();
             this.menuStripEditorFunctions = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemCreateLight = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemResetCamera = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCreateShadowHull = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemResetCamera = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemRemoveAllObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemListAllObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.welcomeUpdateControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.WelcomeUpdateControlSAMPLE();
+            this.penumbraPhysicsControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.PenumbraPhysicsControlSAMPLE();
+            this.placementControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.Samples.PlacementControlSAMPLE();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tabControlWelcome.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
@@ -95,15 +99,6 @@
             this.tabPageWelcome.Text = "Welcome!";
             this.tabPageWelcome.UseVisualStyleBackColor = true;
             // 
-            // welcomeUpdateControlSAMPLE1
-            // 
-            this.welcomeUpdateControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.welcomeUpdateControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
-            this.welcomeUpdateControlSAMPLE1.Name = "welcomeUpdateControlSAMPLE1";
-            this.welcomeUpdateControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
-            this.welcomeUpdateControlSAMPLE1.TabIndex = 0;
-            this.welcomeUpdateControlSAMPLE1.Text = "welcomeUpdateControlSAMPLE1";
-            // 
             // tabPagePPManipulation
             // 
             this.tabPagePPManipulation.Controls.Add(this.penumbraPhysicsControlSAMPLE1);
@@ -113,17 +108,6 @@
             this.tabPagePPManipulation.TabIndex = 1;
             this.tabPagePPManipulation.Text = "Manipulation";
             this.tabPagePPManipulation.UseVisualStyleBackColor = true;
-            // 
-            // penumbraPhysicsControlSAMPLE1
-            // 
-            this.penumbraPhysicsControlSAMPLE1.ContextMenuStrip = this.contextMenuStripPenumbraPhysicsMenu;
-            this.penumbraPhysicsControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.penumbraPhysicsControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
-            this.penumbraPhysicsControlSAMPLE1.Name = "penumbraPhysicsControlSAMPLE1";
-            this.penumbraPhysicsControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
-            this.penumbraPhysicsControlSAMPLE1.TabIndex = 0;
-            this.penumbraPhysicsControlSAMPLE1.Text = "penumbraPhysicsControlSAMPLE1";
-            this.penumbraPhysicsControlSAMPLE1.VisibleChanged += new System.EventHandler(this.penumbraPhysicsControlSAMPLE1_VisibleChanged_1);
             // 
             // contextMenuStripPenumbraPhysicsMenu
             // 
@@ -206,17 +190,6 @@
             this.buttonCameraControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonCameraControl_MouseDown);
             this.buttonCameraControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.buttonCameraControl_MouseMove);
             this.buttonCameraControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.buttonCameraControl_MouseUp);
-            // 
-            // placementControlSAMPLE1
-            // 
-            this.placementControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.placementControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
-            this.placementControlSAMPLE1.Name = "placementControlSAMPLE1";
-            this.placementControlSAMPLE1.Padding = new System.Windows.Forms.Padding(3);
-            this.placementControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
-            this.placementControlSAMPLE1.TabIndex = 0;
-            this.placementControlSAMPLE1.Text = "placementControlSAMPLE1";
-            this.placementControlSAMPLE1.VisibleChanged += new System.EventHandler(this.placementControlSAMPLE1_VisibleChanged_1);
             // 
             // tabPageJustDraw
             // 
@@ -333,7 +306,8 @@
             this.menuStripEditorFunctions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemCreateLight,
             this.toolStripMenuItemCreateShadowHull,
-            this.toolStripMenuItemResetCamera});
+            this.toolStripMenuItemResetCamera,
+            this.toolStripMenuItemObjects});
             this.menuStripEditorFunctions.Location = new System.Drawing.Point(0, 0);
             this.menuStripEditorFunctions.Name = "menuStripEditorFunctions";
             this.menuStripEditorFunctions.Size = new System.Drawing.Size(649, 28);
@@ -348,6 +322,14 @@
             this.toolStripMenuItemCreateLight.Text = "Create Light";
             this.toolStripMenuItemCreateLight.Click += new System.EventHandler(this.toolStripMenuItemCreateLight_Click);
             // 
+            // toolStripMenuItemCreateShadowHull
+            // 
+            this.toolStripMenuItemCreateShadowHull.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemCreateShadowHull.Image")));
+            this.toolStripMenuItemCreateShadowHull.Name = "toolStripMenuItemCreateShadowHull";
+            this.toolStripMenuItemCreateShadowHull.Size = new System.Drawing.Size(186, 24);
+            this.toolStripMenuItemCreateShadowHull.Text = "Create Shadow Caster";
+            this.toolStripMenuItemCreateShadowHull.Click += new System.EventHandler(this.toolStripMenuItemCreateShadowHull_Click);
+            // 
             // toolStripMenuItemResetCamera
             // 
             this.toolStripMenuItemResetCamera.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemResetCamera.Image")));
@@ -356,13 +338,68 @@
             this.toolStripMenuItemResetCamera.Text = "Reset Camera";
             this.toolStripMenuItemResetCamera.Click += new System.EventHandler(this.toolStripMenuItemResetCamera_Click);
             // 
-            // toolStripMenuItemCreateShadowHull
+            // toolStripMenuItemObjects
             // 
-            this.toolStripMenuItemCreateShadowHull.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemCreateShadowHull.Image")));
-            this.toolStripMenuItemCreateShadowHull.Name = "toolStripMenuItemCreateShadowHull";
-            this.toolStripMenuItemCreateShadowHull.Size = new System.Drawing.Size(172, 24);
-            this.toolStripMenuItemCreateShadowHull.Text = "Create Shadow Hull";
-            this.toolStripMenuItemCreateShadowHull.Click += new System.EventHandler(this.toolStripMenuItemCreateShadowHull_Click);
+            this.toolStripMenuItemObjects.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemRemoveAllObjects,
+            this.toolStripSeparator3,
+            this.toolStripMenuItemListAllObjects});
+            this.toolStripMenuItemObjects.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemObjects.Image")));
+            this.toolStripMenuItemObjects.Name = "toolStripMenuItemObjects";
+            this.toolStripMenuItemObjects.Size = new System.Drawing.Size(91, 24);
+            this.toolStripMenuItemObjects.Text = "Objects";
+            // 
+            // toolStripMenuItemRemoveAllObjects
+            // 
+            this.toolStripMenuItemRemoveAllObjects.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemRemoveAllObjects.Image")));
+            this.toolStripMenuItemRemoveAllObjects.Name = "toolStripMenuItemRemoveAllObjects";
+            this.toolStripMenuItemRemoveAllObjects.Size = new System.Drawing.Size(212, 26);
+            this.toolStripMenuItemRemoveAllObjects.Text = "Remove all Objects";
+            this.toolStripMenuItemRemoveAllObjects.Click += new System.EventHandler(this.toolStripMenuItemRemoveAllObjects_Click);
+            // 
+            // toolStripMenuItemListAllObjects
+            // 
+            this.toolStripMenuItemListAllObjects.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemListAllObjects.Image")));
+            this.toolStripMenuItemListAllObjects.Name = "toolStripMenuItemListAllObjects";
+            this.toolStripMenuItemListAllObjects.Size = new System.Drawing.Size(212, 26);
+            this.toolStripMenuItemListAllObjects.Text = "List all Objects";
+            this.toolStripMenuItemListAllObjects.Click += new System.EventHandler(this.toolStripMenuItemListAllObjects_Click);
+            // 
+            // welcomeUpdateControlSAMPLE1
+            // 
+            this.welcomeUpdateControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.welcomeUpdateControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
+            this.welcomeUpdateControlSAMPLE1.Name = "welcomeUpdateControlSAMPLE1";
+            this.welcomeUpdateControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.welcomeUpdateControlSAMPLE1.TabIndex = 0;
+            this.welcomeUpdateControlSAMPLE1.Text = "welcomeUpdateControlSAMPLE1";
+            // 
+            // penumbraPhysicsControlSAMPLE1
+            // 
+            this.penumbraPhysicsControlSAMPLE1.ContextMenuStrip = this.contextMenuStripPenumbraPhysicsMenu;
+            this.penumbraPhysicsControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.penumbraPhysicsControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
+            this.penumbraPhysicsControlSAMPLE1.Name = "penumbraPhysicsControlSAMPLE1";
+            this.penumbraPhysicsControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.penumbraPhysicsControlSAMPLE1.TabIndex = 0;
+            this.penumbraPhysicsControlSAMPLE1.Text = "penumbraPhysicsControlSAMPLE1";
+            this.penumbraPhysicsControlSAMPLE1.VisibleChanged += new System.EventHandler(this.penumbraPhysicsControlSAMPLE1_VisibleChanged_1);
+            // 
+            // placementControlSAMPLE1
+            // 
+            this.placementControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.placementControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
+            this.placementControlSAMPLE1.Name = "placementControlSAMPLE1";
+            this.placementControlSAMPLE1.Padding = new System.Windows.Forms.Padding(3);
+            this.placementControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.placementControlSAMPLE1.TabIndex = 0;
+            this.placementControlSAMPLE1.Text = "placementControlSAMPLE1";
+            this.placementControlSAMPLE1.VisibleChanged += new System.EventHandler(this.placementControlSAMPLE1_VisibleChanged_1);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(209, 6);
             // 
             // MainEditor
             // 
@@ -427,5 +464,9 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSpacer;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelNote;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateShadowHull;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemObjects;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRemoveAllObjects;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemListAllObjects;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
