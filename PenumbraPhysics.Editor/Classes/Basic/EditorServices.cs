@@ -44,9 +44,9 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             this.graphics = graphics.GraphicsDevice;
 
             Content = new ContentManager(services, "Content");
-            spriteBatch = new SpriteBatch(this.graphics);
+            spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
 
-            Penumbra = new PenumbraComponent(this.graphics, Content);
+            if (Penumbra == null) Penumbra = new PenumbraComponent(graphics.GraphicsDevice, Content);
 
             Font = Content.Load<SpriteFont>(@"Font");
 
@@ -135,6 +135,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
     public class PhysicsService : IPhysicsInterface
     {
+        public PenumbraComponent Penumbra { get; set; }
+
         // The physical world
         public World _World { get; set; }
 
@@ -202,6 +204,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             // Catching Viewport dimensions
             ViewportWidth = graphics.Viewport.Width;
             ViewportHeight = graphics.Viewport.Height;
+
+            if (Penumbra == null) Penumbra = new PenumbraComponent(graphics, Content);
 
             // Our world for the physics body
             _World = new World(Vector2.Zero);
@@ -399,10 +403,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         /// <summary>
         /// Method for creating shadow hulls out of a physics body.
         /// </summary>
-        /// <param name="penumbra">In this Penumbra component the shadow Hulls are created and stored.</param>
         /// <param name="body">Out of this Body the shadow Hulls will be generated.</param>
-        /// <param name="BodyHullList">A Hull list as a reference. Needed to update shadow Hulls.</param>
-        public void CreateShadowHulls(PenumbraComponent penumbra, Body body)
+        public void CreateShadowHulls(Body body)
         {
             if (body != null && body.UserData != null)
             {
@@ -429,7 +431,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                             ((BodyFlags)body.UserData).HullList.Add(h);
 
                             // Adding the Hull to Penumbra
-                            penumbra.Hulls.Add(h);
+                            Penumbra.Hulls.Add(h);
                         }
                     }
                 }
@@ -469,9 +471,9 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             this.graphics = graphics.GraphicsDevice;
 
             Content = new ContentManager(services, "Content");
-            spriteBatch = new SpriteBatch(this.graphics);
-            
-            Penumbra = new PenumbraComponent(this.graphics, Content);
+            spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
+
+            if (Penumbra == null) Penumbra = new PenumbraComponent(graphics.GraphicsDevice, Content);
 
             Font = Content.Load<SpriteFont>(@"Font");
 
@@ -619,6 +621,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
             // Catching Viewport dimensions
             ViewportWidth = graphics.Viewport.Width;
             ViewportHeight = graphics.Viewport.Height;
+
+            if (Penumbra == null) Penumbra = new PenumbraComponent(graphics, Content);
 
             // Our world for the physics body
             _World = new World(Vector2.Zero);
@@ -808,10 +812,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         /// <summary>
         /// Method for creating shadow hulls out of a physics body.
         /// </summary>
-        /// <param name="penumbra">In this Penumbra component the shadow Hulls are created and stored.</param>
         /// <param name="body">Out of this Body the shadow Hulls will be generated.</param>
-        /// <param name="BodyHullList">A Hull list as a reference. Needed to update shadow Hulls.</param>
-        public void CreateShadowHulls(PenumbraComponent penumbra, Body body)
+        public void CreateShadowHulls(Body body)
         {
             if (body != null && body.UserData != null)
             {
@@ -838,7 +840,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                             ((BodyFlags)body.UserData).HullList.Add(h);
 
                             // Adding the Hull to Penumbra
-                            penumbra.Hulls.Add(h);
+                            Penumbra.Hulls.Add(h);
                         }
                     }
                 }

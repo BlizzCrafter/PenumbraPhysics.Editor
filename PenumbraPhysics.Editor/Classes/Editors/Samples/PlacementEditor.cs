@@ -11,15 +11,16 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 {
     public class PlacementEditor : GFXPhysicsService
     {
-        private List<Light> LightList;
-        private List<Body> LightPivots;
-        private Body CurrentSelectedPivot;
+        private List<Light> LightObjectList;
+        private List<Body> ShadowObjectList;
+        private List<Body> AllObjectList;
+        private Body CurrentSelectedObject;
 
         private Texture2D CenterTexture, MoveCamTexture;
 
-        public void CreateLight()
+        public void CreateLightObject()
         {
-            if (LightList != null && LightPivots != null)
+            if (LightObjectList != null && AllObjectList != null)
             {
                 Vector2 position = new Vector2(ViewportWidth / 2, ViewportHeight / 2);
 
@@ -28,10 +29,10 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
                 {
                     Position = position,
                     Color = Color.White,
-                    Scale = new Vector2(300),
+                    Scale = new Vector2(400),
                     ShadowType = ShadowType.Solid
                 };
-                LightList.Add(light);
+                LightObjectList.Add(light);
                 Penumbra.Lights.Add(light);
                 
                 //Create a pivot for the light
@@ -48,9 +49,32 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
                 {
                     ConnectedObject = new ConnectedObject(light, position)
                 };
-                CurrentSelectedPivot = bPivot;
-                LightPivots.Add(bPivot);
+                CurrentSelectedObject = bPivot;
+                LightObjectList.Add(light);
+                AllObjectList.Add(bPivot);
             }
+        }
+        public void CreateShadowObject()
+        {
+            Vector2 position = new Vector2(ViewportWidth / 2, ViewportHeight / 2);
+
+            Body ShadowCaster = BodyFactory.CreateRectangle(_World,
+                ConvertUnits.ToSimUnits(20), ConvertUnits.ToSimUnits(35), 1f);
+            ShadowCaster.Position = ConvertUnits.ToSimUnits(position);
+            ShadowCaster.AngularDamping = 999f;
+            ShadowCaster.LinearDamping = 999f;
+            ShadowCaster.Friction = 3f;
+            ShadowCaster.BodyType = BodyType.Dynamic;
+            ShadowCaster.UserData = new BodyFlags()
+            {
+                HullList = new List<Hull>()
+            };
+
+            CreateShadowHulls(ShadowCaster);
+
+            CurrentSelectedObject = ShadowCaster;
+            ShadowObjectList.Add(ShadowCaster);
+            AllObjectList.Add(ShadowCaster);
         }
 
         public PlacementEditor(IGraphicsDeviceService graphics)
@@ -60,14 +84,15 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 
             // Initialize Physics-System
             InitializePhysics(graphics.GraphicsDevice, Content);
-
-            LightList = new List<Light>();
-            LightPivots = new List<Body>();
         }
 
         public void Initialize()
         {
             Penumbra.AmbientColor = new Color(new Vector3(0.7f));
+
+            LightObjectList = new List<Light>();
+            ShadowObjectList = new List<Body>();
+            AllObjectList = new List<Body>();
 
             CenterTexture = Content.Load<Texture2D>(@"Samples\PenumbraPhysicsEditorLogoBig");
             MoveCamTexture = Content.Load<Texture2D>(@"Samples\MoveCam");
@@ -75,6 +100,7 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 
         public void Update(GameTime gameTime, Vector2 mousePosition, bool leftMouseButtonPressed)
         {
+            UpdateShadowHulls(ShadowObjectList);
             UpdatePhysicsManipulation(leftMouseButtonPressed, mousePosition);
             UpdatePhysics(gameTime);
             UpdateDisplay(gameTime, mousePosition);
@@ -93,7 +119,7 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 
             DrawBeginCamera2D();
 
-            //Draw sprites here, so they will affected by camera movement
+            //Draw sprites here, so they will affected by the camera movement
 
             spriteBatch.Draw(CenterTexture, new Vector2(ViewportWidth / 2, ViewportHeight / 2), Color.White);
             spriteBatch.Draw(MoveCamTexture, new Vector2(-150 + ViewportWidth / 2, ViewportHeight / 2), null, Color.White,

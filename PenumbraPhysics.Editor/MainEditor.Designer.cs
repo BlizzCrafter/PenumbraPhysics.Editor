@@ -60,6 +60,7 @@
             this.menuStripEditorFunctions = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItemCreateLight = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemResetCamera = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCreateShadowHull = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlWelcome.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
@@ -251,7 +252,7 @@
             // toolStripStatusLabelSpacer
             // 
             this.toolStripStatusLabelSpacer.Name = "toolStripStatusLabelSpacer";
-            this.toolStripStatusLabelSpacer.Size = new System.Drawing.Size(460, 21);
+            this.toolStripStatusLabelSpacer.Size = new System.Drawing.Size(499, 21);
             this.toolStripStatusLabelSpacer.Spring = true;
             // 
             // toolStripSplitButtonSettings
@@ -331,6 +332,7 @@
             this.menuStripEditorFunctions.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripEditorFunctions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemCreateLight,
+            this.toolStripMenuItemCreateShadowHull,
             this.toolStripMenuItemResetCamera});
             this.menuStripEditorFunctions.Location = new System.Drawing.Point(0, 0);
             this.menuStripEditorFunctions.Name = "menuStripEditorFunctions";
@@ -353,6 +355,14 @@
             this.toolStripMenuItemResetCamera.Size = new System.Drawing.Size(132, 24);
             this.toolStripMenuItemResetCamera.Text = "Reset Camera";
             this.toolStripMenuItemResetCamera.Click += new System.EventHandler(this.toolStripMenuItemResetCamera_Click);
+            // 
+            // toolStripMenuItemCreateShadowHull
+            // 
+            this.toolStripMenuItemCreateShadowHull.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemCreateShadowHull.Image")));
+            this.toolStripMenuItemCreateShadowHull.Name = "toolStripMenuItemCreateShadowHull";
+            this.toolStripMenuItemCreateShadowHull.Size = new System.Drawing.Size(172, 24);
+            this.toolStripMenuItemCreateShadowHull.Text = "Create Shadow Hull";
+            this.toolStripMenuItemCreateShadowHull.Click += new System.EventHandler(this.toolStripMenuItemCreateShadowHull_Click);
             // 
             // MainEditor
             // 
@@ -416,5 +426,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowCameraPosition;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSpacer;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelNote;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateShadowHull;
     }
 }

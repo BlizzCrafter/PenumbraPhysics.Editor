@@ -46,6 +46,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
     public interface IPhysicsInterface
     {
+        PenumbraComponent Penumbra { get; set; }
+
         World _World { get; set; }
         DebugViewXNA PhysicsDebugView { get; set; }
         FixedMouseJoint FixedMouseJoint { get; set; }
@@ -67,7 +69,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         void CreatePhysicalBorders();
         Body CreateComplexBody(World world, Texture2D objectTexture, float Scale, out Vector2 Origin,
             TriangulationAlgorithm Algorithm = TriangulationAlgorithm.Bayazit);
-        void CreateShadowHulls(PenumbraComponent penumbra, Body body);
+        void CreateShadowHulls(Body body);
 
         void InitializePhysics(GraphicsDevice graphics, ContentManager Content);
 

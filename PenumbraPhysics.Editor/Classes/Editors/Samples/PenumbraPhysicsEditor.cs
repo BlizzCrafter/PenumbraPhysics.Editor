@@ -59,7 +59,7 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
                 StartRotation = tBody.Rotation
             };
 
-            CreateShadowHulls(Penumbra, tBody);
+            CreateShadowHulls(tBody);
         }
 
         public void Update(GameTime gameTime, Vector2 mousePosition, bool leftMouseButtonPressed)

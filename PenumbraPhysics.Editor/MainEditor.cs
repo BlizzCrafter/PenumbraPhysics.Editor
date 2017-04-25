@@ -123,6 +123,8 @@ namespace PenumbraPhysics.Editor
 
         #region Editor Events
 
+        #region Context Menu
+
         // Clear Physics Forces
         private void toolStripMenuItemClearPhysicsForces_Click(object sender, EventArgs e)
         {
@@ -151,15 +153,27 @@ namespace PenumbraPhysics.Editor
 
         #endregion
 
+        #region General
+        
+        // Create a light
         private void toolStripMenuItemCreateLight_Click(object sender, EventArgs e)
         {
             if (menuStripEditorFunctions.Tag is PlacementEditor)
             {
-                ((PlacementEditor)menuStripEditorFunctions.Tag).CreateLight();
+                ((PlacementEditor)menuStripEditorFunctions.Tag).CreateLightObject();
+            }
+        }
+
+        private void toolStripMenuItemCreateShadowHull_Click(object sender, EventArgs e)
+        {
+            if (menuStripEditorFunctions.Tag is PlacementEditor)
+            {
+                ((PlacementEditor)menuStripEditorFunctions.Tag).CreateShadowObject();
             }
         }
 
         // Camera Control
+        //Move
         private void buttonCameraControl_MouseUp(object sender, MouseEventArgs e)
         {
             MouseIsDownOnButton = false;
@@ -192,7 +206,7 @@ namespace PenumbraPhysics.Editor
                 FirstPointMouseOnButton.Y = e.Location.Y;
             }
         }
-
+        //Reset
         private void toolStripMenuItemResetCamera_Click(object sender, EventArgs e)
         {
             if (menuStripEditorFunctions.Tag is PlacementEditor)
@@ -200,5 +214,9 @@ namespace PenumbraPhysics.Editor
                 ((PlacementEditor)menuStripEditorFunctions.Tag).ResetCam();
             }
         }
+
+        #endregion
+
+        #endregion
     }
 }

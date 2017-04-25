@@ -73,7 +73,7 @@ namespace PenumbraPhysics.Editor.Classes
                 StartRotation = tBody.Rotation
             };
 
-            CreateShadowHulls(Penumbra, tBody);
+            CreateShadowHulls(tBody);
             CreatePhysicalBorders();
         }
 

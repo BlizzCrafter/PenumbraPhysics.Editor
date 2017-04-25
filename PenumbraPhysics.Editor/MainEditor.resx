@@ -189,6 +189,15 @@
         AABJRU5ErkJggg==
 </value>
   </data>
+  <data name="toolStripMenuItemCreateShadowHull.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAACuSURBVDhPY/j//z9FGKsgCOf1a/yHYXQ5ZIxVEKTp
+        3b+9cIzPEKyCIA3nfwbAMVkGnPzqBMdkGXDwgwkcEzQApAAd73qtCsfY5OEGgDgPvy7CwJufi8MxNnmY
+        IWAD1j3mIRmjGLDqAQvJGG4AiABx0PGK+wxwjE0epA9uADoGKVj9kA2OkTWgY6yCIA1bX0jDMVkGHP5o
+        BsdkGXDhZyAck2wACIM0wTC6HAL/ZwAAJszLuqK3K08AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="toolStripMenuItemResetCamera.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
