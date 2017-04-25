@@ -91,6 +91,7 @@
     <Compile Include="Graphics\DynamicVao.cs" />
     <Compile Include="PointLight.cs" />
     <Compile Include="Spotlight.cs" />
+    <Compile Include="Utilities\Converter\BaseColorConverter.cs" />
     <Compile Include="Utilities\ExtendedObservableCollection.cs" />
     <Compile Include="Utilities\FastList.cs" />
     <Compile Include="Utilities\Logger.cs" />

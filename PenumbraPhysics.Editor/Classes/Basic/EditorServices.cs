@@ -672,10 +672,13 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                 if (savedFixture != null)
                 {
                     Body body = savedFixture.Body;
-                    FixedMouseJoint = new FixedMouseJoint(body, ConvertUnits.ToSimUnits(mousePosition));
-                    FixedMouseJoint.MaxForce = 1000.0f * body.Mass;
-                    _World.AddJoint(FixedMouseJoint);
-                    body.Awake = true;
+                    if (body.BodyType == BodyType.Dynamic)
+                    {
+                        FixedMouseJoint = new FixedMouseJoint(body, ConvertUnits.ToSimUnits(mousePosition));
+                        FixedMouseJoint.MaxForce = 1000.0f * body.Mass;
+                        _World.AddJoint(FixedMouseJoint);
+                        body.Awake = true;
+                    }
                 }
             }
             // If left mouse button releases then remove the fixture from the world

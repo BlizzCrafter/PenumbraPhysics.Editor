@@ -13,6 +13,7 @@ namespace PenumbraPhysics.Editor
     public partial class ObjectList : Form
     {
         public object[] SelectedObjects;
+        public object SelectedObject;
 
         public ObjectList()
         {
@@ -21,7 +22,8 @@ namespace PenumbraPhysics.Editor
 
         private void propertyGridObjectDetails_VisibleChanged(object sender, EventArgs e)
         {
-            propertyGridObjectDetails.SelectedObjects = SelectedObjects;
+            if (SelectedObjects != null) propertyGridObjectDetails.SelectedObjects = SelectedObjects;
+            else if (SelectedObject != null) propertyGridObjectDetails.SelectedObject = SelectedObject;
         }
     }
 }

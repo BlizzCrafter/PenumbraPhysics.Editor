@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using PenumbraPhysics.Editor.Classes.Basic;
 using PenumbraPhysics.Editor.Classes.Editors.Samples;
 using PenumbraPhysics.Editor.Controls.Basic;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PenumbraPhysics.Editor
@@ -254,6 +256,32 @@ namespace PenumbraPhysics.Editor
                 ObjectList form = new Editor.ObjectList();
                 form.SelectedObjects = ((PlacementEditor)menuStripEditorFunctions.Tag).ShadowObjectList.ToArray();
                 form.Show();
+            }
+        }
+
+        private void toolStripMenuItemEditSelectedObject_Click(object sender, EventArgs e)
+        {
+            ObjectList form = new Editor.ObjectList();
+            if (menuStripEditorFunctions.Tag is PlacementEditor)
+            {
+                PlacementEditor editor = (PlacementEditor)menuStripEditorFunctions.Tag;
+
+                if (editor.CurrentSelectedObject != null && editor.CurrentSelectedObject.UserData != null)
+                {
+                    if (editor.CurrentSelectedObject.UserData is PivotBodyFlags)
+                    {
+                        if (((PivotBodyFlags)editor.CurrentSelectedObject.UserData).ConnectedObject != null &&
+                            ((PivotBodyFlags)editor.CurrentSelectedObject.UserData).ConnectedObject.Object != null &&
+                            ((PivotBodyFlags)editor.CurrentSelectedObject.UserData).ConnectedObject.Object is Penumbra.Light)
+                        {
+                            List<object> objects = new List<object>();
+                            form.SelectedObject =
+                                ((PivotBodyFlags)editor.CurrentSelectedObject.UserData).ConnectedObject.Object as Penumbra.Light;
+                            form.Show();
+                        }
+                    }
+                }
+                else form.Dispose();
             }
         }
     }

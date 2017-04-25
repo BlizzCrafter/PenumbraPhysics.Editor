@@ -131,6 +131,11 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 
         public void Update(GameTime gameTime, Vector2 mousePosition, bool leftMouseButtonPressed)
         {
+            if (FixedMouseJoint != null)
+            {
+                if (FixedMouseJoint.BodyA != null) CurrentSelectedObject = FixedMouseJoint.BodyA;
+            }
+
             UpdateShadowHulls(ShadowObjectList);
             UpdatePhysicsManipulation(leftMouseButtonPressed, mousePosition);
             UpdatePhysics(gameTime);

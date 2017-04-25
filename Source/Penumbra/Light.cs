@@ -7,6 +7,7 @@ using Penumbra.Geometry;
 using Penumbra.Graphics.Providers;
 using Penumbra.Graphics.Renderers;
 using Penumbra.Utilities;
+using System.ComponentModel;
 
 namespace Penumbra
 {
@@ -141,6 +142,7 @@ namespace Penumbra
         /// Gets or sets the color of the light. Color is in non-premultiplied format.
         /// Default is white.
         /// </summary>
+        
         public Color Color
         {
             get { return _nonPremultipliedColor; }
@@ -148,6 +150,17 @@ namespace Penumbra
             {
                 _nonPremultipliedColor = value;
                 Calculate.FromNonPremultiplied(value, out _color);
+            }
+        }
+
+        [TypeConverter(typeof(BaseColorConverter))]
+        [DefaultValue(typeof(System.Drawing.Color), "White")]
+        public Color GetColor
+        {
+            get { return _nonPremultipliedColor; }
+            set
+            {
+                _nonPremultipliedColor = value;
             }
         }
 
