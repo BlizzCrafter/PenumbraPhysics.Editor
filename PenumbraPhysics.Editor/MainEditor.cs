@@ -30,17 +30,6 @@ namespace PenumbraPhysics.Editor
             InitializeComponent();
         }
 
-        #region Dispose Messages
-
-        // Dispose PhysicsManippulationSample Message
-        private void buttonCloseManipulationSampleMessage_Click(object sender, EventArgs e)
-        {
-            richTextBoxManipulationSample.Dispose();
-            buttonCloseManipulationSampleMessage.Dispose();
-        }
-
-        #endregion
-
         #region Passing Events to underlying Controls
 
         /* They get triggered inside the corresponding controls! */
@@ -85,19 +74,23 @@ namespace PenumbraPhysics.Editor
         }
         
         //Visable Changed Events
-        private void welcomeUpdateControlSAMPLE1_VisibleChanged(object sender, EventArgs e)
+        private void tabControlWelcome_VisibleChanged(object sender, EventArgs e)
         {
             menuStripEditorFunctions.Enabled = false;
+
+            toolStripStatusLabelNote.Text = "Welcome to the Editor! Click through the tabs to see the different demos.";
+            toolStripStatusLabelNote.BackColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.Control);
+            toolStripStatusLabelNote.ForeColor = System.Drawing.Color.Black;
         }
         private void penumbraPhysicsControlSAMPLE1_VisibleChanged_1(object sender, EventArgs e)
         {
             menuStripEditorFunctions.Enabled = false;
             ShowCursorPosition = true;
             toolStripMenuItemShowCursorPosition.Checked = true;
-        }
-        private void tabControlWelcome_VisibleChanged(object sender, EventArgs e)
-        {
-            menuStripEditorFunctions.Enabled = false;
+
+            toolStripStatusLabelNote.Text = "[Left Click + Drag]: Manipulate Physics Object. [Right Click]: Open Context Menu.";
+            toolStripStatusLabelNote.BackColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.Control);
+            toolStripStatusLabelNote.ForeColor = System.Drawing.Color.Black;
         }
         private void placementControlSAMPLE1_VisibleChanged_1(object sender, EventArgs e)
         {
@@ -111,6 +104,10 @@ namespace PenumbraPhysics.Editor
                 toolStripMenuItemShowCameraPosition.Checked = true;
                 ShowPhysicsDebug = true;
                 toolStripMenuItemShowPhysicsDebug.Checked = true;
+
+                toolStripStatusLabelNote.Text = "Hold [Left Click] on the [Move Camera] button and move the mouse!";
+                toolStripStatusLabelNote.BackColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.Control);
+                toolStripStatusLabelNote.ForeColor = System.Drawing.Color.Black;
             }
         }
 
@@ -182,6 +179,13 @@ namespace PenumbraPhysics.Editor
                 if (menuStripEditorFunctions.Tag is PlacementEditor)
                 {
                     ((PlacementEditor)menuStripEditorFunctions.Tag).MoveCam(new Vector2(xDiff, yDiff));
+                    if (((PlacementEditor)menuStripEditorFunctions.Tag).Cam.GetAbsolutPosition.X > 200 &&
+                            ((PlacementEditor)menuStripEditorFunctions.Tag).Cam.GetAbsolutPosition.Y > 110)
+                    {
+                        toolStripStatusLabelNote.Text = "Good! Now create a light or do something else by using the top menu.";
+                        toolStripStatusLabelNote.BackColor = System.Drawing.Color.Black;
+                        toolStripStatusLabelNote.ForeColor = System.Drawing.Color.Yellow;
+                    }
                 }
 
                 FirstPointMouseOnButton.X = e.Location.X;
