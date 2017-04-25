@@ -21,7 +21,7 @@ namespace Penumbra
     /// It is an abstract class - one of the three concrete implementations should be used instead: 
     /// <see cref="PointLight" />, <see cref="Spotlight" />, <see cref="TexturedLight" />.
     /// </remarks>
-    [TypeConverter(typeof(ExpandableObjectConverter))]
+    [DisplayName("Penumbra Light")]
     public abstract class Light
     {
         private const float Epsilon = 1e-5f;
@@ -41,18 +41,25 @@ namespace Penumbra
         /// <summary>
         /// Gets or sets if the light is enabled and should be rendered.
         /// </summary>
+        [Category("Boolean")]
+        [Description("Gets or sets if the light is enabled and should be rendered.")]
         public bool Enabled { get; set; } = true;
 
         /// <summary>
         /// Gets or sets if the light casts shadows.
         /// </summary>
+        [Category("Boolean")]
+        [Description("Gets or sets if the light casts shadows.")]
         public bool CastsShadows { get; set; } = true;
 
         internal Vector2 _position;
         /// <summary>
         /// Gets or sets the light's position in world space.
         /// </summary>
-        [Browsable(false)]
+        [ReadOnly(true)]
+        [Category("Placement")]
+        [Description("Gets the light's position in world space.")]
+        [TypeConverter(typeof(TypeConverter))]
         public Vector2 Position
         {
             get { return _position; }
@@ -88,6 +95,9 @@ namespace Penumbra
         /// Default value is usually sufficient for <see cref="PointLight"/> and <see cref="Spotlight"/>.
         /// </para>        
         /// </remarks>
+        [Category("Placement")]
+        [Description("Gets or sets the origin (anchor) of the light. It is used for both positioning and rotating." +
+            "Normalized to the range [0..1].")]
         public Vector2 Origin
         {
             get { return _origin; }
@@ -105,6 +115,7 @@ namespace Penumbra
         /// <summary>
         /// Gets or sets the rotation of the light in radians.
         /// </summary>
+        [Category("Placement")]
         [Description("Type in the Rotation value in degrees. It will be automatically converted to radians.")]
         [TypeConverter(typeof(RotationConverter))]
         public float Rotation
@@ -129,7 +140,9 @@ namespace Penumbra
         /// of the light or how far the light rays reach (range of the light), while radius
         /// determines the radius of the light source (the area where light is emitted).
         /// <see cref="Radius"/> for more info.
-        /// </remarks>
+        /// </remarks>   
+        [Category("Placement")]
+        [Description("Gets or sets the scale (width and height) along X and Y axes.")]
         public Vector2 Scale
         {
             get { return _scale; }
@@ -149,6 +162,7 @@ namespace Penumbra
         /// Gets or sets the color of the light. Color is in non-premultiplied format.
         /// Default is white.
         /// </summary>
+        [Category("Visual")]
         [Description("Type in the Color value in Hex Color Code. It will be automatically converted to RGB." +
             "The Alpha value don't need to be set. Use Intensity instead.")]
         [TypeConverter(typeof(BaseColorConverter))]
@@ -184,6 +198,9 @@ namespace Penumbra
         /// Gets or sets the intensity of the color applied to the final scene.
         /// Color will be raised to the power of intensity.
         /// </summary>        
+        [Category("Visual")]
+        [Description("Gets or sets the intensity of the color applied to the final scene." +
+         "Color will be raised to the power of intensity.")]
         public float Intensity
         {
             get { return _intensity; }
@@ -206,6 +223,9 @@ namespace Penumbra
         /// scale is used to determine how far the light rays reach (range of the light).
         /// <see cref="Scale"/> for more info.
         /// </remarks>
+        [Category("Placement")]
+        [Description("Gets or sets the radius of the light source (the area where light is emitted)." + 
+         "This determines the shape of the umbra and penumbra regions for cast shadows.")]
         public float Radius
         {
             get { return _radius; }
@@ -224,6 +244,8 @@ namespace Penumbra
         /// Gets or sets how the shadow <see cref="Hull"/>s are shadowed. See
         /// <see cref="ShadowType"/> for more information.
         /// </summary>
+        [Category("Visual")]
+        [Description("Gets or sets how the shadow Hull are shadowed.")]
         public ShadowType ShadowType { get; set; } = ShadowType.Illuminated;
 
         /// <summary>

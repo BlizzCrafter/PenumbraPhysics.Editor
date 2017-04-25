@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Penumbra;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace PenumbraPhysics.Editor.Classes.Basic
 {
