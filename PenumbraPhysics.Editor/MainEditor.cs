@@ -274,11 +274,15 @@ namespace PenumbraPhysics.Editor
                             ((PivotBodyFlags)editor.CurrentSelectedObject.UserData).ConnectedObject.Object != null &&
                             ((PivotBodyFlags)editor.CurrentSelectedObject.UserData).ConnectedObject.Object is Penumbra.Light)
                         {
-                            List<object> objects = new List<object>();
                             form.SelectedObject =
                                 ((PivotBodyFlags)editor.CurrentSelectedObject.UserData).ConnectedObject.Object as Penumbra.Light;
                             form.Show();
                         }
+                    }
+                    else if (editor.CurrentSelectedObject.UserData is BodyFlags)
+                    {
+                        form.SelectedObject = editor.CurrentSelectedObject;
+                        form.Show();
                     }
                 }
                 else form.Dispose();
