@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Text;
 using FarseerPhysics.Collision;
 using Microsoft.Xna.Framework;
+using System.ComponentModel;
 
 namespace FarseerPhysics.Common
 {
@@ -61,7 +62,7 @@ namespace FarseerPhysics.Common
 
         public Vertices(IEnumerable<Vector2> vertices)
         {
-            AddRange(vertices);
+            AddRange(vertices);            
         }
 
         internal bool AttachedToBody { get; set; }

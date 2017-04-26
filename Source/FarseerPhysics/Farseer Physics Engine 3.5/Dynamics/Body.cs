@@ -32,6 +32,7 @@ using FarseerPhysics.Controllers;
 using FarseerPhysics.Dynamics.Contacts;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
+using System.ComponentModel;
 
 namespace FarseerPhysics.Dynamics
 {
@@ -58,6 +59,9 @@ namespace FarseerPhysics.Dynamics
     {
         [ThreadStatic]
         private static int _bodyIdCounter;
+
+        [Browsable(false)]
+        public bool ResetShadowHulls { get; set; } = false;
 
         private float _angularDamping;
         private BodyType _bodyType;
@@ -112,26 +116,41 @@ namespace FarseerPhysics.Dynamics
         /// <summary>
         /// A unique id for this body.
         /// </summary>
+        [ReadOnly(true)]
+        [Category("General")]
+        [Description("A unique id for this body.")]
         public int BodyId { get; private set; }
 
+        [ReadOnly(true)]
+        [Category("General")]
+        [Description("Gets the island index.")]
         public int IslandIndex { get; set; }
 
         /// <summary>
         /// Scale the gravity applied to this body.
         /// Defaults to 1. A value of 2 means double the gravity is applied to this body.
         /// </summary>
+        [Category("Physics")]
+        [Description("Scale the gravity applied to this body.")]
         public float GravityScale { get; set; }
 
         /// <summary>
         /// Set the user data. Use this to store your application specific data.
         /// </summary>
         /// <value>The user data.</value>
+        [ReadOnly(true)]
+        [Category("General")]
+        [Description("Application specific data.")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
         public object UserData { get; set; }
 
         /// <summary>
         /// Gets the total number revolutions the body has made.
         /// </summary>
         /// <value>The revolutions.</value>
+        [ReadOnly(true)]
+        [Category("General")]
+        [Description("Gets the total number revolutions the body has made.")]
         public float Revolutions
         {
             get { return Rotation / (float)Math.PI; }
@@ -142,6 +161,8 @@ namespace FarseerPhysics.Dynamics
         /// Warning: Calling this mid-update might cause a crash.
         /// </summary>
         /// <value>The type of body.</value>
+        [Category("Physics")]
+        [Description("Gets or sets the body type. Warning: Calling this mid-update might cause a crash.")]
         public BodyType BodyType
         {
             get { return _bodyType; }
@@ -196,6 +217,8 @@ namespace FarseerPhysics.Dynamics
         /// Get or sets the linear velocity of the center of mass.
         /// </summary>
         /// <value>The linear velocity.</value>
+        [Category("Physics")]
+        [Description("Get or sets the linear velocity of the center of mass.")]
         public Vector2 LinearVelocity
         {
             set
@@ -217,6 +240,8 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets the angular velocity. Radians/second.
         /// </summary>
         /// <value>The angular velocity.</value>
+        [Category("Physics")]
+        [Description("Gets or sets the angular velocity. Radians/second.")]
         public float AngularVelocity
         {
             set
@@ -238,6 +263,8 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets the linear damping.
         /// </summary>
         /// <value>The linear damping.</value>
+        [Category("Physics")]
+        [Description("Gets or sets the linear damping.")]
         public float LinearDamping
         {
             get { return _linearDamping; }
@@ -253,6 +280,8 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets the angular damping.
         /// </summary>
         /// <value>The angular damping.</value>
+        [Category("Physics")]
+        [Description("Gets or sets the angular damping.")]
         public float AngularDamping
         {
             get { return _angularDamping; }
@@ -268,6 +297,8 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets a value indicating whether this body should be included in the CCD solver.
         /// </summary>
         /// <value><c>true</c> if this instance is included in CCD; otherwise, <c>false</c>.</value>
+        [Category("Boolean")]
+        [Description("Gets or sets a value indicating whether this body should be included in the CCD solver.")]
         public bool IsBullet { get; set; }
 
         /// <summary>
@@ -275,6 +306,8 @@ namespace FarseerPhysics.Dynamics
         /// body will be woken.
         /// </summary>
         /// <value><c>true</c> if sleeping is allowed; otherwise, <c>false</c>.</value>
+        [Category("Boolean")]
+        [Description("You can disable sleeping on this body. If you disable sleeping, the body will be woken.")]
         public bool SleepingAllowed
         {
             set
@@ -292,6 +325,8 @@ namespace FarseerPhysics.Dynamics
         /// low CPU cost.
         /// </summary>
         /// <value><c>true</c> if awake; otherwise, <c>false</c>.</value>
+        [Category("Boolean")]
+        [Description("Set the sleep state of the body. A sleeping body has very low CPU cost.")]
         public bool Awake
         {
             set
@@ -346,6 +381,9 @@ namespace FarseerPhysics.Dynamics
         /// in the body list.
         /// </summary>
         /// <value><c>true</c> if active; otherwise, <c>false</c>.</value>
+        [Category("Boolean")]
+        [Description("Set the active state of the body. An inactive body is not" +
+         "simulated and cannot be collided with or woken up.")]
         public bool Enabled
         {
             set
@@ -395,6 +433,8 @@ namespace FarseerPhysics.Dynamics
         /// to be reset.
         /// </summary>
         /// <value><c>true</c> if it has fixed rotation; otherwise, <c>false</c>.</value>
+        [Category("Boolean")]
+        [Description("Set this body to have fixed rotation. This causes the mass to be reset.")]
         public bool FixedRotation
         {
             set
@@ -414,6 +454,8 @@ namespace FarseerPhysics.Dynamics
         /// Gets all the fixtures attached to this body.
         /// </summary>
         /// <value>The fixture list.</value>
+        [Category("Physics")]
+        [Description("Gets all the fixtures attached to this body.")]
         public List<Fixture> FixtureList { get; internal set; }
 
         /// <summary>
@@ -703,7 +745,17 @@ namespace FarseerPhysics.Dynamics
         /// <returns></returns>
         public Fixture CreateFixture(Shape shape, object userData = null)
         {
-            return new Fixture(this, shape, userData);
+            Fixture f = new Fixture(this, shape, userData);
+            
+            if (f.Shape is PolygonShape) ((PolygonShape)f.Shape).OnVerticesChanged +=
+                    new PolygonShape.VerticesChanged(Body_OnVerticesChanged);
+
+            return f;
+        }
+
+        private void Body_OnVerticesChanged(object sender)
+        {
+            ResetShadowHulls = true;
         }
 
         /// <summary>

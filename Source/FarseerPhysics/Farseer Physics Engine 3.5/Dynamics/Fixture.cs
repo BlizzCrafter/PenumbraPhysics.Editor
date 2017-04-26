@@ -29,6 +29,7 @@ using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics.Contacts;
 using Microsoft.Xna.Framework;
+using System.ComponentModel;
 
 namespace FarseerPhysics.Dynamics
 {
@@ -233,6 +234,10 @@ namespace FarseerPhysics.Dynamics
         /// number of vertices because this will crash some collision caching mechanisms.
         /// </summary>
         /// <value>The shape.</value>
+        [Category("Physics")]
+        [Description("Get the child Shape. You can modify the child Shape, however you should not change the" +
+         "number of vertices because this will crash some collision caching mechanisms.")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
         public Shape Shape { get; internal set; }
 
         /// <summary>

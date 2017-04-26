@@ -24,6 +24,9 @@ using System.Diagnostics;
 using FarseerPhysics.Common;
 using FarseerPhysics.Common.ConvexHull;
 using Microsoft.Xna.Framework;
+using System.ComponentModel;
+using System.Drawing.Design;
+using FarseerPhysics.EditorSpecific.Editor;
 
 namespace FarseerPhysics.Collision.Shapes
 {
@@ -80,6 +83,7 @@ namespace FarseerPhysics.Collision.Shapes
         /// Warning: the points may be re-ordered, even if they form a convex polygon
         /// Warning: collinear points are handled but not removed. Collinear points may lead to poor stacking behavior.
         /// </summary>
+        [Editor(typeof(VerticesCollectionEditor), typeof(UITypeEditor))]
         public Vertices Vertices
         {
             get { return _vertices; }

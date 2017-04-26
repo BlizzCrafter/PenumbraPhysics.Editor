@@ -124,10 +124,18 @@ namespace FarseerPhysics.Collision.Shapes
         internal float _radius;
         internal float _2radius;
 
+        public delegate void VerticesChanged(object sender);
+        public event VerticesChanged OnVerticesChanged;
+
         protected Shape(float density)
         {
             _density = density;
             ShapeType = ShapeType.Unknown;
+        }
+
+        public void TriggerVerticesChangedEvent()
+        {
+            OnVerticesChanged?.Invoke(this);
         }
 
         /// <summary>

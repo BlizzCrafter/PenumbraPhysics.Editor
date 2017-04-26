@@ -444,57 +444,60 @@ namespace FarseerPhysics.DebugView
 
         public void DrawShape(Fixture fixture, Transform xf, Color color, bool outline = true)
         {
-            switch (fixture.Shape.ShapeType)
+            if (fixture.Shape != null)
             {
-                case ShapeType.Circle:
-                    {
-                        CircleShape circle = (CircleShape)fixture.Shape;
-
-                        Vector2 center = MathUtils.Mul(ref xf, circle.Position);
-                        float radius = circle.Radius;
-                        Vector2 axis = MathUtils.Mul(xf.q, new Vector2(1.0f, 0.0f));
-
-                        DrawSolidCircle(center, radius, axis, color);
-                    }
-                    break;
-
-                case ShapeType.Polygon:
-                    {
-                        PolygonShape poly = (PolygonShape)fixture.Shape;
-                        int vertexCount = poly.Vertices.Count;
-                        Debug.Assert(vertexCount <= Settings.MaxPolygonVertices);
-
-                        for (int i = 0; i < vertexCount; ++i)
+                switch (fixture.Shape.ShapeType)
+                {
+                    case ShapeType.Circle:
                         {
-                            _tempVertices[i] = MathUtils.Mul(ref xf, poly.Vertices[i]);
+                            CircleShape circle = (CircleShape)fixture.Shape;
+
+                            Vector2 center = MathUtils.Mul(ref xf, circle.Position);
+                            float radius = circle.Radius;
+                            Vector2 axis = MathUtils.Mul(xf.q, new Vector2(1.0f, 0.0f));
+
+                            DrawSolidCircle(center, radius, axis, color);
                         }
+                        break;
 
-                        DrawSolidPolygon(_tempVertices, vertexCount, color, outline);
-                    }
-                    break;
-
-
-                case ShapeType.Edge:
-                    {
-                        EdgeShape edge = (EdgeShape)fixture.Shape;
-                        Vector2 v1 = MathUtils.Mul(ref xf, edge.Vertex1);
-                        Vector2 v2 = MathUtils.Mul(ref xf, edge.Vertex2);
-                        DrawSegment(v1, v2, color);
-                    }
-                    break;
-
-                case ShapeType.Chain:
-                    {
-                        ChainShape chain = (ChainShape)fixture.Shape;
-
-                        for (int i = 0; i < chain.Vertices.Count - 1; ++i)
+                    case ShapeType.Polygon:
                         {
-                            Vector2 v1 = MathUtils.Mul(ref xf, chain.Vertices[i]);
-                            Vector2 v2 = MathUtils.Mul(ref xf, chain.Vertices[i + 1]);
+                            PolygonShape poly = (PolygonShape)fixture.Shape;
+                            int vertexCount = poly.Vertices.Count;
+                            Debug.Assert(vertexCount <= Settings.MaxPolygonVertices);
+
+                            for (int i = 0; i < vertexCount; ++i)
+                            {
+                                _tempVertices[i] = MathUtils.Mul(ref xf, poly.Vertices[i]);
+                            }
+
+                            DrawSolidPolygon(_tempVertices, vertexCount, color, outline);
+                        }
+                        break;
+
+
+                    case ShapeType.Edge:
+                        {
+                            EdgeShape edge = (EdgeShape)fixture.Shape;
+                            Vector2 v1 = MathUtils.Mul(ref xf, edge.Vertex1);
+                            Vector2 v2 = MathUtils.Mul(ref xf, edge.Vertex2);
                             DrawSegment(v1, v2, color);
                         }
-                    }
-                    break;
+                        break;
+
+                    case ShapeType.Chain:
+                        {
+                            ChainShape chain = (ChainShape)fixture.Shape;
+
+                            for (int i = 0; i < chain.Vertices.Count - 1; ++i)
+                            {
+                                Vector2 v1 = MathUtils.Mul(ref xf, chain.Vertices[i]);
+                                Vector2 v2 = MathUtils.Mul(ref xf, chain.Vertices[i + 1]);
+                                DrawSegment(v1, v2, color);
+                            }
+                        }
+                        break;
+                }
             }
         }
 

@@ -163,9 +163,9 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 
             DrawEndCamera2D();
 
+            DrawPhysicsDebugView();
             Penumbra.Draw();
 
-            DrawPhysicsDebugView();
             DrawDisplay();
         }
     }

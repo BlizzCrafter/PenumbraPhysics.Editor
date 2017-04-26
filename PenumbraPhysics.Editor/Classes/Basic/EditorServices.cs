@@ -717,7 +717,15 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                 {
                     if (body.UserData != null && body.UserData is BodyFlags)
                     {
-                        if (((BodyFlags)body.UserData).HullList != null)
+                        if (body.ResetShadowHulls)
+                        {
+                            body.ResetShadowHulls = false;
+
+                            ((BodyFlags)body.UserData).HullList.ForEach(h => Penumbra.Hulls.Remove(h));
+                            ((BodyFlags)body.UserData).HullList.Clear();
+                            CreateShadowHulls(body);
+                        }
+                        else if (((BodyFlags)body.UserData).HullList != null)
                         {
                             // The rotation and the position of all Hulls will be updated
                             // according to the physics body rotation and position
