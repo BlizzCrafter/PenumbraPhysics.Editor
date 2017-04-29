@@ -59,7 +59,6 @@ namespace Penumbra
         [ReadOnly(true)]
         [Category("Placement")]
         [Description("Gets the light's position in world space.")]
-        [TypeConverter(typeof(TypeConverter))]
         public Vector2 Position
         {
             get { return _position; }

@@ -34,6 +34,7 @@ namespace FarseerPhysics.Collision.Shapes
     /// Represents a simple non-selfintersecting convex polygon.
     /// Create a convex hull from the given array of points.
     /// </summary>
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class PolygonShape : Shape
     {
         private Vertices _vertices;
@@ -123,8 +124,10 @@ namespace FarseerPhysics.Collision.Shapes
             }
         }
 
+        [Browsable(false)]
         public Vertices Normals { get { return _normals; } }
 
+        [Browsable(false)]
         public override int ChildCount { get { return 1; } }
 
         protected override void ComputeProperties()

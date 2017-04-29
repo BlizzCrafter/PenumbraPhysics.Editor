@@ -33,6 +33,10 @@ using FarseerPhysics.Dynamics.Contacts;
 using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;
+using Penumbra;
+using Penumbra.EditorSpecific.Converter.Penumbra;
+using FarseerPhysics.EditorSpecific.Editor;
+using System.Drawing.Design;
 
 namespace FarseerPhysics.Dynamics
 {
@@ -55,6 +59,7 @@ namespace FarseerPhysics.Dynamics
         Dynamic,
     }
 
+    [DefaultProperty("Awake")]
     public class Body : IDisposable
     {
         [ThreadStatic]
@@ -297,6 +302,7 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets a value indicating whether this body should be included in the CCD solver.
         /// </summary>
         /// <value><c>true</c> if this instance is included in CCD; otherwise, <c>false</c>.</value>
+        [Browsable(false)]
         [Category("Boolean")]
         [Description("Gets or sets a value indicating whether this body should be included in the CCD solver.")]
         public bool IsBullet { get; set; }
@@ -325,6 +331,7 @@ namespace FarseerPhysics.Dynamics
         /// low CPU cost.
         /// </summary>
         /// <value><c>true</c> if awake; otherwise, <c>false</c>.</value>
+        [DefaultValue(true)]
         [Category("Boolean")]
         [Description("Set the sleep state of the body. A sleeping body has very low CPU cost.")]
         public bool Awake
@@ -456,12 +463,16 @@ namespace FarseerPhysics.Dynamics
         /// <value>The fixture list.</value>
         [Category("Physics")]
         [Description("Gets all the fixtures attached to this body.")]
+        [Editor(typeof(FixturesCollectionEditor), typeof(UITypeEditor))]
         public List<Fixture> FixtureList { get; internal set; }
 
         /// <summary>
         /// Get the list of all joints attached to this body.
         /// </summary>
         /// <value>The joint list.</value>
+        [ReadOnly(true)]
+        [Category("Physics")]
+        [Description("Get the list of all joints attached to this body.")]
         public JointEdge JointList { get; internal set; }
 
         /// <summary>
@@ -470,12 +481,18 @@ namespace FarseerPhysics.Dynamics
         /// miss some collisions if you don't use ContactListener.
         /// </summary>
         /// <value>The contact list.</value>
+        [ReadOnly(true)]
+        [Category("Physics")]
+        [Description("Get the list of all contacts attached to this body.")]
         public ContactEdge ContactList { get; internal set; }
 
         /// <summary>
         /// Get the world body origin position.
         /// </summary>
         /// <returns>Return the world position of the body's origin.</returns>
+        [Category("General")]
+        [Description("Get the world body origin position. (automatically converts to SimUnits)")]
+        [TypeConverter(typeof(PhysicsPositionConverter))]
         public Vector2 Position
         {
             get { return _xf.p; }
@@ -491,6 +508,9 @@ namespace FarseerPhysics.Dynamics
         /// Get the angle in radians.
         /// </summary>
         /// <returns>Return the current world rotation angle in radians.</returns>
+        [Category("General")]
+        [Description("Gets or sets the angle in degrees (automatically converted to radians).")]
+        [TypeConverter(typeof(RotationConverter))]
         public float Rotation
         {
             get { return _sweep.A; }
@@ -506,6 +526,7 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets a value indicating whether this body is static.
         /// </summary>
         /// <value><c>true</c> if this instance is static; otherwise, <c>false</c>.</value>
+        [Browsable(false)]
         public bool IsStatic
         {
             get { return _bodyType == BodyType.Static; }
@@ -516,6 +537,7 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets a value indicating whether this body is kinematic.
         /// </summary>
         /// <value><c>true</c> if this instance is kinematic; otherwise, <c>false</c>.</value>
+        [Browsable(false)]
         public bool IsKinematic
         {
             get { return _bodyType == BodyType.Kinematic; }
@@ -526,12 +548,18 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets a value indicating whether this body ignores gravity.
         /// </summary>
         /// <value><c>true</c> if  it ignores gravity; otherwise, <c>false</c>.</value>
+        [Category("Boolean")]
+        [Description("Gets or sets a value indicating whether this body ignores gravity.")]
         public bool IgnoreGravity { get; set; }
 
         /// <summary>
         /// Get the world position of the center of mass.
         /// </summary>
         /// <value>The world position.</value>
+        [ReadOnly(true)]
+        [Category("General")]
+        [Description("Get the world position of the center of mass. (automatically converts to SimUnits)")]
+        [TypeConverter(typeof(PhysicsPositionConverter))]
         public Vector2 WorldCenter
         {
             get { return _sweep.C; }
@@ -541,6 +569,10 @@ namespace FarseerPhysics.Dynamics
         /// Get the local position of the center of mass.
         /// </summary>
         /// <value>The local position.</value>
+        [ReadOnly(true)]
+        [Category("General")]
+        [Description("Get the local position of the center of mass. (automatically converts to SimUnits)")]
+        [TypeConverter(typeof(PhysicsPositionConverter))]
         public Vector2 LocalCenter
         {
             get { return _sweep.LocalCenter; }
@@ -564,6 +596,8 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets the mass. Usually in kilograms (kg).
         /// </summary>
         /// <value>The mass.</value>
+        [Category("General")]
+        [Description("Gets or sets the mass. Usually in kilograms (kg).")]
         public float Mass
         {
             get { return _mass; }
@@ -587,6 +621,8 @@ namespace FarseerPhysics.Dynamics
         /// Get or set the rotational inertia of the body about the local origin. usually in kg-m^2.
         /// </summary>
         /// <value>The inertia.</value>
+        [Category("General")]
+        [Description("Get or set the rotational inertia of the body about the local origin. usually in kg-m^2.")]
         public float Inertia
         {
             get { return _inertia + Mass * Vector2.Dot(_sweep.LocalCenter, _sweep.LocalCenter); }
@@ -606,6 +642,8 @@ namespace FarseerPhysics.Dynamics
             }
         }
 
+        [Category("General")]
+        [Description("Get or set the Restitution of the body.")]
         public float Restitution
         {
             get
@@ -630,6 +668,8 @@ namespace FarseerPhysics.Dynamics
             }
         }
 
+        [Category("General")]
+        [Description("Get or set the friction of the body.")]
         public float Friction
         {
             get
@@ -654,6 +694,8 @@ namespace FarseerPhysics.Dynamics
             }
         }
 
+        [Category("General")]
+        [Description("Get or set the CollisionCategories of the body.")]
         public Category CollisionCategories
         {
             set
@@ -666,6 +708,8 @@ namespace FarseerPhysics.Dynamics
             }
         }
 
+        [Category("General")]
+        [Description("Get or set the CollidesWidth category of the body.")]
         public Category CollidesWith
         {
             set
@@ -684,6 +728,10 @@ namespace FarseerPhysics.Dynamics
         /// aren't a penetration problem due to the way content has been prepared.
         /// This is compared against the other Body's fixture CollisionCategories within World.SolveTOI().
         /// </summary>
+        [Category("General")]
+        [Description("Body objects can define which categories of bodies they wish to ignore CCD with." + 
+         "This allows certain bodies to be configured to ignore CCD with objects that" +
+         "aren't a penetration problem due to the way content has been prepared.")]
         public Category IgnoreCCDWith
         {
             set
@@ -696,6 +744,8 @@ namespace FarseerPhysics.Dynamics
             }
         }
 
+        [Category("General")]
+        [Description("Get or set the CollisionGroup of the body.")]
         public short CollisionGroup
         {
             set
@@ -708,6 +758,8 @@ namespace FarseerPhysics.Dynamics
             }
         }
 
+        [Category("Boolean")]
+        [Description("Get or set if the body should act as a sensor only. (it checks collisions only but not computes physical reactions)")]
         public bool IsSensor
         {
             set
@@ -720,6 +772,8 @@ namespace FarseerPhysics.Dynamics
             }
         }
 
+        [Category("Boolean")]
+        [Description("Get or set if the body should ignore continuous collision detection.)")]
         public bool IgnoreCCD { get; set; }
 
         /// <summary>
@@ -1351,6 +1405,7 @@ namespace FarseerPhysics.Dynamics
 
         #region IDisposable Members
 
+        [Browsable(false)]
         public bool IsDisposed { get; set; }
 
         public void Dispose()

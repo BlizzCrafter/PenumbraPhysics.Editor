@@ -37,7 +37,7 @@
             this.propertyGridObjectDetails.LineColor = System.Drawing.SystemColors.ControlDark;
             this.propertyGridObjectDetails.Location = new System.Drawing.Point(0, 0);
             this.propertyGridObjectDetails.Name = "propertyGridObjectDetails";
-            this.propertyGridObjectDetails.Size = new System.Drawing.Size(547, 393);
+            this.propertyGridObjectDetails.Size = new System.Drawing.Size(481, 543);
             this.propertyGridObjectDetails.TabIndex = 0;
             this.propertyGridObjectDetails.VisibleChanged += new System.EventHandler(this.propertyGridObjectDetails_VisibleChanged);
             // 
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(547, 393);
+            this.ClientSize = new System.Drawing.Size(481, 543);
             this.Controls.Add(this.propertyGridObjectDetails);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ObjectList";

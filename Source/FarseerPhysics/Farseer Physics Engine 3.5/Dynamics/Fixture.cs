@@ -89,6 +89,7 @@ namespace FarseerPhysics.Dynamics
     /// Fixtures are created via Body.CreateFixture.
     /// Warning: You cannot reuse fixtures.
     /// </summary>
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class Fixture : IDisposable
     {
         [ThreadStatic]
@@ -102,8 +103,11 @@ namespace FarseerPhysics.Dynamics
         internal short _collisionGroup;
         internal HashSet<int> _collisionIgnores;
 
+        [Browsable(false)]
         public FixtureProxy[] Proxies;
+        [Browsable(false)]
         public int ProxyCount;
+
         public Category IgnoreCCDWith;
 
         /// <summary>
@@ -172,6 +176,8 @@ namespace FarseerPhysics.Dynamics
         /// If Settings.UseFPECollisionCategories is set to true:
         /// If 2 fixtures are in the same collision group, they will not collide.
         /// </summary>
+        [Category("General")]
+        [Description("Get ot Set the CollsionGroup of the Fixture.")]
         public short CollisionGroup
         {
             set
@@ -192,6 +198,8 @@ namespace FarseerPhysics.Dynamics
         /// fixture would accept for collision.
         /// Use Settings.UseFPECollisionCategories to change the behavior.
         /// </summary>
+        [Category("General")]
+        [Description("Get ot Set the CollidesWidth attribute of the Fixture.")]
         public Category CollidesWith
         {
             get { return _collidesWith; }
@@ -215,6 +223,8 @@ namespace FarseerPhysics.Dynamics
         /// If Settings.UseFPECollisionCategories is set to true:
         /// Defaults to Category.All
         /// </summary>
+        [Category("General")]
+        [Description("Get ot Set the CollisionCategories of the Fixture.")]
         public Category CollisionCategories
         {
             get { return _collisionCategories; }
@@ -244,6 +254,8 @@ namespace FarseerPhysics.Dynamics
         /// Gets or sets a value indicating whether this fixture is a sensor.
         /// </summary>
         /// <value><c>true</c> if this instance is a sensor; otherwise, <c>false</c>.</value>
+        [Category("Boolean")]
+        [Description("Get ot Set if the Fixture is just a Sensor.")]
         public bool IsSensor
         {
             get { return _isSensor; }
@@ -260,12 +272,15 @@ namespace FarseerPhysics.Dynamics
         /// Get the parent body of this fixture. This is null if the fixture is not attached.
         /// </summary>
         /// <value>The body.</value>
+        [Browsable(false)]
         public Body Body { get; internal set; }
 
         /// <summary>
         /// Set the user data. Use this to store your application specific data.
         /// </summary>
         /// <value>The user data.</value>
+        [Category("General")]
+        [Description("Get ot Set the UserData of the Fixture. (you can also write something in here as a note)")]
         public object UserData { get; set; }
 
         /// <summary>
@@ -273,6 +288,8 @@ namespace FarseerPhysics.Dynamics
         /// existing contacts.
         /// </summary>
         /// <value>The friction.</value>
+        [Category("General")]
+        [Description("Set the coefficient of friction. This will _not_ change the friction of existing contacts.")]
         public float Friction
         {
             get { return _friction; }
@@ -289,6 +306,8 @@ namespace FarseerPhysics.Dynamics
         /// existing contacts.
         /// </summary>
         /// <value>The restitution.</value>
+        [Category("General")]
+        [Description("Set the coefficient of restitution. This will _not_ change the restitution of existing contacts.")]
         public float Restitution
         {
             get { return _restitution; }
@@ -304,10 +323,14 @@ namespace FarseerPhysics.Dynamics
         /// Gets a unique ID for this fixture.
         /// </summary>
         /// <value>The fixture id.</value>
+        [ReadOnly(true)]
+        [Category("General")]
+        [Description("Gets a unique ID for this fixture.")]
         public int FixtureId { get; internal set; }
 
         #region IDisposable Members
 
+        [Browsable(false)]
         public bool IsDisposed { get; set; }
 
         public void Dispose()

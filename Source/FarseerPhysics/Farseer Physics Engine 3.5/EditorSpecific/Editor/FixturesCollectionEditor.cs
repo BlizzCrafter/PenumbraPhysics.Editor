@@ -6,12 +6,14 @@ using System.Drawing.Design;
 using System.Windows.Forms.Design;
 using PenumbraPhysics.Editor.UITypeEditors;
 using FarseerPhysics.Common;
+using FarseerPhysics.Dynamics;
+using System.Collections.Generic;
 
 namespace FarseerPhysics.EditorSpecific.Editor
 {
-    public class VerticesCollectionEditor : CollectionEditor
+    public class FixturesCollectionEditor : CollectionEditor
     {
-        public VerticesCollectionEditor(Type type)
+        public FixturesCollectionEditor(Type type)
             : base(type)
         { }
 
@@ -23,26 +25,23 @@ namespace FarseerPhysics.EditorSpecific.Editor
             return UITypeEditorEditStyle.Modal;
         }
 
-        public override object EditValue(System.ComponentModel.ITypeDescriptorContext context, 
+        public override object EditValue(System.ComponentModel.ITypeDescriptorContext context,
             IServiceProvider provider, object value)
         {
             if (provider != null)
             {
                 IWindowsFormsEditorService editorService =
                     (IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService));
-                
+
                 if (editorService != null)
                 {
-                    using (VerticesCollection form = new VerticesCollection())
+                    using (FixtureListCollection form = new FixtureListCollection())
                     {
-                        form.SelectedObject = ((Vertices)value).ToArray();
-                        form.VerticesReference = (Vertices)value;
-                        form.PolygonShapeReference = (PolygonShape)context.Instance;
-                        form.PolygonShapeReferenceCopy = (PolygonShape)context.Instance;
+                        form.SelectedObject = ((List<Fixture>)value).ToArray();
 
                         if (editorService.ShowDialog(form) != System.Windows.Forms.DialogResult.OK)
                         {
-                            
+
                         }
                     }
                 }

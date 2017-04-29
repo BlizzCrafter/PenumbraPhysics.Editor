@@ -24,6 +24,7 @@ using System;
 using System.Diagnostics;
 using FarseerPhysics.Common;
 using Microsoft.Xna.Framework;
+using System.ComponentModel;
 
 namespace FarseerPhysics.Collision.Shapes
 {
@@ -118,6 +119,7 @@ namespace FarseerPhysics.Collision.Shapes
     /// Shapes used for simulation in World are created automatically when a Fixture
     /// is created. Shapes may encapsulate a one or more child shapes.
     /// </summary>
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public abstract class Shape
     {
         internal float _density;
@@ -145,18 +147,23 @@ namespace FarseerPhysics.Collision.Shapes
         /// - Inertia
         /// - Mass
         /// </summary>
+        [Browsable(false)]
         public MassData MassData;
 
         /// <summary>
         /// Get the type of this shape.
         /// </summary>
         /// <value>The type of the shape.</value>
+        [ReadOnly(true)]
+        [Category("General")]
+        [Description("Get the type of this shape.")]
         public ShapeType ShapeType { get; internal set; }
 
         /// <summary>
         /// Get the number of child primitives.
         /// </summary>
         /// <value></value>
+        [Browsable(false)]
         public abstract int ChildCount { get; }
 
         /// <summary>
@@ -164,6 +171,8 @@ namespace FarseerPhysics.Collision.Shapes
         /// Changing the density causes a recalculation of shape properties.
         /// </summary>
         /// <value>The density.</value>
+        [Category("General")]
+        [Description("Gets or sets the density.")]
         public float Density
         {
             get { return _density; }
@@ -180,6 +189,8 @@ namespace FarseerPhysics.Collision.Shapes
         /// Radius of the Shape
         /// Changing the radius causes a recalculation of shape properties.
         /// </summary>
+        [Category("General")]
+        [Description("Radius of the Shape.")]
         public float Radius
         {
             get { return _radius; }

@@ -157,7 +157,15 @@
     <Compile Include="Dynamics\TimeStep.cs" />
     <Compile Include="Dynamics\World.cs" />
     <Compile Include="Dynamics\WorldCallbacks.cs" />
+    <Compile Include="EditorSpecific\Converter\PhysicsPositionConverter.cs" />
+    <Compile Include="EditorSpecific\Editor\FixturesCollectionEditor.cs" />
     <Compile Include="EditorSpecific\Editor\VerticesCollectionEditor.cs" />
+    <Compile Include="EditorSpecific\UITypeEditors\FixtureListCollection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditorSpecific\UITypeEditors\FixtureListCollection.Designer.cs">
+      <DependentUpon>FixtureListCollection.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditorSpecific\UITypeEditors\VerticesCollection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,9 +194,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EditorSpecific\UITypeEditors\FixtureListCollection.resx">
+      <DependentUpon>FixtureListCollection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditorSpecific\UITypeEditors\VerticesCollection.resx">
       <DependentUpon>VerticesCollection.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Penumbra\MonoGame.Penumbra.WindowsDX.csproj">
+      <Project>{B021F95C-38BC-493A-BB92-C3C575E4B50F}</Project>
+      <Name>MonoGame.Penumbra.WindowsDX</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

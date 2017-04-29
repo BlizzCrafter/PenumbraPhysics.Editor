@@ -91,12 +91,12 @@
     <Compile Include="Graphcs\DynamicVao.cs" />
     <Compile Include="PointLight.cs" />
     <Compile Include="Spotlight.cs" />
-    <Compile Include="Utilities\Control\ColorPicker.cs">
+    <Compile Include="EditorSpecific\Control\ColorPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Utilities\Converter\RotationConverter.cs" />
-    <Compile Include="Utilities\Converter\BaseColorConverter.cs" />
-    <Compile Include="Utilities\Editor\ColorPicker.cs" />
+    <Compile Include="EditorSpecific\Converter\RotationConverter.cs" />
+    <Compile Include="EditorSpecific\Converter\BaseColorConverter.cs" />
+    <Compile Include="EditorSpecific\Editor\ColorPicker.cs" />
     <Compile Include="Utilities\ExtendedObservableCollection.cs" />
     <Compile Include="Utilities\FastList.cs" />
     <Compile Include="Utilities\Logger.cs" />
@@ -111,7 +111,7 @@
       <LastGenOutput>Resource.WindowsDX.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\Control\ColorPicker.resx">
+    <EmbeddedResource Include="EditorSpecific\Control\ColorPicker.resx">
       <DependentUpon>ColorPicker.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
