@@ -26,10 +26,13 @@ namespace PenumbraPhysics.Editor
         // Show or Hide the cursor position flag
         public static bool ShowPhysicsDebug { get; set; } = false;
 
+        // The current visible Editor
         private Control CurrentSourceControl { get; set; }
 
+        // Colors INI (prevent calling the trackbar value changed event when loading colors
         private bool DropDownPenumbraColorLoaded = false;
 
+        // Camera Control
         private bool MouseIsDownOnButton = false;
         private System.Drawing.Point FirstPointMouseOnButton;
 
@@ -133,6 +136,137 @@ namespace PenumbraPhysics.Editor
 
         #region Context Menu
 
+        #region Penumbra
+
+        // Setting the colors of Penumbra and HexColorIO TextBox
+        private void SetPenumbraColors(bool hexEnteredColor = false)
+        {
+            if (DropDownPenumbraColorLoaded)
+            {
+                if (CurrentSourceControl != null)
+                {
+                    PenumbraComponent penumbra = GetPenumbraInContextMenu();
+
+                    if (hexEnteredColor)
+                    {
+                        System.Drawing.Color rgbColor = System.Drawing.Color.White;
+                        try
+                        {
+                            rgbColor = ColorTranslator.FromHtml(toolStripTextBoxHexColorIO.Text);
+
+                            toolStripColorTrackBarRed._TrackBar.Value = rgbColor.R;
+                            toolStripColorTrackBarGreen._TrackBar.Value = rgbColor.G;
+                            toolStripColorTrackBarBlue._TrackBar.Value = rgbColor.B;
+
+                            toolStripTextBoxHexColorIO.Text =
+                                        ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
+                                            rgbColor.R,
+                                            rgbColor.G,
+                                            rgbColor.B)).ToString();
+
+                        }
+                        catch
+                        {
+                            if (penumbra != null)
+                            {
+                                toolStripTextBoxHexColorIO.Text =
+                                            ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
+                                                penumbra.AmbientColor.R,
+                                                penumbra.AmbientColor.G,
+                                                penumbra.AmbientColor.B)).ToString();
+                            }
+                        }
+                    }
+
+                    if (penumbra != null)
+                    {
+                        penumbra.AmbientColor = new Microsoft.Xna.Framework.Color(
+                            toolStripColorTrackBarRed._TrackBar.Value,
+                            toolStripColorTrackBarGreen._TrackBar.Value,
+                            toolStripColorTrackBarBlue._TrackBar.Value);
+
+                        toolStripTextBoxHexColorIO.Text =
+                                    ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
+                                        toolStripColorTrackBarRed._TrackBar.Value,
+                                        toolStripColorTrackBarGreen._TrackBar.Value,
+                                        toolStripColorTrackBarBlue._TrackBar.Value)).ToString();
+                    }
+                }
+            }
+        }
+        
+        // Change colors by using the corresponding trackbars
+        private void toolStripColorTrackBarRed_ValueChanged(object sender, EventArgs e)
+        {
+            SetPenumbraColors();
+        }
+        private void toolStripColorTrackBarGreen_ValueChanged(object sender, EventArgs e)
+        {
+            SetPenumbraColors();
+        }
+        private void toolStripColorTrackBarBlue_ValueChanged(object sender, EventArgs e)
+        {
+            SetPenumbraColors();
+        }
+
+        // Event of changeing the text in the HexColorIO TextBox
+        private void toolStripTextBoxHexColorIO_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Drawing.Color rgbColor = System.Drawing.Color.White;
+                rgbColor = ColorTranslator.FromHtml(((ToolStripTextBox)sender).Text);
+                ((ToolStripTextBox)sender).BackColor = rgbColor;
+                HSLColor hslColor = new HSLColor(240 - rgbColor.GetHue(), rgbColor.GetSaturation(), 240);
+                ((ToolStripTextBox)sender).ForeColor = hslColor;
+
+                string trimedHex = ((ToolStripTextBox)sender).Text.TrimStart('#');
+                if (trimedHex.Length >= 6) SetPenumbraColors(true);
+            }
+            catch { }
+        }
+
+        // INI trackbar and penumbra colors
+        private void ambientColorToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (CurrentSourceControl != null)
+            {
+                DropDownPenumbraColorLoaded = false;
+
+                PenumbraComponent penumbra = GetPenumbraInContextMenu();
+
+                if (penumbra != null)
+                {
+                    toolStripColorTrackBarRed._TrackBar.Value = penumbra.AmbientColor.R;
+                    toolStripColorTrackBarGreen._TrackBar.Value = penumbra.AmbientColor.G;
+                    toolStripColorTrackBarBlue._TrackBar.Value = penumbra.AmbientColor.B;
+
+                    toolStripTextBoxHexColorIO.Text =
+                                ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
+                                    penumbra.AmbientColor.R,
+                                    penumbra.AmbientColor.G,
+                                    penumbra.AmbientColor.B)).ToString();
+                }
+
+                DropDownPenumbraColorLoaded = true;
+            }
+        }
+
+        // Get the current penumbra component through the context menu
+        private PenumbraComponent GetPenumbraInContextMenu()
+        {
+            if (CurrentSourceControl is PenumbraPhysicsControlSAMPLE)
+                return ((PenumbraPhysicsControlSAMPLE)CurrentSourceControl).Editor.Penumbra;
+            else if (CurrentSourceControl is PlacementControlSAMPLE)
+                return ((PlacementControlSAMPLE)CurrentSourceControl).Editor.Penumbra;
+
+            return null;
+        }
+
+        #endregion
+
+        #region Physics
+
         // Clear Physics Forces
         private void toolStripMenuItemClearPhysicsForces_Click(object sender, EventArgs e)
         {
@@ -161,8 +295,10 @@ namespace PenumbraPhysics.Editor
 
         #endregion
 
+        #endregion
+
         #region General
-        
+
         // Create a light
         private void toolStripMenuItemCreateLight_Click(object sender, EventArgs e)
         {
@@ -300,123 +436,5 @@ namespace PenumbraPhysics.Editor
 
         #endregion
 
-        private void SetPenumbraColors(bool hexEnteredColor = false)
-        {
-            if (DropDownPenumbraColorLoaded)
-            {
-                if (CurrentSourceControl != null)
-                {
-                    PenumbraComponent penumbra = GetPenumbraInContextMenu();
-
-                    if (hexEnteredColor)
-                    {
-                        System.Drawing.Color rgbColor = System.Drawing.Color.White;
-                        try
-                        {
-                            rgbColor = ColorTranslator.FromHtml(toolStripTextBoxHexColorIO.Text);
-
-                            toolStripColorTrackBarRed._TrackBar.Value = rgbColor.R;
-                            toolStripColorTrackBarGreen._TrackBar.Value = rgbColor.G;
-                            toolStripColorTrackBarBlue._TrackBar.Value = rgbColor.B;
-
-                            toolStripTextBoxHexColorIO.Text =
-                                        ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
-                                            rgbColor.R,
-                                            rgbColor.G,
-                                            rgbColor.B)).ToString();
-
-                        }
-                        catch
-                        {
-                            if (penumbra != null)
-                            {
-                                toolStripTextBoxHexColorIO.Text =
-                                            ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
-                                                penumbra.AmbientColor.R,
-                                                penumbra.AmbientColor.G,
-                                                penumbra.AmbientColor.B)).ToString();
-                            }
-                        }
-                    }
-
-                    if (penumbra != null)
-                    {
-                        penumbra.AmbientColor = new Microsoft.Xna.Framework.Color(
-                            toolStripColorTrackBarRed._TrackBar.Value,
-                            toolStripColorTrackBarGreen._TrackBar.Value,
-                            toolStripColorTrackBarBlue._TrackBar.Value);
-
-                        toolStripTextBoxHexColorIO.Text =
-                                    ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
-                                        toolStripColorTrackBarRed._TrackBar.Value,
-                                        toolStripColorTrackBarGreen._TrackBar.Value,
-                                        toolStripColorTrackBarBlue._TrackBar.Value)).ToString();
-                    }
-                }
-            }
-        }
-        private void toolStripColorTrackBarRed_ValueChanged(object sender, EventArgs e)
-        {
-            SetPenumbraColors();
-        }
-        private void toolStripColorTrackBarGreen_ValueChanged(object sender, EventArgs e)
-        {
-            SetPenumbraColors();
-        }
-        private void toolStripColorTrackBarBlue_ValueChanged(object sender, EventArgs e)
-        {
-            SetPenumbraColors();
-        }   
-
-        private void toolStripTextBoxHexColorIO_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                System.Drawing.Color rgbColor = System.Drawing.Color.White;
-                rgbColor = ColorTranslator.FromHtml(((ToolStripTextBox)sender).Text);
-                ((ToolStripTextBox)sender).BackColor = rgbColor;
-                HSLColor hslColor = new HSLColor(240 - rgbColor.GetHue(), rgbColor.GetSaturation(), 240);
-                ((ToolStripTextBox)sender).ForeColor = hslColor;
-
-                string trimedHex = ((ToolStripTextBox)sender).Text.TrimStart('#');
-                if (trimedHex.Length >= 6) SetPenumbraColors(true);
-            }
-            catch { }
-        }
-
-        private void ambientColorToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            if (CurrentSourceControl != null)
-            {
-                DropDownPenumbraColorLoaded = false;
-
-                PenumbraComponent penumbra = GetPenumbraInContextMenu();
-
-                if (penumbra != null)
-                {
-                    toolStripColorTrackBarRed._TrackBar.Value = penumbra.AmbientColor.R;
-                    toolStripColorTrackBarGreen._TrackBar.Value = penumbra.AmbientColor.G;
-                    toolStripColorTrackBarBlue._TrackBar.Value = penumbra.AmbientColor.B;
-
-                    toolStripTextBoxHexColorIO.Text =
-                                ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
-                                    penumbra.AmbientColor.R,
-                                    penumbra.AmbientColor.G,
-                                    penumbra.AmbientColor.B)).ToString();
-                }
-
-                DropDownPenumbraColorLoaded = true;
-            }
-        }
-
-        private PenumbraComponent GetPenumbraInContextMenu()
-        {
-            if (CurrentSourceControl is PenumbraPhysicsControlSAMPLE)
-                return ((PenumbraPhysicsControlSAMPLE)CurrentSourceControl).Editor.Penumbra;
-            else if (CurrentSourceControl is PlacementControlSAMPLE)
-                return ((PlacementControlSAMPLE)CurrentSourceControl).Editor.Penumbra;
-
-            return null;
-        }
     }
 }
