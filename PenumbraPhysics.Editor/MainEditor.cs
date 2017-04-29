@@ -436,5 +436,14 @@ namespace PenumbraPhysics.Editor
 
         #endregion
 
+        private void placementControlSAMPLE1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void placementControlSAMPLE1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

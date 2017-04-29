@@ -95,7 +95,6 @@
             this.tabControlWelcome.Name = "tabControlWelcome";
             this.tabControlWelcome.SelectedIndex = 0;
             this.tabControlWelcome.Size = new System.Drawing.Size(649, 444);
-            this.tabControlWelcome.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControlWelcome.TabIndex = 1;
             this.tabControlWelcome.VisibleChanged += new System.EventHandler(this.tabControlWelcome_VisibleChanged);
             // 
@@ -125,7 +124,7 @@
             this.tabPagePPManipulation.Name = "tabPagePPManipulation";
             this.tabPagePPManipulation.Size = new System.Drawing.Size(641, 415);
             this.tabPagePPManipulation.TabIndex = 1;
-            this.tabPagePPManipulation.Text = "Manipulation";
+            this.tabPagePPManipulation.Text = "Physics Manipulation";
             this.tabPagePPManipulation.UseVisualStyleBackColor = true;
             // 
             // penumbraPhysicsControlSAMPLE1
@@ -256,7 +255,7 @@
             this.tabPagePPPlacement.Name = "tabPagePPPlacement";
             this.tabPagePPPlacement.Size = new System.Drawing.Size(641, 415);
             this.tabPagePPPlacement.TabIndex = 2;
-            this.tabPagePPPlacement.Text = "Placement";
+            this.tabPagePPPlacement.Text = "Editor Environment";
             this.tabPagePPPlacement.UseVisualStyleBackColor = true;
             // 
             // buttonCameraControl
