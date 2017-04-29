@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Basic\Camera2D.cs" />
+    <Compile Include="Classes\Basic\ColorHSL.cs" />
     <Compile Include="Classes\Basic\EditorServices.cs" />
     <Compile Include="Classes\Basic\EditorInterfaces.cs" />
     <Compile Include="Classes\Basic\GraphicsDeviceService.cs" />
@@ -83,6 +84,15 @@
     <Compile Include="Classes\Editors\Samples\PenumbraPhysicsEditor.cs" />
     <Compile Include="Classes\Editors\Samples\PlacementEditor.cs" />
     <Compile Include="Classes\Editors\Samples\WelcomeUpdateEditor.cs" />
+    <Compile Include="Controls\Basic\ColorTrackBar\ColorTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Basic\ColorTrackBar\ToolStripColorTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Basic\ColorTrackBar\ToolStripColorTrackBar.Designer.cs">
+      <DependentUpon>ToolStripColorTrackBar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Basic\GameControl.cs">
       <SubType>Component</SubType>
     </Compile>

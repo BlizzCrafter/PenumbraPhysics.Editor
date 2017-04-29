@@ -36,7 +36,8 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
             _light = new PointLight
             {
                 Position = new Vector2(-250, 0),
-                Color = Color.White,
+                Color = Color.Gray,
+                Intensity = 0.8f,
                 Scale = new Vector2(1300),
                 ShadowType = ShadowType.Solid
             };
@@ -66,7 +67,7 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
         {
             // Animate light position
             _light.Position =
-                new Vector2(400f, 240f) + // Offset origin
+                new Vector2(200f, 240f) + // Offset origin
                 new Vector2( // Position around origin
                     (float)Math.Cos(gameTime.TotalGameTime.TotalSeconds),
                     (float)Math.Sin(gameTime.TotalGameTime.TotalSeconds)) * 240f;
@@ -86,7 +87,7 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 
             Penumbra.BeginDraw();
 
-            graphics.Clear(Color.CornflowerBlue);
+            graphics.Clear(Color.White);
 
             if (tBody != null)
             {

@@ -6,7 +6,7 @@ namespace PenumbraPhysics.Editor.Controls.Basic
 {
     public class PenumbraPhysicsControlSAMPLE : GameControl
     {
-        private PenumbraPhysicsEditor Editor;
+        public PenumbraPhysicsEditor Editor;
 
         protected override void Initialize()
         {

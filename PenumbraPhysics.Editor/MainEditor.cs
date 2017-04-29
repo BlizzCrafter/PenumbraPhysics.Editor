@@ -1,9 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Penumbra;
 using PenumbraPhysics.Editor.Classes.Basic;
 using PenumbraPhysics.Editor.Classes.Editors.Samples;
 using PenumbraPhysics.Editor.Controls.Basic;
+using PenumbraPhysics.Editor.Controls.Basic.ColorTrackBar;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace PenumbraPhysics.Editor
@@ -23,6 +26,8 @@ namespace PenumbraPhysics.Editor
         public static bool ShowPhysicsDebug { get; set; } = false;
 
         private Control CurrentSourceControl { get; set; }
+
+        private bool DropDownPenumbraColorLoaded = false;
 
         private bool MouseIsDownOnButton = false;
         private System.Drawing.Point FirstPointMouseOnButton;
@@ -75,7 +80,7 @@ namespace PenumbraPhysics.Editor
             toolStripMenuItemShowPhysicsDebug.Checked = ShowPhysicsDebug;
         }
         
-        //Visable Changed Events
+        //Visible Changed Events
         private void tabControlWelcome_VisibleChanged(object sender, EventArgs e)
         {
             menuStripEditorFunctions.Enabled = false;
@@ -219,7 +224,7 @@ namespace PenumbraPhysics.Editor
 
         #endregion
 
-        #endregion
+        #region ListEditing
 
         private void toolStripMenuItemRemoveAllObjects_Click(object sender, EventArgs e)
         {
@@ -287,6 +292,128 @@ namespace PenumbraPhysics.Editor
                 }
                 else form.Dispose();
             }
+        }
+
+
+        #endregion
+
+        #endregion
+
+        private void SetPenumbraColors(bool hexEnteredColor = false)
+        {
+            if (DropDownPenumbraColorLoaded)
+            {
+                if (CurrentSourceControl != null)
+                {
+                    PenumbraComponent penumbra = GetPenumbraInContextMenu();
+
+                    if (hexEnteredColor)
+                    {
+                        System.Drawing.Color rgbColor = System.Drawing.Color.White;
+                        try
+                        {
+                            rgbColor = ColorTranslator.FromHtml(toolStripTextBoxHexColorIO.Text);
+
+                            toolStripColorTrackBarRed._TrackBar.Value = rgbColor.R;
+                            toolStripColorTrackBarGreen._TrackBar.Value = rgbColor.G;
+                            toolStripColorTrackBarBlue._TrackBar.Value = rgbColor.B;
+
+                            toolStripTextBoxHexColorIO.Text =
+                                        ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
+                                            rgbColor.R,
+                                            rgbColor.G,
+                                            rgbColor.B)).ToString();
+
+                        }
+                        catch
+                        {
+                            if (penumbra != null)
+                            {
+                                toolStripTextBoxHexColorIO.Text =
+                                            ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
+                                                penumbra.AmbientColor.R,
+                                                penumbra.AmbientColor.G,
+                                                penumbra.AmbientColor.B)).ToString();
+                            }
+                        }
+                    }
+
+                    if (penumbra != null)
+                    {
+                        penumbra.AmbientColor = new Microsoft.Xna.Framework.Color(
+                            toolStripColorTrackBarRed._TrackBar.Value,
+                            toolStripColorTrackBarGreen._TrackBar.Value,
+                            toolStripColorTrackBarBlue._TrackBar.Value);
+
+                        toolStripTextBoxHexColorIO.Text =
+                                    ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
+                                        toolStripColorTrackBarRed._TrackBar.Value,
+                                        toolStripColorTrackBarGreen._TrackBar.Value,
+                                        toolStripColorTrackBarBlue._TrackBar.Value)).ToString();
+                    }
+                }
+            }
+        }
+        private void toolStripColorTrackBarRed_ValueChanged(object sender, EventArgs e)
+        {
+            SetPenumbraColors();
+        }
+        private void toolStripColorTrackBarGreen_ValueChanged(object sender, EventArgs e)
+        {
+            SetPenumbraColors();
+        }
+        private void toolStripColorTrackBarBlue_ValueChanged(object sender, EventArgs e)
+        {
+            SetPenumbraColors();
+        }   
+
+        private void toolStripTextBoxHexColorIO_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Drawing.Color rgbColor = System.Drawing.Color.White;
+                rgbColor = ColorTranslator.FromHtml(((ToolStripTextBox)sender).Text);
+                ((ToolStripTextBox)sender).BackColor = rgbColor;
+                HSLColor hslColor = new HSLColor(240 - rgbColor.GetHue(), rgbColor.GetSaturation(), 240);
+                ((ToolStripTextBox)sender).ForeColor = hslColor;
+
+                string trimedHex = ((ToolStripTextBox)sender).Text.TrimStart('#');
+                if (trimedHex.Length >= 6) SetPenumbraColors(true);
+            }
+            catch { }
+        }
+
+        private void ambientColorToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (CurrentSourceControl != null)
+            {
+                DropDownPenumbraColorLoaded = false;
+
+                PenumbraComponent penumbra = GetPenumbraInContextMenu();
+
+                if (penumbra != null)
+                {
+                    toolStripColorTrackBarRed._TrackBar.Value = penumbra.AmbientColor.R;
+                    toolStripColorTrackBarGreen._TrackBar.Value = penumbra.AmbientColor.G;
+                    toolStripColorTrackBarBlue._TrackBar.Value = penumbra.AmbientColor.B;
+
+                    toolStripTextBoxHexColorIO.Text =
+                                ColorTranslator.ToHtml(System.Drawing.Color.FromArgb(
+                                    penumbra.AmbientColor.R,
+                                    penumbra.AmbientColor.G,
+                                    penumbra.AmbientColor.B)).ToString();
+                }
+
+                DropDownPenumbraColorLoaded = true;
+            }
+        }
+
+        private PenumbraComponent GetPenumbraInContextMenu()
+        {
+            if (CurrentSourceControl is PenumbraPhysicsControlSAMPLE)
+                return ((PenumbraPhysicsControlSAMPLE)CurrentSourceControl).Editor.Penumbra;
+
+            return null;
         }
     }
 }
