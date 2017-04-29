@@ -70,7 +70,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemRemoveAllObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.welcomeUpdateControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.WelcomeUpdateControlSAMPLE();
-            this.penumbraPhysicsControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.PenumbraPhysicsControlSAMPLE();
+            this.penumbraPhysicsControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.Samples.PenumbraPhysicsControlSAMPLE();
             this.placementControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.Samples.PlacementControlSAMPLE();
             this.toolStripColorTrackBarRed = new PenumbraPhysics.Editor.Controls.Basic.ColorTrackBar.ToolStripColorTrackBar();
             this.toolStripColorTrackBarGreen = new PenumbraPhysics.Editor.Controls.Basic.ColorTrackBar.ToolStripColorTrackBar();
@@ -548,7 +548,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem editorToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private Controls.Basic.PenumbraPhysicsControlSAMPLE penumbraPhysicsControlSAMPLE1;
+        private Controls.Basic.Samples.PenumbraPhysicsControlSAMPLE penumbraPhysicsControlSAMPLE1;
         private Controls.WelcomeUpdateControlSAMPLE welcomeUpdateControlSAMPLE1;
         private Controls.Basic.Samples.PlacementControlSAMPLE placementControlSAMPLE1;
         private System.Windows.Forms.MenuStrip menuStripEditorFunctions;

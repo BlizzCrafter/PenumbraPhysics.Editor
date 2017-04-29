@@ -4,6 +4,7 @@ using PenumbraPhysics.Editor.Classes.Basic;
 using PenumbraPhysics.Editor.Classes.Editors.Samples;
 using PenumbraPhysics.Editor.Controls.Basic;
 using PenumbraPhysics.Editor.Controls.Basic.ColorTrackBar;
+using PenumbraPhysics.Editor.Controls.Basic.Samples;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -412,6 +413,8 @@ namespace PenumbraPhysics.Editor
         {
             if (CurrentSourceControl is PenumbraPhysicsControlSAMPLE)
                 return ((PenumbraPhysicsControlSAMPLE)CurrentSourceControl).Editor.Penumbra;
+            else if (CurrentSourceControl is PlacementControlSAMPLE)
+                return ((PlacementControlSAMPLE)CurrentSourceControl).Editor.Penumbra;
 
             return null;
         }

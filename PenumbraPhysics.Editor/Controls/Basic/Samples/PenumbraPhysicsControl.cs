@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using PenumbraPhysics.Editor.Classes.Editors.Samples;
 
-namespace PenumbraPhysics.Editor.Controls.Basic
+namespace PenumbraPhysics.Editor.Controls.Basic.Samples
 {
     public class PenumbraPhysicsControlSAMPLE : GameControl
     {

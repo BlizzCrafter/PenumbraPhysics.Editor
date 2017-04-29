@@ -34,9 +34,9 @@ using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;
 using Penumbra;
-using Penumbra.EditorSpecific.Converter.Penumbra;
 using FarseerPhysics.EditorSpecific.Editor;
 using System.Drawing.Design;
+using Penumbra.EditorSpecific.Converter;
 
 namespace FarseerPhysics.Dynamics
 {
@@ -87,6 +87,7 @@ namespace FarseerPhysics.Dynamics
         internal Sweep _sweep; // the swept motion for CCD
         internal float _torque;
         internal World _world;
+
         internal Transform _xf; // the body origin transform
         internal bool _island;
 
@@ -490,6 +491,7 @@ namespace FarseerPhysics.Dynamics
         /// Get the world body origin position.
         /// </summary>
         /// <returns>Return the world position of the body's origin.</returns>
+        [ReadOnly(false)]
         [Category("General")]
         [Description("Get the world body origin position. (automatically converts to SimUnits)")]
         [TypeConverter(typeof(PhysicsPositionConverter))]
