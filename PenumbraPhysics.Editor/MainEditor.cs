@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FarseerPhysics.DebugView;
+using Microsoft.Xna.Framework;
 using Penumbra;
 using PenumbraPhysics.Editor.Classes.Basic;
 using PenumbraPhysics.Editor.Classes.Editors.Samples;
@@ -53,7 +54,7 @@ namespace PenumbraPhysics.Editor
 
         // Show or Hide the camera position flag
         public static bool ShowCameraPosition { get; set; } = false;
-        
+
         // The current visible Editor
         private Control CurrentSourceControl { get; set; }
 
@@ -72,13 +73,13 @@ namespace PenumbraPhysics.Editor
         #region Passing Events to underlying Controls
 
         /* They get triggered inside the corresponding controls! */
-        
+
         private void penumbraPhysicsControlSAMPLE1_VisibleChanged(object sender, EventArgs e) { }
 
         #endregion
 
         #region Basic Control Events
-        
+
         // Ensures that the drop down opens on button click
         private void toolStripSplitButtonSettings_Click(object sender, EventArgs e)
         {
@@ -111,7 +112,7 @@ namespace PenumbraPhysics.Editor
             ShowPhysicsShapes = !ShowPhysicsShapes;
             toolStripMenuItemShowPhysicsDebug.Checked = ShowPhysicsShapes;
         }
-        
+
         //Visible Changed Events
         private void tabControlWelcome_VisibleChanged(object sender, EventArgs e)
         {
@@ -222,7 +223,7 @@ namespace PenumbraPhysics.Editor
                 }
             }
         }
-        
+
         // Change colors by using the corresponding trackbars
         private void toolStripColorTrackBarRed_ValueChanged(object sender, EventArgs e)
         {
@@ -444,7 +445,7 @@ namespace PenumbraPhysics.Editor
                 FirstPointMouseOnButton.Y = e.Location.Y;
             }
         }
-        
+
         //Reset
         private void toolStripMenuItemResetCamera_Click(object sender, EventArgs e)
         {

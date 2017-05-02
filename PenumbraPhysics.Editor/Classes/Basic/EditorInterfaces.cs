@@ -79,7 +79,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         void UpdatePhysicsManipulation(bool leftMouseButtonPressed, Vector2 mousePosition);
         void UpdateShadowHulls(Body body);
         void UpdateShadowHulls(List<Body> bodyList);
-
+        
         void DrawPhysicsDebugView();
     }
 }

@@ -45,6 +45,16 @@
             this.toolStripColorTrackBarGreen = new PenumbraPhysics.Editor.Controls.Basic.ColorTrackBar.ToolStripColorTrackBar();
             this.toolStripColorTrackBarBlue = new PenumbraPhysics.Editor.Controls.Basic.ColorTrackBar.ToolStripColorTrackBar();
             this.physicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debugViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowDebugPanel = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowPerformanceGraph = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowAABB = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCenterOfMass = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowContactPoints = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowControllers = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowJoints = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowPolygonPoints = new System.Windows.Forms.ToolStripMenuItem();
+            this.showPhysicsShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemClearPhysicsForces = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripMenuItemResetAll = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,18 +84,8 @@
             this.toolStripMenuItemListAllShadowCaster = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemListAllObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItemRemoveAllObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSavePositions = new System.Windows.Forms.ToolStripMenuItem();
-            this.debugViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showPhysicsShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemShowPolygonPoints = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemShowJoints = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemShowControllers = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemShowContactPoints = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemCenterOfMass = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemShowAABB = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemShowPerformanceGraph = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemShowDebugPanel = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemRemoveAllObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlWelcome.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
@@ -158,7 +158,7 @@
             this.penumbraToolStripMenuItem,
             this.physicsToolStripMenuItem});
             this.contextMenuStripPenumbraPhysicsMenu.Name = "contextMenuStripPenumbraPhysicsMenu";
-            this.contextMenuStripPenumbraPhysicsMenu.Size = new System.Drawing.Size(180, 116);
+            this.contextMenuStripPenumbraPhysicsMenu.Size = new System.Drawing.Size(149, 88);
             this.contextMenuStripPenumbraPhysicsMenu.Text = "PenumbraPhysics Menu";
             this.contextMenuStripPenumbraPhysicsMenu.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripPenumbraPhysicsMenu_Opening);
             // 
@@ -167,13 +167,13 @@
             this.editorToolStripMenuItem.Enabled = false;
             this.editorToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editorToolStripMenuItem.Name = "editorToolStripMenuItem";
-            this.editorToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.editorToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.editorToolStripMenuItem.Text = ".: Editor :.";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(176, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
             // 
             // penumbraToolStripMenuItem
             // 
@@ -181,7 +181,7 @@
             this.ambientColorToolStripMenuItem});
             this.penumbraToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("penumbraToolStripMenuItem.Image")));
             this.penumbraToolStripMenuItem.Name = "penumbraToolStripMenuItem";
-            this.penumbraToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.penumbraToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.penumbraToolStripMenuItem.Text = "Penumbra";
             // 
             // ambientColorToolStripMenuItem
@@ -235,8 +235,97 @@
             this.ToolStripMenuItemResetAll});
             this.physicsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("physicsToolStripMenuItem.Image")));
             this.physicsToolStripMenuItem.Name = "physicsToolStripMenuItem";
-            this.physicsToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.physicsToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.physicsToolStripMenuItem.Text = "Physics";
+            // 
+            // debugViewToolStripMenuItem
+            // 
+            this.debugViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemShowDebugPanel,
+            this.toolStripMenuItemShowPerformanceGraph,
+            this.toolStripMenuItemShowAABB,
+            this.toolStripMenuItemCenterOfMass,
+            this.toolStripMenuItemShowContactPoints,
+            this.toolStripMenuItemShowControllers,
+            this.toolStripMenuItemShowJoints,
+            this.toolStripMenuItemShowPolygonPoints,
+            this.showPhysicsShapesToolStripMenuItem});
+            this.debugViewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("debugViewToolStripMenuItem.Image")));
+            this.debugViewToolStripMenuItem.Name = "debugViewToolStripMenuItem";
+            this.debugViewToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.debugViewToolStripMenuItem.Text = "DebugView";
+            // 
+            // toolStripMenuItemShowDebugPanel
+            // 
+            this.toolStripMenuItemShowDebugPanel.CheckOnClick = true;
+            this.toolStripMenuItemShowDebugPanel.Name = "toolStripMenuItemShowDebugPanel";
+            this.toolStripMenuItemShowDebugPanel.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowDebugPanel.Text = "Show Debug Panel";
+            this.toolStripMenuItemShowDebugPanel.Click += new System.EventHandler(this.toolStripMenuItemShowDebugPanel_Click);
+            // 
+            // toolStripMenuItemShowPerformanceGraph
+            // 
+            this.toolStripMenuItemShowPerformanceGraph.CheckOnClick = true;
+            this.toolStripMenuItemShowPerformanceGraph.Name = "toolStripMenuItemShowPerformanceGraph";
+            this.toolStripMenuItemShowPerformanceGraph.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowPerformanceGraph.Text = "Show Performance Graph";
+            this.toolStripMenuItemShowPerformanceGraph.Click += new System.EventHandler(this.toolStripMenuItemShowPerformanceGraph_Click);
+            // 
+            // toolStripMenuItemShowAABB
+            // 
+            this.toolStripMenuItemShowAABB.CheckOnClick = true;
+            this.toolStripMenuItemShowAABB.Name = "toolStripMenuItemShowAABB";
+            this.toolStripMenuItemShowAABB.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowAABB.Text = "Show AABB";
+            this.toolStripMenuItemShowAABB.Click += new System.EventHandler(this.toolStripMenuItemShowAABB_Click);
+            // 
+            // toolStripMenuItemCenterOfMass
+            // 
+            this.toolStripMenuItemCenterOfMass.CheckOnClick = true;
+            this.toolStripMenuItemCenterOfMass.Name = "toolStripMenuItemCenterOfMass";
+            this.toolStripMenuItemCenterOfMass.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemCenterOfMass.Text = "Show Center of Mass";
+            this.toolStripMenuItemCenterOfMass.Click += new System.EventHandler(this.toolStripMenuItemCenterOfMass_Click);
+            // 
+            // toolStripMenuItemShowContactPoints
+            // 
+            this.toolStripMenuItemShowContactPoints.CheckOnClick = true;
+            this.toolStripMenuItemShowContactPoints.Name = "toolStripMenuItemShowContactPoints";
+            this.toolStripMenuItemShowContactPoints.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowContactPoints.Text = "Show Contact Points";
+            this.toolStripMenuItemShowContactPoints.Click += new System.EventHandler(this.toolStripMenuItemShowContactPoints_Click);
+            // 
+            // toolStripMenuItemShowControllers
+            // 
+            this.toolStripMenuItemShowControllers.CheckOnClick = true;
+            this.toolStripMenuItemShowControllers.Name = "toolStripMenuItemShowControllers";
+            this.toolStripMenuItemShowControllers.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowControllers.Text = "Show Controllers";
+            this.toolStripMenuItemShowControllers.Click += new System.EventHandler(this.toolStripMenuItemShowControllers_Click);
+            // 
+            // toolStripMenuItemShowJoints
+            // 
+            this.toolStripMenuItemShowJoints.CheckOnClick = true;
+            this.toolStripMenuItemShowJoints.Name = "toolStripMenuItemShowJoints";
+            this.toolStripMenuItemShowJoints.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowJoints.Text = "Show Joints";
+            this.toolStripMenuItemShowJoints.Click += new System.EventHandler(this.toolStripMenuItemShowJoints_Click);
+            // 
+            // toolStripMenuItemShowPolygonPoints
+            // 
+            this.toolStripMenuItemShowPolygonPoints.CheckOnClick = true;
+            this.toolStripMenuItemShowPolygonPoints.Name = "toolStripMenuItemShowPolygonPoints";
+            this.toolStripMenuItemShowPolygonPoints.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowPolygonPoints.Text = "Show Polygon Points";
+            this.toolStripMenuItemShowPolygonPoints.Click += new System.EventHandler(this.toolStripMenuItemShowPolygonPoints_Click);
+            // 
+            // showPhysicsShapesToolStripMenuItem
+            // 
+            this.showPhysicsShapesToolStripMenuItem.CheckOnClick = true;
+            this.showPhysicsShapesToolStripMenuItem.Name = "showPhysicsShapesToolStripMenuItem";
+            this.showPhysicsShapesToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
+            this.showPhysicsShapesToolStripMenuItem.Text = "Show Physics Shapes";
+            this.showPhysicsShapesToolStripMenuItem.Click += new System.EventHandler(this.showPhysicsShapesToolStripMenuItem_Click);
             // 
             // toolStripMenuItemClearPhysicsForces
             // 
@@ -501,14 +590,6 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(225, 6);
             // 
-            // toolStripMenuItemRemoveAllObjects
-            // 
-            this.toolStripMenuItemRemoveAllObjects.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemRemoveAllObjects.Image")));
-            this.toolStripMenuItemRemoveAllObjects.Name = "toolStripMenuItemRemoveAllObjects";
-            this.toolStripMenuItemRemoveAllObjects.Size = new System.Drawing.Size(228, 26);
-            this.toolStripMenuItemRemoveAllObjects.Text = "Remove all Objects";
-            this.toolStripMenuItemRemoveAllObjects.Click += new System.EventHandler(this.toolStripMenuItemRemoveAllObjects_Click);
-            // 
             // toolStripMenuItemSavePositions
             // 
             this.toolStripMenuItemSavePositions.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemSavePositions.Image")));
@@ -517,94 +598,13 @@
             this.toolStripMenuItemSavePositions.Text = "Save all Positions";
             this.toolStripMenuItemSavePositions.Click += new System.EventHandler(this.toolStripMenuItemSavePositions_Click);
             // 
-            // debugViewToolStripMenuItem
+            // toolStripMenuItemRemoveAllObjects
             // 
-            this.debugViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemShowDebugPanel,
-            this.toolStripMenuItemShowPerformanceGraph,
-            this.toolStripMenuItemShowAABB,
-            this.toolStripMenuItemCenterOfMass,
-            this.toolStripMenuItemShowContactPoints,
-            this.toolStripMenuItemShowControllers,
-            this.toolStripMenuItemShowJoints,
-            this.toolStripMenuItemShowPolygonPoints,
-            this.showPhysicsShapesToolStripMenuItem});
-            this.debugViewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("debugViewToolStripMenuItem.Image")));
-            this.debugViewToolStripMenuItem.Name = "debugViewToolStripMenuItem";
-            this.debugViewToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.debugViewToolStripMenuItem.Text = "DebugView";
-            // 
-            // showPhysicsShapesToolStripMenuItem
-            // 
-            this.showPhysicsShapesToolStripMenuItem.CheckOnClick = true;
-            this.showPhysicsShapesToolStripMenuItem.Name = "showPhysicsShapesToolStripMenuItem";
-            this.showPhysicsShapesToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
-            this.showPhysicsShapesToolStripMenuItem.Text = "Show Physics Shapes";
-            this.showPhysicsShapesToolStripMenuItem.Click += new System.EventHandler(this.showPhysicsShapesToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItemShowPolygonPoints
-            // 
-            this.toolStripMenuItemShowPolygonPoints.CheckOnClick = true;
-            this.toolStripMenuItemShowPolygonPoints.Name = "toolStripMenuItemShowPolygonPoints";
-            this.toolStripMenuItemShowPolygonPoints.Size = new System.Drawing.Size(251, 26);
-            this.toolStripMenuItemShowPolygonPoints.Text = "Show Polygon Points";
-            this.toolStripMenuItemShowPolygonPoints.Click += new System.EventHandler(this.toolStripMenuItemShowPolygonPoints_Click);
-            // 
-            // toolStripMenuItemShowJoints
-            // 
-            this.toolStripMenuItemShowJoints.CheckOnClick = true;
-            this.toolStripMenuItemShowJoints.Name = "toolStripMenuItemShowJoints";
-            this.toolStripMenuItemShowJoints.Size = new System.Drawing.Size(251, 26);
-            this.toolStripMenuItemShowJoints.Text = "Show Joints";
-            this.toolStripMenuItemShowJoints.Click += new System.EventHandler(this.toolStripMenuItemShowJoints_Click);
-            // 
-            // toolStripMenuItemShowControllers
-            // 
-            this.toolStripMenuItemShowControllers.CheckOnClick = true;
-            this.toolStripMenuItemShowControllers.Name = "toolStripMenuItemShowControllers";
-            this.toolStripMenuItemShowControllers.Size = new System.Drawing.Size(251, 26);
-            this.toolStripMenuItemShowControllers.Text = "Show Controllers";
-            this.toolStripMenuItemShowControllers.Click += new System.EventHandler(this.toolStripMenuItemShowControllers_Click);
-            // 
-            // toolStripMenuItemShowContactPoints
-            // 
-            this.toolStripMenuItemShowContactPoints.CheckOnClick = true;
-            this.toolStripMenuItemShowContactPoints.Name = "toolStripMenuItemShowContactPoints";
-            this.toolStripMenuItemShowContactPoints.Size = new System.Drawing.Size(251, 26);
-            this.toolStripMenuItemShowContactPoints.Text = "Show Contact Points";
-            this.toolStripMenuItemShowContactPoints.Click += new System.EventHandler(this.toolStripMenuItemShowContactPoints_Click);
-            // 
-            // toolStripMenuItemCenterOfMass
-            // 
-            this.toolStripMenuItemCenterOfMass.CheckOnClick = true;
-            this.toolStripMenuItemCenterOfMass.Name = "toolStripMenuItemCenterOfMass";
-            this.toolStripMenuItemCenterOfMass.Size = new System.Drawing.Size(251, 26);
-            this.toolStripMenuItemCenterOfMass.Text = "Show Center of Mass";
-            this.toolStripMenuItemCenterOfMass.Click += new System.EventHandler(this.toolStripMenuItemCenterOfMass_Click);
-            // 
-            // toolStripMenuItemShowAABB
-            // 
-            this.toolStripMenuItemShowAABB.CheckOnClick = true;
-            this.toolStripMenuItemShowAABB.Name = "toolStripMenuItemShowAABB";
-            this.toolStripMenuItemShowAABB.Size = new System.Drawing.Size(251, 26);
-            this.toolStripMenuItemShowAABB.Text = "Show AABB";
-            this.toolStripMenuItemShowAABB.Click += new System.EventHandler(this.toolStripMenuItemShowAABB_Click);
-            // 
-            // toolStripMenuItemShowPerformanceGraph
-            // 
-            this.toolStripMenuItemShowPerformanceGraph.CheckOnClick = true;
-            this.toolStripMenuItemShowPerformanceGraph.Name = "toolStripMenuItemShowPerformanceGraph";
-            this.toolStripMenuItemShowPerformanceGraph.Size = new System.Drawing.Size(251, 26);
-            this.toolStripMenuItemShowPerformanceGraph.Text = "Show Performance Graph";
-            this.toolStripMenuItemShowPerformanceGraph.Click += new System.EventHandler(this.toolStripMenuItemShowPerformanceGraph_Click);
-            // 
-            // toolStripMenuItemShowDebugPanel
-            // 
-            this.toolStripMenuItemShowDebugPanel.CheckOnClick = true;
-            this.toolStripMenuItemShowDebugPanel.Name = "toolStripMenuItemShowDebugPanel";
-            this.toolStripMenuItemShowDebugPanel.Size = new System.Drawing.Size(251, 26);
-            this.toolStripMenuItemShowDebugPanel.Text = "Show Debug Panel";
-            this.toolStripMenuItemShowDebugPanel.Click += new System.EventHandler(this.toolStripMenuItemShowDebugPanel_Click);
+            this.toolStripMenuItemRemoveAllObjects.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemRemoveAllObjects.Image")));
+            this.toolStripMenuItemRemoveAllObjects.Name = "toolStripMenuItemRemoveAllObjects";
+            this.toolStripMenuItemRemoveAllObjects.Size = new System.Drawing.Size(228, 26);
+            this.toolStripMenuItemRemoveAllObjects.Text = "Remove all Objects";
+            this.toolStripMenuItemRemoveAllObjects.Click += new System.EventHandler(this.toolStripMenuItemRemoveAllObjects_Click);
             // 
             // MainEditor
             // 
