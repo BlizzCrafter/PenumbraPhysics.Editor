@@ -106,13 +106,6 @@ namespace PenumbraPhysics.Editor
             toolStripMenuItemShowCameraPosition.Checked = ShowCameraPosition;
         }
 
-        // Show Physics Debug flag
-        private void toolStripMenuItemShowPhysicsDebug_Click(object sender, EventArgs e)
-        {
-            ShowPhysicsShapes = !ShowPhysicsShapes;
-            toolStripMenuItemShowPhysicsDebug.Checked = ShowPhysicsShapes;
-        }
-
         //Visible Changed Events
         private void tabControlWelcome_VisibleChanged(object sender, EventArgs e)
         {
@@ -143,7 +136,6 @@ namespace PenumbraPhysics.Editor
                 ShowCameraPosition = true;
                 toolStripMenuItemShowCameraPosition.Checked = true;
                 ShowPhysicsShapes = true;
-                toolStripMenuItemShowPhysicsDebug.Checked = true;
 
                 toolStripStatusLabelNote.Text = "Hold [Left Click] on the [Move Camera] button and move the mouse!";
                 toolStripStatusLabelNote.BackColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.Control);

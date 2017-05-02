@@ -69,7 +69,6 @@
             this.toolStripMenuItemShowFPS = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowCursorPosition = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowCameraPosition = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemShowPhysicsDebug = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonResetForces = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -252,7 +251,7 @@
             this.showPhysicsShapesToolStripMenuItem});
             this.debugViewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("debugViewToolStripMenuItem.Image")));
             this.debugViewToolStripMenuItem.Name = "debugViewToolStripMenuItem";
-            this.debugViewToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.debugViewToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.debugViewToolStripMenuItem.Text = "DebugView";
             // 
             // toolStripMenuItemShowDebugPanel
@@ -331,20 +330,20 @@
             // 
             this.toolStripMenuItemClearPhysicsForces.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemClearPhysicsForces.Image")));
             this.toolStripMenuItemClearPhysicsForces.Name = "toolStripMenuItemClearPhysicsForces";
-            this.toolStripMenuItemClearPhysicsForces.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItemClearPhysicsForces.Size = new System.Drawing.Size(164, 26);
             this.toolStripMenuItemClearPhysicsForces.Text = "Clear Forces";
             this.toolStripMenuItemClearPhysicsForces.Click += new System.EventHandler(this.toolStripMenuItemClearPhysicsForces_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
             // 
             // ToolStripMenuItemResetAll
             // 
             this.ToolStripMenuItemResetAll.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemResetAll.Image")));
             this.ToolStripMenuItemResetAll.Name = "ToolStripMenuItemResetAll";
-            this.ToolStripMenuItemResetAll.Size = new System.Drawing.Size(181, 26);
+            this.ToolStripMenuItemResetAll.Size = new System.Drawing.Size(164, 26);
             this.ToolStripMenuItemResetAll.Text = "Reset All";
             this.ToolStripMenuItemResetAll.Click += new System.EventHandler(this.ToolStripMenuItemResetAll_Click);
             // 
@@ -419,7 +418,7 @@
             // toolStripStatusLabelSpacer
             // 
             this.toolStripStatusLabelSpacer.Name = "toolStripStatusLabelSpacer";
-            this.toolStripStatusLabelSpacer.Size = new System.Drawing.Size(499, 21);
+            this.toolStripStatusLabelSpacer.Size = new System.Drawing.Size(460, 21);
             this.toolStripStatusLabelSpacer.Spring = true;
             // 
             // toolStripSplitButtonSettings
@@ -427,8 +426,7 @@
             this.toolStripSplitButtonSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemShowFPS,
             this.toolStripMenuItemShowCursorPosition,
-            this.toolStripMenuItemShowCameraPosition,
-            this.toolStripMenuItemShowPhysicsDebug});
+            this.toolStripMenuItemShowCameraPosition});
             this.toolStripSplitButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButtonSettings.Image")));
             this.toolStripSplitButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButtonSettings.Name = "toolStripSplitButtonSettings";
@@ -458,13 +456,6 @@
             this.toolStripMenuItemShowCameraPosition.Size = new System.Drawing.Size(231, 26);
             this.toolStripMenuItemShowCameraPosition.Text = "Show Camera Position";
             this.toolStripMenuItemShowCameraPosition.Click += new System.EventHandler(this.toolStripMenuItemShowCameraPosition_Click);
-            // 
-            // toolStripMenuItemShowPhysicsDebug
-            // 
-            this.toolStripMenuItemShowPhysicsDebug.Name = "toolStripMenuItemShowPhysicsDebug";
-            this.toolStripMenuItemShowPhysicsDebug.Size = new System.Drawing.Size(231, 26);
-            this.toolStripMenuItemShowPhysicsDebug.Text = "Show Physics Debug";
-            this.toolStripMenuItemShowPhysicsDebug.Click += new System.EventHandler(this.toolStripMenuItemShowPhysicsDebug_Click);
             // 
             // buttonResetForces
             // 
@@ -647,7 +638,6 @@
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButtonSettings;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowFPS;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowCursorPosition;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowPhysicsDebug;
         private System.Windows.Forms.Button buttonResetForces;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
