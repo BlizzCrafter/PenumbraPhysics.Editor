@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainEditor));
             this.tabControlWelcome = new System.Windows.Forms.TabControl();
             this.tabPageWelcome = new System.Windows.Forms.TabPage();
-            this.welcomeUpdateControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.WelcomeUpdateControlSAMPLE();
             this.tabPagePPManipulation = new System.Windows.Forms.TabPage();
             this.penumbraPhysicsControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.Samples.PenumbraPhysicsControlSAMPLE();
             this.contextMenuStripPenumbraPhysicsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -62,6 +61,7 @@
             this.buttonCameraControl = new System.Windows.Forms.Button();
             this.placementControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.Basic.Samples.PlacementControlSAMPLE();
             this.tabPageJustDraw = new System.Windows.Forms.TabPage();
+            this.drawControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.DrawControlSAMPLE();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelNote = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelSpacer = new System.Windows.Forms.ToolStripStatusLabel();
@@ -85,7 +85,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemSavePositions = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRemoveAllObjects = new System.Windows.Forms.ToolStripMenuItem();
-            this.drawControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.DrawControlSAMPLE();
+            this.welcomeUpdateControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.WelcomeUpdateControlSAMPLE();
             this.tabControlWelcome.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
@@ -108,7 +108,6 @@
             this.tabControlWelcome.SelectedIndex = 0;
             this.tabControlWelcome.Size = new System.Drawing.Size(649, 444);
             this.tabControlWelcome.TabIndex = 1;
-            this.tabControlWelcome.VisibleChanged += new System.EventHandler(this.tabControlWelcome_VisibleChanged);
             // 
             // tabPageWelcome
             // 
@@ -119,15 +118,6 @@
             this.tabPageWelcome.TabIndex = 0;
             this.tabPageWelcome.Text = "Welcome!";
             this.tabPageWelcome.UseVisualStyleBackColor = true;
-            // 
-            // welcomeUpdateControlSAMPLE1
-            // 
-            this.welcomeUpdateControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.welcomeUpdateControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
-            this.welcomeUpdateControlSAMPLE1.Name = "welcomeUpdateControlSAMPLE1";
-            this.welcomeUpdateControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
-            this.welcomeUpdateControlSAMPLE1.TabIndex = 0;
-            this.welcomeUpdateControlSAMPLE1.Text = "welcomeUpdateControlSAMPLE1";
             // 
             // tabPagePPManipulation
             // 
@@ -396,6 +386,16 @@
             this.tabPageJustDraw.Text = "Just.Draw.";
             this.tabPageJustDraw.UseVisualStyleBackColor = true;
             // 
+            // drawControlSAMPLE1
+            // 
+            this.drawControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.drawControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
+            this.drawControlSAMPLE1.Name = "drawControlSAMPLE1";
+            this.drawControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.drawControlSAMPLE1.TabIndex = 0;
+            this.drawControlSAMPLE1.Text = "drawControlSAMPLE1";
+            this.drawControlSAMPLE1.VisibleChanged += new System.EventHandler(this.drawControlSAMPLE1_VisibleChanged);
+            // 
             // statusStrip
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -600,15 +600,15 @@
             this.toolStripMenuItemRemoveAllObjects.Text = "Remove all Objects";
             this.toolStripMenuItemRemoveAllObjects.Click += new System.EventHandler(this.toolStripMenuItemRemoveAllObjects_Click);
             // 
-            // drawControlSAMPLE1
+            // welcomeUpdateControlSAMPLE1
             // 
-            this.drawControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.drawControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
-            this.drawControlSAMPLE1.Name = "drawControlSAMPLE1";
-            this.drawControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
-            this.drawControlSAMPLE1.TabIndex = 0;
-            this.drawControlSAMPLE1.Text = "drawControlSAMPLE1";
-            this.drawControlSAMPLE1.VisibleChanged += new System.EventHandler(this.drawControlSAMPLE1_VisibleChanged);
+            this.welcomeUpdateControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.welcomeUpdateControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
+            this.welcomeUpdateControlSAMPLE1.Name = "welcomeUpdateControlSAMPLE1";
+            this.welcomeUpdateControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.welcomeUpdateControlSAMPLE1.TabIndex = 0;
+            this.welcomeUpdateControlSAMPLE1.Text = "welcomeUpdateControlSAMPLE1";
+            this.welcomeUpdateControlSAMPLE1.VisibleChanged += new System.EventHandler(this.welcomeUpdateControlSAMPLE1_VisibleChanged);
             // 
             // MainEditor
             // 
@@ -663,7 +663,6 @@
         private System.Windows.Forms.ToolStripMenuItem editorToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private Controls.Basic.Samples.PenumbraPhysicsControlSAMPLE penumbraPhysicsControlSAMPLE1;
-        private Controls.WelcomeUpdateControlSAMPLE welcomeUpdateControlSAMPLE1;
         private Controls.Basic.Samples.PlacementControlSAMPLE placementControlSAMPLE1;
         private System.Windows.Forms.MenuStrip menuStripEditorFunctions;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCreateLight;
@@ -699,5 +698,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowPerformanceGraph;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowDebugPanel;
         private Controls.DrawControlSAMPLE drawControlSAMPLE1;
+        private Controls.WelcomeUpdateControlSAMPLE welcomeUpdateControlSAMPLE1;
     }
 }

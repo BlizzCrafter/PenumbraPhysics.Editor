@@ -131,17 +131,6 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="physicsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAD7SURBVDhPjZAxCsJAEEUDab1ArpA7eAgPkXtokyqt
-        rbWQQkidaygWFgYiARUVQQSbr1+YYXazBotHNrPz/rATARhkFUXwsfd6CMHm23yO+2KBx3KJZ1XhVddO
-        iCNY2HTOc+ySBPs0xWE8xnEywTXLnJCeSHh5nE6xiWNsR6PBkKDMyZTXnzO/rBE/pBdQluX3zZzIySLL
-        vR/iBFDuug78sokhVib8t8/RAEpN06BtWw0JyafZzNmJBhAbwrPUiciyE4bIAG0iFEPypSh0JwwRmWhj
-        CAmUndjJgh58KNqdyJv9PufHQslfrN9DegWLhPySSbBoGZJJsPg/iN6ki7xycZessgAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
   <data name="debugViewToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
@@ -169,6 +158,17 @@
         lz9CsHlY9P7ppNyTgkVK6OCOl86FOXelYJwQeptCURROMOeuFAwjQq9ukOe5E8y5KwWDM6HnMRhjnGDO
         XSnonQg9vUKWZU4w564UdA+EnkQ/BxnMuSsElf6RaMwuP7/OYM5dIaiOQktznTgp94Sgtoy9EYL6LvXG
         Cmj7HHzBOSv4H1BveHHHueVOd/4AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="physicsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAD7SURBVDhPjZAxCsJAEEUDab1ArpA7eAgPkXtokyqt
+        rbWQQkidaygWFgYiARUVQQSbr1+YYXazBotHNrPz/rATARhkFUXwsfd6CMHm23yO+2KBx3KJZ1XhVddO
+        iCNY2HTOc+ySBPs0xWE8xnEywTXLnJCeSHh5nE6xiWNsR6PBkKDMyZTXnzO/rBE/pBdQluX3zZzIySLL
+        vR/iBFDuug78sokhVib8t8/RAEpN06BtWw0JyafZzNmJBhAbwrPUiciyE4bIAG0iFEPypSh0JwwRmWhj
+        CAmUndjJgh58KNqdyJv9PufHQslfrN9DegWLhPySSbBoGZJJsPg/iN6ki7xycZessgAAAABJRU5ErkJg
+        gg==
 </value>
   </data>
   <data name="buttonCameraControl.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -227,14 +227,6 @@
         GCQFCow5vE9Ewhvhn8hzMEvMMgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="toolStripMenuItemObjects.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAB6SURBVDhP3ZBBCsAgDAT9/1f8krl59uIDUmJZ2UCa
-        4qlQYTzIZBNTVHVTa9UMdoErfDtR0CoeYxzBIW5sEUlh1wXMORcsRLDnAnrvR7gAu9ChtZYCD8UrwB54
-        ORl/XSLSjWhxDLsu4Nsv2IUO0dgMPBTvAADhCXZvtFyJhk1cePAxoAAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="toolStripMenuItemEditSelectedObject.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
@@ -289,6 +281,14 @@
         I5y7XF07YOFq5WmawRH2bq5ON+9LZempa5P4ul6z7jKwAjBcLDyHg5fdq7NwGfQaQGk+9+z3VseWwWAA
         KBeFkVoGgwHlqhKZzT64/qc/gPTabuU5nRL0WmMeO2IF5c1G7nlOVMarM+ThEVt+rNdynUxIKKHXDF43
         Z3hbLuUyHpNwWcFcHfjqMThnGUktKzHXgm/LSt+V0RvhgqUSk0/P+gAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripMenuItemObjects.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAB6SURBVDhP3ZBBCsAgDAT9/1f8krl59uIDUmJZ2UCa
+        4qlQYTzIZBNTVHVTa9UMdoErfDtR0CoeYxzBIW5sEUlh1wXMORcsRLDnAnrvR7gAu9ChtZYCD8UrwB54
+        ORl/XSLSjWhxDLsu4Nsv2IUO0dgMPBTvAADhCXZvtFyJhk1cePAxoAAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

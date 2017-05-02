@@ -107,7 +107,7 @@ namespace PenumbraPhysics.Editor
         }
 
         //Visible Changed Events
-        private void tabControlWelcome_VisibleChanged(object sender, EventArgs e)
+        private void welcomeUpdateControlSAMPLE1_VisibleChanged(object sender, EventArgs e)
         {
             menuStripEditorFunctions.Enabled = false;
 
