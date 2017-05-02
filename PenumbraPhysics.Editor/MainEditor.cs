@@ -140,6 +140,8 @@ namespace PenumbraPhysics.Editor
         }
         private void drawControlSAMPLE1_VisibleChanged(object sender, EventArgs e)
         {
+            menuStripEditorFunctions.Enabled = false;
+
             toolStripStatusLabelNote.Text = "Everything in this world is magic and nothing can exist without magic!";
             toolStripStatusLabelNote.BackColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.Control);
             toolStripStatusLabelNote.ForeColor = System.Drawing.Color.Black;
