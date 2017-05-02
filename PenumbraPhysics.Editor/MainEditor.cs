@@ -142,6 +142,12 @@ namespace PenumbraPhysics.Editor
                 toolStripStatusLabelNote.ForeColor = System.Drawing.Color.Black;
             }
         }
+        private void drawControlSAMPLE1_VisibleChanged(object sender, EventArgs e)
+        {
+            toolStripStatusLabelNote.Text = "Everything in this world is magic and nothing can exist without magic!";
+            toolStripStatusLabelNote.BackColor = System.Drawing.Color.FromKnownColor(System.Drawing.KnownColor.Control);
+            toolStripStatusLabelNote.ForeColor = System.Drawing.Color.Black;
+        }
 
         // Get the underlying source control of the context menu strip
         // We are catching this separately, because there is a bug when catching this

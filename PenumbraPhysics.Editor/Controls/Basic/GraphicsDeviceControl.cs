@@ -33,7 +33,7 @@ namespace PenumbraPhysics.Editor.Controls
         private SwapChainRenderTarget _chain;
         public GraphicsDeviceService _graphicsDeviceService;
         public GraphicsDevice GraphicsDevice => _graphicsDeviceService.GraphicsDevice;
-        private ServiceContainer Services { get; } = new ServiceContainer();
+        protected ServiceContainer Services { get; } = new ServiceContainer();
 
         protected override void OnCreateControl()
         {

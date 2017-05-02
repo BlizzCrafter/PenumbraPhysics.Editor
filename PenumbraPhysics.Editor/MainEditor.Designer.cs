@@ -85,11 +85,13 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemSavePositions = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRemoveAllObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawControlSAMPLE1 = new PenumbraPhysics.Editor.Controls.DrawControlSAMPLE();
             this.tabControlWelcome.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
             this.contextMenuStripPenumbraPhysicsMenu.SuspendLayout();
             this.tabPagePPPlacement.SuspendLayout();
+            this.tabPageJustDraw.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.menuStripEditorFunctions.SuspendLayout();
             this.SuspendLayout();
@@ -386,6 +388,7 @@
             // 
             // tabPageJustDraw
             // 
+            this.tabPageJustDraw.Controls.Add(this.drawControlSAMPLE1);
             this.tabPageJustDraw.Location = new System.Drawing.Point(4, 25);
             this.tabPageJustDraw.Name = "tabPageJustDraw";
             this.tabPageJustDraw.Size = new System.Drawing.Size(641, 415);
@@ -418,7 +421,7 @@
             // toolStripStatusLabelSpacer
             // 
             this.toolStripStatusLabelSpacer.Name = "toolStripStatusLabelSpacer";
-            this.toolStripStatusLabelSpacer.Size = new System.Drawing.Size(460, 21);
+            this.toolStripStatusLabelSpacer.Size = new System.Drawing.Size(499, 21);
             this.toolStripStatusLabelSpacer.Spring = true;
             // 
             // toolStripSplitButtonSettings
@@ -597,6 +600,16 @@
             this.toolStripMenuItemRemoveAllObjects.Text = "Remove all Objects";
             this.toolStripMenuItemRemoveAllObjects.Click += new System.EventHandler(this.toolStripMenuItemRemoveAllObjects_Click);
             // 
+            // drawControlSAMPLE1
+            // 
+            this.drawControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.drawControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
+            this.drawControlSAMPLE1.Name = "drawControlSAMPLE1";
+            this.drawControlSAMPLE1.Size = new System.Drawing.Size(641, 415);
+            this.drawControlSAMPLE1.TabIndex = 0;
+            this.drawControlSAMPLE1.Text = "drawControlSAMPLE1";
+            this.drawControlSAMPLE1.VisibleChanged += new System.EventHandler(this.drawControlSAMPLE1_VisibleChanged);
+            // 
             // MainEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -619,6 +632,7 @@
             this.tabPagePPManipulation.ResumeLayout(false);
             this.contextMenuStripPenumbraPhysicsMenu.ResumeLayout(false);
             this.tabPagePPPlacement.ResumeLayout(false);
+            this.tabPageJustDraw.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menuStripEditorFunctions.ResumeLayout(false);
@@ -684,5 +698,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowAABB;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowPerformanceGraph;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowDebugPanel;
+        private Controls.DrawControlSAMPLE drawControlSAMPLE1;
     }
 }
