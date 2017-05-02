@@ -1,13 +1,9 @@
-﻿using FarseerPhysics.DebugView;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Penumbra;
 using PenumbraPhysics.Editor.Classes.Basic;
 using PenumbraPhysics.Editor.Classes.Editors.Samples;
-using PenumbraPhysics.Editor.Controls.Basic;
-using PenumbraPhysics.Editor.Controls.Basic.ColorTrackBar;
 using PenumbraPhysics.Editor.Controls.Basic.Samples;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 

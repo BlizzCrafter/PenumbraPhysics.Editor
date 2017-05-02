@@ -14,7 +14,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework.Graphics;
 using PenumbraPhysics.Editor.Classes.Basic;
-using System.Collections.Generic;
 
 namespace PenumbraPhysics.Editor.Controls
 {

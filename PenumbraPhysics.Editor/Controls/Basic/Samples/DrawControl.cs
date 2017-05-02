@@ -11,7 +11,7 @@ namespace PenumbraPhysics.Editor.Controls
         SpriteBatch spriteBatch { get; set; }
 
         SpriteFont Font { get; set; }
-        string HelloWorld { get; set; } = "This is a simple draw control without an update cycle.\n It's just for your drawing needs :)";
+        const string HelloWorld = "This is a simple draw control without an update cycle.\n It's just for your drawing needs :)";
 
         protected override void Initialize()
         {
