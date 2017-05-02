@@ -37,6 +37,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
     public struct PivotBodyFlags
     {
         public ConnectedObject ConnectedObject { get; set; }
+        public float StartRotation { get; set; }
+        public Vector2 StartPosition { get; set; }
     }
 
     #endregion

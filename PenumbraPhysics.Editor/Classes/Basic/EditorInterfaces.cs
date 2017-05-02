@@ -66,6 +66,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         void ClearPhysicsForces();
         void ResetPhysics();
 
+        void SaveAllPositions();
+
         void CreatePhysicalBorders();
         Body CreateComplexBody(World world, Texture2D objectTexture, float Scale, out Vector2 Origin,
             TriangulationAlgorithm Algorithm = TriangulationAlgorithm.Bayazit);

@@ -33,6 +33,11 @@ namespace PenumbraPhysics.Editor.Controls.Basic.Samples
             Editor.ResetPhysics();
         }
 
+        public override void SaveAllPositions()
+        {
+            Editor.SaveAllPositions();
+        }
+
         protected override void Update(GameTime gameTime)
         {
             Editor.Update(gameTime, _MousePosition, LeftMouseButtonPressed);

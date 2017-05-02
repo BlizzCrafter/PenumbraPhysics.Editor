@@ -14,6 +14,37 @@ namespace PenumbraPhysics.Editor
 {
     public partial class MainEditor : Form
     {
+        #region DebugViewFlags
+
+        // Show or Hide the cursor position flag
+        public static bool ShowPhysicsShapes { get; set; } = false;
+
+        // Show or Hide the PolygonPoints flag
+        public static bool ShowPolygonPoints { get; set; } = false;
+
+        // Show or Hide the Joints flag
+        public static bool ShowJoints { get; set; } = false;
+
+        // Show or Hide the Controllers flag
+        public static bool ShowControllers { get; set; } = false;
+
+        // Show or Hide the Controllers flag
+        public static bool ShowContactPoints { get; set; } = false;
+
+        // Show or Hide the CenterOfMass flag
+        public static bool ShowCenterOfMass { get; set; } = false;
+
+        // Show or Hide the AABB flag
+        public static bool ShowAABB { get; set; } = false;
+
+        // Show or Hide the PerformanceGraph flag
+        public static bool ShowPerformanceGraph { get; set; } = false;
+
+        // Show or Hide the DebugPanel flag
+        public static bool ShowDebugPanel { get; set; } = false;
+
+        #endregion
+
         // Show or Hide the FPS display flag
         public static bool ShowFPS { get; set; } = true;
 
@@ -22,10 +53,7 @@ namespace PenumbraPhysics.Editor
 
         // Show or Hide the camera position flag
         public static bool ShowCameraPosition { get; set; } = false;
-
-        // Show or Hide the cursor position flag
-        public static bool ShowPhysicsDebug { get; set; } = false;
-
+        
         // The current visible Editor
         private Control CurrentSourceControl { get; set; }
 
@@ -80,8 +108,8 @@ namespace PenumbraPhysics.Editor
         // Show Physics Debug flag
         private void toolStripMenuItemShowPhysicsDebug_Click(object sender, EventArgs e)
         {
-            ShowPhysicsDebug = !ShowPhysicsDebug;
-            toolStripMenuItemShowPhysicsDebug.Checked = ShowPhysicsDebug;
+            ShowPhysicsShapes = !ShowPhysicsShapes;
+            toolStripMenuItemShowPhysicsDebug.Checked = ShowPhysicsShapes;
         }
         
         //Visible Changed Events
@@ -113,7 +141,7 @@ namespace PenumbraPhysics.Editor
                 toolStripMenuItemShowCursorPosition.Checked = true;
                 ShowCameraPosition = true;
                 toolStripMenuItemShowCameraPosition.Checked = true;
-                ShowPhysicsDebug = true;
+                ShowPhysicsShapes = true;
                 toolStripMenuItemShowPhysicsDebug.Checked = true;
 
                 toolStripStatusLabelNote.Text = "Hold [Left Click] on the [Move Camera] button and move the mouse!";
@@ -277,6 +305,10 @@ namespace PenumbraPhysics.Editor
                 {
                     ((PenumbraPhysicsControlSAMPLE)CurrentSourceControl).ClearPhysicsForces();
                 }
+                else if (CurrentSourceControl is PlacementControlSAMPLE)
+                {
+                    ((PlacementControlSAMPLE)CurrentSourceControl).ClearPhysicsForces();
+                }
             }
         }
 
@@ -290,7 +322,67 @@ namespace PenumbraPhysics.Editor
                 {
                     ((PenumbraPhysicsControlSAMPLE)CurrentSourceControl).ResetPhysics();
                 }
+                else if (CurrentSourceControl is PlacementControlSAMPLE)
+                {
+                    ((PlacementControlSAMPLE)CurrentSourceControl).ResetPhysics();
+                }
             }
+        }
+
+        // DebugView
+        //
+        //Show Physics Shapes
+        private void showPhysicsShapesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowPhysicsShapes = !ShowPhysicsShapes;
+        }
+
+        //Show Polygon Points
+        private void toolStripMenuItemShowPolygonPoints_Click(object sender, EventArgs e)
+        {
+            ShowPolygonPoints = !ShowPolygonPoints;
+        }
+
+        //Show Joints
+        private void toolStripMenuItemShowJoints_Click(object sender, EventArgs e)
+        {
+            ShowJoints = !ShowJoints;
+        }
+
+        //Show Controllers
+        private void toolStripMenuItemShowControllers_Click(object sender, EventArgs e)
+        {
+            ShowControllers = !ShowControllers;
+        }
+
+        //Show Contact Points (Collisions)
+        private void toolStripMenuItemShowContactPoints_Click(object sender, EventArgs e)
+        {
+            ShowContactPoints = !ShowContactPoints;
+        }
+
+        //Show Center of Mass
+        private void toolStripMenuItemCenterOfMass_Click(object sender, EventArgs e)
+        {
+            ShowCenterOfMass = !ShowCenterOfMass;
+        }
+
+        //Show AABB
+        private void toolStripMenuItemShowAABB_Click(object sender, EventArgs e)
+        {
+            ShowAABB = !ShowAABB;
+        }
+
+        //Show PerformanceGraph
+        private void toolStripMenuItemShowPerformanceGraph_Click(object sender, EventArgs e)
+        {
+            ShowPerformanceGraph = !ShowPerformanceGraph;
+        }
+
+        //Show DebugPanel
+        private void toolStripMenuItemShowDebugPanel_Click(object sender, EventArgs e)
+        {
+            ShowDebugPanel = !ShowDebugPanel;
         }
 
         #endregion
@@ -308,6 +400,7 @@ namespace PenumbraPhysics.Editor
             }
         }
 
+        // Create a shadow caster
         private void toolStripMenuItemCreateShadowHull_Click(object sender, EventArgs e)
         {
             if (menuStripEditorFunctions.Tag is PlacementEditor)
@@ -317,6 +410,7 @@ namespace PenumbraPhysics.Editor
         }
 
         // Camera Control
+        //
         //Move
         private void buttonCameraControl_MouseUp(object sender, MouseEventArgs e)
         {
@@ -350,6 +444,7 @@ namespace PenumbraPhysics.Editor
                 FirstPointMouseOnButton.Y = e.Location.Y;
             }
         }
+        
         //Reset
         private void toolStripMenuItemResetCamera_Click(object sender, EventArgs e)
         {
@@ -363,6 +458,7 @@ namespace PenumbraPhysics.Editor
 
         #region ListEditing
 
+        // Remove all objects from the world.
         private void toolStripMenuItemRemoveAllObjects_Click(object sender, EventArgs e)
         {
             if (menuStripEditorFunctions.Tag is PlacementEditor)
@@ -371,6 +467,7 @@ namespace PenumbraPhysics.Editor
             }
         }
 
+        // Edit the values of all objects in the editor.
         private void toolStripMenuItemListAllObjects_Click(object sender, EventArgs e)
         {
             if (menuStripEditorFunctions.Tag is PlacementEditor)
@@ -381,6 +478,7 @@ namespace PenumbraPhysics.Editor
             }
         }
 
+        // Edit the values of all light objects in the editor.
         private void toolStripMenuItemListAllLights_Click(object sender, EventArgs e)
         {
             if (menuStripEditorFunctions.Tag is PlacementEditor)
@@ -391,6 +489,7 @@ namespace PenumbraPhysics.Editor
             }
         }
 
+        // Edit the values of all shadow caster objects in the editor.
         private void toolStripMenuItemListAllShadowCaster_Click(object sender, EventArgs e)
         {
             if (menuStripEditorFunctions.Tag is PlacementEditor)
@@ -401,6 +500,7 @@ namespace PenumbraPhysics.Editor
             }
         }
 
+        // Edit the values of the current selected object in the editor.
         private void toolStripMenuItemEditSelectedObject_Click(object sender, EventArgs e)
         {
             ObjectList form = new Editor.ObjectList();
@@ -431,19 +531,17 @@ namespace PenumbraPhysics.Editor
             }
         }
 
+        // Save positions of all objects. This is useful for resetting the game world.
+        private void toolStripMenuItemSavePositions_Click(object sender, EventArgs e)
+        {
+            if (menuStripEditorFunctions.Tag is PlacementEditor)
+            {
+                ((PlacementEditor)menuStripEditorFunctions.Tag).SaveAllPositions();
+            }
+        }
 
         #endregion
 
         #endregion
-
-        private void placementControlSAMPLE1_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void placementControlSAMPLE1_MouseMove(object sender, MouseEventArgs e)
-        {
-
-        }
     }
 }

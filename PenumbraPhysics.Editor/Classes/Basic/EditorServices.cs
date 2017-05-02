@@ -186,6 +186,11 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                     b.Position = ((BodyFlags)b.UserData).StartPosition;
                     b.Rotation = ((BodyFlags)b.UserData).StartRotation;
                 }
+                else if (b.UserData != null && b.UserData is PivotBodyFlags)
+                {
+                    b.Position = ((PivotBodyFlags)b.UserData).StartPosition;
+                    b.Rotation = ((PivotBodyFlags)b.UserData).StartRotation;
+                }
             });
             _World.BreakableBodyList.ForEach(b =>
             {
@@ -194,9 +199,54 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                     b.MainBody.Position = ((BodyFlags)b.MainBody.UserData).StartPosition;
                     b.MainBody.Rotation = ((BodyFlags)b.MainBody.UserData).StartRotation;
                 }
+                else if (b.MainBody.UserData != null && b.MainBody.UserData is PivotBodyFlags)
+                {
+                    b.MainBody.Position = ((PivotBodyFlags)b.MainBody.UserData).StartPosition;
+                    b.MainBody.Rotation = ((PivotBodyFlags)b.MainBody.UserData).StartRotation;
+                }
             });
 
             ClearPhysicsForces();
+        }
+
+        public void SaveAllPositions()
+        {
+            _World.BodyList.ForEach(b =>
+            {
+                if (b.UserData != null && b.UserData is BodyFlags)
+                {
+                    BodyFlags bf = (BodyFlags)b.UserData;
+                    bf.StartPosition = b.Position;
+                    bf.StartRotation = b.Rotation;
+                    b.UserData = bf;
+                }
+                else if (b.UserData != null && b.UserData is PivotBodyFlags)
+                {
+                    PivotBodyFlags bf = (PivotBodyFlags)b.UserData;
+                    bf.StartPosition = b.Position;
+                    bf.StartRotation = b.Rotation;
+                    bf.ConnectedObject = ((PivotBodyFlags)b.UserData).ConnectedObject;
+                    b.UserData = bf;
+                }
+            });
+            _World.BreakableBodyList.ForEach(b =>
+            {
+                if (b.MainBody.UserData != null && b.MainBody.UserData is BodyFlags)
+                {
+                    BodyFlags bf = (BodyFlags)b.MainBody.UserData;
+                    bf.StartPosition = b.MainBody.Position;
+                    bf.StartRotation = b.MainBody.Rotation;
+                    b.MainBody.UserData = bf;
+                }
+                else if (b.MainBody.UserData != null && b.MainBody.UserData is PivotBodyFlags)
+                {
+                    PivotBodyFlags bf = (PivotBodyFlags)b.MainBody.UserData;
+                    bf.StartPosition = b.MainBody.Position;
+                    bf.StartRotation = b.MainBody.Rotation;
+                    bf.ConnectedObject = ((PivotBodyFlags)b.MainBody.UserData).ConnectedObject;
+                    b.MainBody.UserData = bf;
+                }
+            });
         }
 
         public void InitializePhysics(GraphicsDevice graphics, ContentManager Content)
@@ -224,8 +274,36 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public void UpdatePhysics(GameTime gameTime)
         {
-            if (MainEditor.ShowPhysicsDebug) PhysicsDebugView.AppendFlags(DebugViewFlags.Shape);
+            #region DebugView Update Flags
+
+            if (MainEditor.ShowPhysicsShapes) PhysicsDebugView.AppendFlags(DebugViewFlags.Shape);
             else PhysicsDebugView.RemoveFlags(DebugViewFlags.Shape);
+
+            if (MainEditor.ShowPolygonPoints) PhysicsDebugView.AppendFlags(DebugViewFlags.PolygonPoints);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.PolygonPoints);
+
+            if (MainEditor.ShowJoints) PhysicsDebugView.AppendFlags(DebugViewFlags.Joint);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.Joint);
+
+            if (MainEditor.ShowControllers) PhysicsDebugView.AppendFlags(DebugViewFlags.Controllers);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.Controllers);
+
+            if (MainEditor.ShowContactPoints) PhysicsDebugView.AppendFlags(DebugViewFlags.ContactPoints);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.ContactPoints);
+
+            if (MainEditor.ShowCenterOfMass) PhysicsDebugView.AppendFlags(DebugViewFlags.CenterOfMass);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.CenterOfMass);
+
+            if (MainEditor.ShowAABB) PhysicsDebugView.AppendFlags(DebugViewFlags.AABB);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.AABB);
+
+            if (MainEditor.ShowPerformanceGraph) PhysicsDebugView.AppendFlags(DebugViewFlags.PerformanceGraph);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.PerformanceGraph);
+
+            if (MainEditor.ShowDebugPanel) PhysicsDebugView.AppendFlags(DebugViewFlags.DebugPanel);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.DebugPanel);
+
+            #endregion
 
             _World.BodyList.ForEach(a =>
             {
@@ -314,7 +392,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public void DrawPhysicsDebugView()
         {
-            if (MainEditor.ShowPhysicsDebug)
+            if (MainEditor.ShowPhysicsShapes)
             {
                 // Matrix projection und Matrix view for PhysicsDebugView
                 //
@@ -603,6 +681,11 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                     b.Position = ((BodyFlags)b.UserData).StartPosition;
                     b.Rotation = ((BodyFlags)b.UserData).StartRotation;
                 }
+                else if (b.UserData != null && b.UserData is PivotBodyFlags)
+                {
+                    b.Position = ((PivotBodyFlags)b.UserData).StartPosition;
+                    b.Rotation = ((PivotBodyFlags)b.UserData).StartRotation;
+                }
             });
             _World.BreakableBodyList.ForEach(b =>
             {
@@ -611,9 +694,54 @@ namespace PenumbraPhysics.Editor.Classes.Basic
                     b.MainBody.Position = ((BodyFlags)b.MainBody.UserData).StartPosition;
                     b.MainBody.Rotation = ((BodyFlags)b.MainBody.UserData).StartRotation;
                 }
+                else if (b.MainBody.UserData != null && b.MainBody.UserData is PivotBodyFlags)
+                {
+                    b.MainBody.Position = ((PivotBodyFlags)b.MainBody.UserData).StartPosition;
+                    b.MainBody.Rotation = ((PivotBodyFlags)b.MainBody.UserData).StartRotation;
+                }
             });
 
             ClearPhysicsForces();
+        }
+
+        public void SaveAllPositions()
+        {
+            _World.BodyList.ForEach(b =>
+            {
+                if (b.UserData != null && b.UserData is BodyFlags)
+                {
+                    BodyFlags bf = (BodyFlags)b.UserData;
+                    bf.StartPosition = b.Position;
+                    bf.StartRotation = b.Rotation;
+                    b.UserData = bf;
+                }
+                else if (b.UserData != null && b.UserData is PivotBodyFlags)
+                {
+                    PivotBodyFlags bf = (PivotBodyFlags)b.UserData;
+                    bf.StartPosition = b.Position;
+                    bf.StartRotation = b.Rotation;
+                    bf.ConnectedObject = ((PivotBodyFlags)b.UserData).ConnectedObject;
+                    b.UserData = bf;
+                }
+            });
+            _World.BreakableBodyList.ForEach(b =>
+            {
+                if (b.MainBody.UserData != null && b.MainBody.UserData is BodyFlags)
+                {
+                    BodyFlags bf = (BodyFlags)b.MainBody.UserData;
+                    bf.StartPosition = b.MainBody.Position;
+                    bf.StartRotation = b.MainBody.Rotation;
+                    b.MainBody.UserData = bf;
+                }
+                else if (b.MainBody.UserData != null && b.MainBody.UserData is PivotBodyFlags)
+                {
+                    PivotBodyFlags bf = (PivotBodyFlags)b.MainBody.UserData;
+                    bf.StartPosition = b.MainBody.Position;
+                    bf.StartRotation = b.MainBody.Rotation;
+                    bf.ConnectedObject = ((PivotBodyFlags)b.MainBody.UserData).ConnectedObject;
+                    b.MainBody.UserData = bf;
+                }
+            });
         }
 
         public void InitializePhysics(GraphicsDevice graphics, ContentManager Content)
@@ -641,9 +769,37 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public void UpdatePhysics(GameTime gameTime)
         {
-            if (MainEditor.ShowPhysicsDebug) PhysicsDebugView.AppendFlags(DebugViewFlags.Shape);
+            #region DebugView Update Flags
+
+            if (MainEditor.ShowPhysicsShapes) PhysicsDebugView.AppendFlags(DebugViewFlags.Shape);
             else PhysicsDebugView.RemoveFlags(DebugViewFlags.Shape);
 
+            if (MainEditor.ShowPolygonPoints) PhysicsDebugView.AppendFlags(DebugViewFlags.PolygonPoints);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.PolygonPoints);
+
+            if (MainEditor.ShowJoints) PhysicsDebugView.AppendFlags(DebugViewFlags.Joint);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.Joint);
+
+            if (MainEditor.ShowControllers) PhysicsDebugView.AppendFlags(DebugViewFlags.Controllers);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.Controllers);
+
+            if (MainEditor.ShowContactPoints) PhysicsDebugView.AppendFlags(DebugViewFlags.ContactPoints);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.ContactPoints);
+
+            if (MainEditor.ShowCenterOfMass) PhysicsDebugView.AppendFlags(DebugViewFlags.CenterOfMass);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.CenterOfMass);
+
+            if (MainEditor.ShowAABB) PhysicsDebugView.AppendFlags(DebugViewFlags.AABB);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.AABB);
+
+            if (MainEditor.ShowPerformanceGraph) PhysicsDebugView.AppendFlags(DebugViewFlags.PerformanceGraph);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.PerformanceGraph);
+
+            if (MainEditor.ShowDebugPanel) PhysicsDebugView.AppendFlags(DebugViewFlags.DebugPanel);
+            else PhysicsDebugView.RemoveFlags(DebugViewFlags.DebugPanel);
+
+            #endregion
+            
             _World.BodyList.ForEach(a =>
             {
                 if (a.UserData != null)
@@ -742,7 +898,7 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public void DrawPhysicsDebugView()
         {
-            if (MainEditor.ShowPhysicsDebug)
+            if (MainEditor.ShowPhysicsShapes)
             {
                 // Matrix projection und Matrix view for PhysicsDebugView
                 //

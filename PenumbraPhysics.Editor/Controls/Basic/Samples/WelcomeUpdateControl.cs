@@ -26,6 +26,11 @@ namespace PenumbraPhysics.Editor.Controls
             throw new NotImplementedException();
         }
 
+        public override void SaveAllPositions()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void Update(GameTime gameTime)
         {
             Editor.Update(gameTime, _MousePosition);

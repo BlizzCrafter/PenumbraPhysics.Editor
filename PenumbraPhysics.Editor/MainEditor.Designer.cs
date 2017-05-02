@@ -75,6 +75,17 @@
             this.toolStripMenuItemListAllObjects = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemRemoveAllObjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemSavePositions = new System.Windows.Forms.ToolStripMenuItem();
+            this.debugViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showPhysicsShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowPolygonPoints = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowJoints = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowControllers = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowContactPoints = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemCenterOfMass = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowAABB = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowPerformanceGraph = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowDebugPanel = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlWelcome.SuspendLayout();
             this.tabPageWelcome.SuspendLayout();
             this.tabPagePPManipulation.SuspendLayout();
@@ -147,7 +158,7 @@
             this.penumbraToolStripMenuItem,
             this.physicsToolStripMenuItem});
             this.contextMenuStripPenumbraPhysicsMenu.Name = "contextMenuStripPenumbraPhysicsMenu";
-            this.contextMenuStripPenumbraPhysicsMenu.Size = new System.Drawing.Size(149, 88);
+            this.contextMenuStripPenumbraPhysicsMenu.Size = new System.Drawing.Size(180, 116);
             this.contextMenuStripPenumbraPhysicsMenu.Text = "PenumbraPhysics Menu";
             this.contextMenuStripPenumbraPhysicsMenu.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripPenumbraPhysicsMenu_Opening);
             // 
@@ -156,13 +167,13 @@
             this.editorToolStripMenuItem.Enabled = false;
             this.editorToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editorToolStripMenuItem.Name = "editorToolStripMenuItem";
-            this.editorToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.editorToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.editorToolStripMenuItem.Text = ".: Editor :.";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(176, 6);
             // 
             // penumbraToolStripMenuItem
             // 
@@ -170,7 +181,7 @@
             this.ambientColorToolStripMenuItem});
             this.penumbraToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("penumbraToolStripMenuItem.Image")));
             this.penumbraToolStripMenuItem.Name = "penumbraToolStripMenuItem";
-            this.penumbraToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.penumbraToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.penumbraToolStripMenuItem.Text = "Penumbra";
             // 
             // ambientColorToolStripMenuItem
@@ -218,32 +229,33 @@
             // physicsToolStripMenuItem
             // 
             this.physicsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.debugViewToolStripMenuItem,
             this.toolStripMenuItemClearPhysicsForces,
             this.toolStripSeparator1,
             this.ToolStripMenuItemResetAll});
             this.physicsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("physicsToolStripMenuItem.Image")));
             this.physicsToolStripMenuItem.Name = "physicsToolStripMenuItem";
-            this.physicsToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.physicsToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.physicsToolStripMenuItem.Text = "Physics";
             // 
             // toolStripMenuItemClearPhysicsForces
             // 
             this.toolStripMenuItemClearPhysicsForces.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemClearPhysicsForces.Image")));
             this.toolStripMenuItemClearPhysicsForces.Name = "toolStripMenuItemClearPhysicsForces";
-            this.toolStripMenuItemClearPhysicsForces.Size = new System.Drawing.Size(164, 26);
+            this.toolStripMenuItemClearPhysicsForces.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItemClearPhysicsForces.Text = "Clear Forces";
             this.toolStripMenuItemClearPhysicsForces.Click += new System.EventHandler(this.toolStripMenuItemClearPhysicsForces_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
             // 
             // ToolStripMenuItemResetAll
             // 
             this.ToolStripMenuItemResetAll.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemResetAll.Image")));
             this.ToolStripMenuItemResetAll.Name = "ToolStripMenuItemResetAll";
-            this.ToolStripMenuItemResetAll.Size = new System.Drawing.Size(164, 26);
+            this.ToolStripMenuItemResetAll.Size = new System.Drawing.Size(181, 26);
             this.ToolStripMenuItemResetAll.Text = "Reset All";
             this.ToolStripMenuItemResetAll.Click += new System.EventHandler(this.ToolStripMenuItemResetAll_Click);
             // 
@@ -274,6 +286,7 @@
             // 
             // placementControlSAMPLE1
             // 
+            this.placementControlSAMPLE1.ContextMenuStrip = this.contextMenuStripPenumbraPhysicsMenu;
             this.placementControlSAMPLE1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.placementControlSAMPLE1.Location = new System.Drawing.Point(0, 0);
             this.placementControlSAMPLE1.Name = "placementControlSAMPLE1";
@@ -439,6 +452,7 @@
             this.toolStripMenuItemListAllShadowCaster,
             this.toolStripMenuItemListAllObjects,
             this.toolStripSeparator4,
+            this.toolStripMenuItemSavePositions,
             this.toolStripMenuItemRemoveAllObjects});
             this.toolStripMenuItemObjects.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemObjects.Image")));
             this.toolStripMenuItemObjects.Name = "toolStripMenuItemObjects";
@@ -494,6 +508,103 @@
             this.toolStripMenuItemRemoveAllObjects.Size = new System.Drawing.Size(228, 26);
             this.toolStripMenuItemRemoveAllObjects.Text = "Remove all Objects";
             this.toolStripMenuItemRemoveAllObjects.Click += new System.EventHandler(this.toolStripMenuItemRemoveAllObjects_Click);
+            // 
+            // toolStripMenuItemSavePositions
+            // 
+            this.toolStripMenuItemSavePositions.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemSavePositions.Image")));
+            this.toolStripMenuItemSavePositions.Name = "toolStripMenuItemSavePositions";
+            this.toolStripMenuItemSavePositions.Size = new System.Drawing.Size(228, 26);
+            this.toolStripMenuItemSavePositions.Text = "Save all Positions";
+            this.toolStripMenuItemSavePositions.Click += new System.EventHandler(this.toolStripMenuItemSavePositions_Click);
+            // 
+            // debugViewToolStripMenuItem
+            // 
+            this.debugViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemShowDebugPanel,
+            this.toolStripMenuItemShowPerformanceGraph,
+            this.toolStripMenuItemShowAABB,
+            this.toolStripMenuItemCenterOfMass,
+            this.toolStripMenuItemShowContactPoints,
+            this.toolStripMenuItemShowControllers,
+            this.toolStripMenuItemShowJoints,
+            this.toolStripMenuItemShowPolygonPoints,
+            this.showPhysicsShapesToolStripMenuItem});
+            this.debugViewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("debugViewToolStripMenuItem.Image")));
+            this.debugViewToolStripMenuItem.Name = "debugViewToolStripMenuItem";
+            this.debugViewToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.debugViewToolStripMenuItem.Text = "DebugView";
+            // 
+            // showPhysicsShapesToolStripMenuItem
+            // 
+            this.showPhysicsShapesToolStripMenuItem.CheckOnClick = true;
+            this.showPhysicsShapesToolStripMenuItem.Name = "showPhysicsShapesToolStripMenuItem";
+            this.showPhysicsShapesToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
+            this.showPhysicsShapesToolStripMenuItem.Text = "Show Physics Shapes";
+            this.showPhysicsShapesToolStripMenuItem.Click += new System.EventHandler(this.showPhysicsShapesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItemShowPolygonPoints
+            // 
+            this.toolStripMenuItemShowPolygonPoints.CheckOnClick = true;
+            this.toolStripMenuItemShowPolygonPoints.Name = "toolStripMenuItemShowPolygonPoints";
+            this.toolStripMenuItemShowPolygonPoints.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowPolygonPoints.Text = "Show Polygon Points";
+            this.toolStripMenuItemShowPolygonPoints.Click += new System.EventHandler(this.toolStripMenuItemShowPolygonPoints_Click);
+            // 
+            // toolStripMenuItemShowJoints
+            // 
+            this.toolStripMenuItemShowJoints.CheckOnClick = true;
+            this.toolStripMenuItemShowJoints.Name = "toolStripMenuItemShowJoints";
+            this.toolStripMenuItemShowJoints.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowJoints.Text = "Show Joints";
+            this.toolStripMenuItemShowJoints.Click += new System.EventHandler(this.toolStripMenuItemShowJoints_Click);
+            // 
+            // toolStripMenuItemShowControllers
+            // 
+            this.toolStripMenuItemShowControllers.CheckOnClick = true;
+            this.toolStripMenuItemShowControllers.Name = "toolStripMenuItemShowControllers";
+            this.toolStripMenuItemShowControllers.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowControllers.Text = "Show Controllers";
+            this.toolStripMenuItemShowControllers.Click += new System.EventHandler(this.toolStripMenuItemShowControllers_Click);
+            // 
+            // toolStripMenuItemShowContactPoints
+            // 
+            this.toolStripMenuItemShowContactPoints.CheckOnClick = true;
+            this.toolStripMenuItemShowContactPoints.Name = "toolStripMenuItemShowContactPoints";
+            this.toolStripMenuItemShowContactPoints.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowContactPoints.Text = "Show Contact Points";
+            this.toolStripMenuItemShowContactPoints.Click += new System.EventHandler(this.toolStripMenuItemShowContactPoints_Click);
+            // 
+            // toolStripMenuItemCenterOfMass
+            // 
+            this.toolStripMenuItemCenterOfMass.CheckOnClick = true;
+            this.toolStripMenuItemCenterOfMass.Name = "toolStripMenuItemCenterOfMass";
+            this.toolStripMenuItemCenterOfMass.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemCenterOfMass.Text = "Show Center of Mass";
+            this.toolStripMenuItemCenterOfMass.Click += new System.EventHandler(this.toolStripMenuItemCenterOfMass_Click);
+            // 
+            // toolStripMenuItemShowAABB
+            // 
+            this.toolStripMenuItemShowAABB.CheckOnClick = true;
+            this.toolStripMenuItemShowAABB.Name = "toolStripMenuItemShowAABB";
+            this.toolStripMenuItemShowAABB.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowAABB.Text = "Show AABB";
+            this.toolStripMenuItemShowAABB.Click += new System.EventHandler(this.toolStripMenuItemShowAABB_Click);
+            // 
+            // toolStripMenuItemShowPerformanceGraph
+            // 
+            this.toolStripMenuItemShowPerformanceGraph.CheckOnClick = true;
+            this.toolStripMenuItemShowPerformanceGraph.Name = "toolStripMenuItemShowPerformanceGraph";
+            this.toolStripMenuItemShowPerformanceGraph.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowPerformanceGraph.Text = "Show Performance Graph";
+            this.toolStripMenuItemShowPerformanceGraph.Click += new System.EventHandler(this.toolStripMenuItemShowPerformanceGraph_Click);
+            // 
+            // toolStripMenuItemShowDebugPanel
+            // 
+            this.toolStripMenuItemShowDebugPanel.CheckOnClick = true;
+            this.toolStripMenuItemShowDebugPanel.Name = "toolStripMenuItemShowDebugPanel";
+            this.toolStripMenuItemShowDebugPanel.Size = new System.Drawing.Size(251, 26);
+            this.toolStripMenuItemShowDebugPanel.Text = "Show Debug Panel";
+            this.toolStripMenuItemShowDebugPanel.Click += new System.EventHandler(this.toolStripMenuItemShowDebugPanel_Click);
             // 
             // MainEditor
             // 
@@ -572,5 +683,16 @@
         private Controls.Basic.ColorTrackBar.ToolStripColorTrackBar toolStripColorTrackBarRed;
         private Controls.Basic.ColorTrackBar.ToolStripColorTrackBar toolStripColorTrackBarGreen;
         private Controls.Basic.ColorTrackBar.ToolStripColorTrackBar toolStripColorTrackBarBlue;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSavePositions;
+        private System.Windows.Forms.ToolStripMenuItem debugViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showPhysicsShapesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowPolygonPoints;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowJoints;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowControllers;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowContactPoints;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCenterOfMass;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowAABB;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowPerformanceGraph;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowDebugPanel;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using PenumbraPhysics.Editor.Classes.Editors.Samples;
 
 namespace PenumbraPhysics.Editor.Controls.Basic.Samples
@@ -23,6 +24,11 @@ namespace PenumbraPhysics.Editor.Controls.Basic.Samples
         public override void ResetPhysics()
         {
             Editor.ResetPhysics();
+        }
+
+        public override void SaveAllPositions()
+        {
+            Editor.SaveAllPositions();
         }
 
         protected override void Update(GameTime gameTime)
