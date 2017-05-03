@@ -277,6 +277,15 @@ namespace PenumbraPhysics.Editor
             }
         }
 
+        // Set the current background color in the editor control
+        private void backgroundColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (colorDialogBGColor.ShowDialog() == DialogResult.OK)
+            {
+                SetBackgroundColorInContextMenu(colorDialogBGColor.Color);
+            }
+        }
+
         // Get the current penumbra component through the context menu
         private PenumbraComponent GetPenumbraInContextMenu()
         {
@@ -286,6 +295,25 @@ namespace PenumbraPhysics.Editor
                 return ((PlacementControlSAMPLE)CurrentSourceControl).Editor.Penumbra;
 
             return null;
+        }
+
+        // Get the current background color through the context menu
+        private void SetBackgroundColorInContextMenu(System.Drawing.Color choosenColor)
+        {
+            if (CurrentSourceControl is PenumbraPhysicsControlSAMPLE)
+                ((PenumbraPhysicsControlSAMPLE)CurrentSourceControl).Editor.BackgroundColor = 
+                    new Microsoft.Xna.Framework.Color(
+                        choosenColor.R,
+                        choosenColor.G,
+                        choosenColor.B,
+                        choosenColor.A);
+            else if (CurrentSourceControl is PlacementControlSAMPLE)
+                ((PlacementControlSAMPLE)CurrentSourceControl).Editor.BackgroundColor = 
+                    new Microsoft.Xna.Framework.Color(
+                        choosenColor.R,
+                        choosenColor.G,
+                        choosenColor.B,
+                        choosenColor.A);
         }
 
         #endregion

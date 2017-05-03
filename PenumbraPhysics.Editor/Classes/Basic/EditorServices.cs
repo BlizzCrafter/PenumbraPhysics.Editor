@@ -29,6 +29,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         public Camera2D Cam { get; set; }
 
+        public Color BackgroundColor { get; set; } = Color.CornflowerBlue;
+
         //Display
         public SpriteFont Font { get; set; }
         public NumberFormatInfo Format { get; set; }
@@ -530,6 +532,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
         public SpriteBatch spriteBatch { get; set; }
 
         public Camera2D Cam { get; set; }
+
+        public Color BackgroundColor { get; set; } = Color.CornflowerBlue;
 
         public float CurrentWorldShiftX { get; set; }
         public float CurrentWorldShiftY { get; set; }

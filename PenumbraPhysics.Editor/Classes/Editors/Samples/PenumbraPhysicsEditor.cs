@@ -87,7 +87,7 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 
             Penumbra.BeginDraw();
 
-            graphics.Clear(Color.White);
+            graphics.Clear(BackgroundColor);
 
             if (tBody != null)
             {

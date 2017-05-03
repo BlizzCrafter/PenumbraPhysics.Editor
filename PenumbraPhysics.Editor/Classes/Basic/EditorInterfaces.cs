@@ -23,6 +23,8 @@ namespace PenumbraPhysics.Editor.Classes.Basic
 
         Camera2D Cam { get; set; }
 
+        Color BackgroundColor { get; set; }
+
         // Display
         SpriteFont Font { get; set; }
         Vector2 GetMousePosition { get; set; }

@@ -123,7 +123,7 @@ namespace PenumbraPhysics.Editor.Classes
 
             Penumbra.BeginDraw();
 
-            graphics.Clear(Color.CornflowerBlue);
+            graphics.Clear(BackgroundColor);
 
             if (tBody != null)
             {

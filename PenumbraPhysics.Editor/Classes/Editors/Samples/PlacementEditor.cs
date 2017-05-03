@@ -151,7 +151,7 @@ namespace PenumbraPhysics.Editor.Classes.Editors.Samples
 
             Penumbra.BeginDraw();
 
-            graphics.Clear(Color.CornflowerBlue);
+            graphics.Clear(BackgroundColor);
 
             DrawBeginCamera2D();
 
