@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Penumbra;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace PenumbraPhysics.Editor.Classes.Basic
 {
@@ -28,9 +29,16 @@ namespace PenumbraPhysics.Editor.Classes.Basic
     
     public struct BodyFlags
     {
+        [Browsable(false)]
         public List<Hull> HullList { get; set; }
+
+        [Browsable(false)]
         public float ShadowHullScale { get; set; }
+
+        [ReadOnly(true)]
         public float StartRotation { get; set; }
+
+        [ReadOnly(true)]
         public Vector2 StartPosition { get; set; }
     }
     
