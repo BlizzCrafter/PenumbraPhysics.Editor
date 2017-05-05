@@ -1,5 +1,7 @@
 These icons are from Icojam (http://www.icojam.com)
 
+LICENCE notice: http://www.icojam.com/blog/?p=222
+
 Pixelbox Basic and Bonus [pixelate]
 
 Ammount of icons:
