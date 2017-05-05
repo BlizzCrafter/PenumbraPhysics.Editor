@@ -2,6 +2,8 @@ These icons are from Icojam (http://www.icojam.com)
 
 LICENCE notice: http://www.icojam.com/blog/?p=222
 
+![IconLicence](https://github.com/sqrMin1/PenumbraPhysics.Editor/blob/master/Icons/IconLicence.PNG)
+
 Pixelbox Basic and Bonus [pixelate]
 
 Ammount of icons:
