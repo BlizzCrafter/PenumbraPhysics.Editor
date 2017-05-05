@@ -231,4 +231,4 @@ In first place they make it possible to easily exchange data between the propert
 
 Feel free to use the logos inside the ![Logo](Logo) folder.
 
-#### Have fun and ![Follow me on Twitter](https://twitter.com/sqrMin1)!
+### Have fun and <a href="https://twitter.com/sqrMin1">Follow me on Twitter!</a>
