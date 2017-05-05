@@ -1,9 +1,9 @@
 # Welcome to the PenumbraPhysics.Editor! 
-It's a compound of WindowsForms, MonoGame, FarseerPhysics and Penumbra and it shows the possibility of creating something like an editor inside a windows forms control using the above mentioned framework and (modified) libraries. It is possible to create an updatable control window, which allows realtime editing, as well as a normal draw window - depending on your needs.
+It's a compound of **WindowsForms**, **MonoGame**, **FarseerPhysics** and **Penumbra** and it shows the possibility of creating something like an editor inside a windows forms control using the above mentioned framework and (modified) libraries. It is possible to create an **updatable** control window, which allows **realtime editing**, as well as a normal draw window - depending on your needs.
 
 [![YouTube Video](Documentation/Thumbnail.png)](https://youtu.be/vQAxXN_V3X4)
 
-Watch the video on YouTube by clicking on the image!
+Watch the video on **YouTube** by clicking on the image!
 
 ### Building
 
@@ -28,7 +28,7 @@ The following is required to successfully compile the solution:
 ### How To
 #### Creating a simple draw control:
 
-You just need to create a new class and inherit from 'GraphicsDeviceControl'. After that you need to implement the abstrakt members of it. They are 'Draw()' and 'Initialize()'.
+You just need to create a new class and inherit from **GraphicsDeviceControl**. After that you need to implement the abstrakt members of it. They are **Draw()** and **Initialize()**.
 
 A full drawable implementation looks like this:
 
@@ -64,13 +64,13 @@ using Color = Microsoft.Xna.Framework.Color; //Xna.Framework.Color is different 
     }
 ```
 
-That's it! Now you are ready to draw what ever you want inside the TestDrawControl. After you built the solution, it's now possible to add this new control from your toolbox into the Forms.Designer.
+That's it! Now you are ready to draw what ever you want inside the **TestDrawControl**. After you built the solution, it's now possible to add this new control from your toolbox into the Forms.Designer.
 
 #### Creating an updatable control (based on GameTime):
 
-This time you need to inherit from 'GameControl'. Inside the GameControl class you will find things like a 'StopWatch' and the 'GameTime' reference. There are also fields for catching the relative mouse position and button pressed events as well as some abstract physics functions you need to implement, but don't need to use. The real update cycle is generated inside the 'GameLoop()' method. Other than that GameControl itself is inheriting from 'GraphicsDeviceControl', so it also contains the drawing feature.
+This time you need to inherit from **GameControl**. Inside the **GameControl** class you will find things like a **StopWatch** and the **GameTime** reference. There are also fields for catching the relative mouse position and button pressed events as well as some abstract physics functions you need to implement, but don't need to use. The real update cycle is generated inside the **GameLoop()** method. Other than that **GameControl** itself is inheriting from **GraphicsDeviceControl**, so it also contains the drawing feature.
 
-A full implementation of a class inheriting from GameControl looks like this:
+A full implementation of a class inheriting from **GameControl** looks like this:
 
 ```c
 using System;
@@ -122,7 +122,7 @@ using Microsoft.Xna.Framework;
     }
 ```
 
-You will notice that a Editor class is declared in the fields section. This is your actual "Game" which should run inside the control. You can trigger methods from this class to update and draw things.
+You will notice that a **Editor** class is declared in the fields section. This is your actual **Game** which should run inside the control. You can trigger methods from this class to update and draw things.
 
 This is how a reduced version (bare basics implementation) of the editor looks like:
 
@@ -202,7 +202,7 @@ using PenumbraPhysics.Editor.Classes.Basic;
     }
 ```
 
-You will notice that the editor inherits from 'GFXPhysicsService'. I created some interfaces and service classes, which should make your life easier. The GFXPhysicsService contains the most important methods and references of the GFX and the Physics system. Feel free to take a look at the:
+You will notice that the editor inherits from **GFXPhysicsService**. I created some interfaces and service classes, which should make your life easier. The **GFXPhysicsService** contains the most important methods and references of the **GFX** and the **Physics** system. Feel free to take a look at the:
 
 - ![EditorServices.cs](PenumbraPhysics.Editor/Classes/Basic/EditorServices.cs)
 - ![EditorInterfaces.cs](PenumbraPhysics.Editor/Classes/Basic/EditorInterfaces.cs)
@@ -213,7 +213,7 @@ Finally you build your solution and put the newly created control inside your de
 
 ### Some interesting things and helpers
 
-I also created the bare basics of UITypeEditors, TypeConverters and helper classes on which you could and should build upon! You can find the inside the source libraries in the folder 'EditorSpecific':
+I also created the bare basics of **UITypeEditors**, **TypeConverters** and **HelperClasses** on which you could and should build upon! You can find the inside the source libraries in the folder **EditorSpecific**:
 
 - ![Source/Penumbra/EditorSpecific](Source/Penumbra/EditorSpecific)
 - ![Source/FarseerPhysics/Farseer Physics Engine 3.5/EditorSpecific](Source/FarseerPhysics/Farseer%20Physics%20Engine%203.5/EditorSpecific)
