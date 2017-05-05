@@ -213,7 +213,7 @@ Finally you build your solution and put the newly created control inside your de
 
 ### Some interesting things and helpers
 
-I also created the bare basics of **UITypeEditors**, **TypeConverters** and **HelperClasses** on which you could and should build upon! You can find the inside the source libraries in the folder **EditorSpecific**:
+I also created the bare basics of **UITypeEditors**, **TypeConverters** and **HelperClasses** on which you could and should build upon! You can find them inside the source libraries in the folder **EditorSpecific**:
 
 - ![Source/Penumbra/EditorSpecific](Source/Penumbra/EditorSpecific)
 - ![Source/FarseerPhysics/Farseer Physics Engine 3.5/EditorSpecific](Source/FarseerPhysics/Farseer%20Physics%20Engine%203.5/EditorSpecific)
