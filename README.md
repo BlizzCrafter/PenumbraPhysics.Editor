@@ -227,4 +227,8 @@ In first place they make it possible to easily exchange data between the propert
 -	**PenumbraPhysicsControl**: A simple updatable control, which shows how the physics manipulation works.
 - **PlacementControl**: An extendend updatable control sample, which shows how to build up a real editor environment.
 
+![Logo](Logo/PenumbraPhysicsEditor_Logo_Horizontal_Black.png)
+
+Feel free to use the logos inside the ![Logo](Logo) folder.
+
 #### Have fun and ![Follow me on Twitter](https://twitter.com/sqrMin1)!
