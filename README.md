@@ -1,3 +1,5 @@
+[![Twitter Follow](https://img.shields.io/twitter/follow/sqrMin1.svg?style=social&label=Follow)](https://twitter.com/sqrMin1)
+
 # Welcome to the PenumbraPhysics.Editor! 
 It's a compound of **WindowsForms**, **MonoGame**, **FarseerPhysics** and **Penumbra** and it shows the possibility of creating something like an editor inside a windows forms control using the above mentioned framework and (modified) libraries. It is possible to create an **updatable** control window, which allows **realtime editing**, as well as a normal draw window - depending on your needs.
 
@@ -231,4 +233,6 @@ In first place they make it possible to easily exchange data between the propert
 
 Feel free to use the logos inside the ![Logo](Logo) folder.
 
-### Have fun and <a href="https://twitter.com/sqrMin1">Follow me on Twitter!</a>
+### Have fun!
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/sqrMin1.svg?style=social&label=Follow)](https://twitter.com/sqrMin1)
