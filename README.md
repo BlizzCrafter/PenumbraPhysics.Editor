@@ -3,6 +3,12 @@
 # Welcome to the PenumbraPhysics.Editor! 
 It's a compound of **WindowsForms**, **MonoGame**, **FarseerPhysics** and **Penumbra** and it shows the possibility of creating something like an editor inside a windows forms control using the above mentioned framework and (modified) libraries. It is possible to create an **updatable** control window, which allows **realtime editing**, as well as a normal draw window - depending on your needs.
 
+---
+
+**UPDATE:** If you want to take the most easiest route of integrating a MonoGame render window into your WindowsForms project, you should check out the ![MonoGame.Forms](https://github.com/sqrMin1/MonoGame.Forms) library!
+
+---
+
 [![YouTube Video](Documentation/Thumbnail.png)](https://youtu.be/vQAxXN_V3X4)
 
 Watch the video on **YouTube** by clicking on the image!
